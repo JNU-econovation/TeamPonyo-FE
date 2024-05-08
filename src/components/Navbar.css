@@ -1,0 +1,72 @@
+.Header {
+    background-color: black;
+    width: 100%;
+    color: white;
+    padding: 20px 50px 5px 50px;
+    box-sizing: border-box;
+}
+
+.Hello {
+    text-align: right;
+}
+
+.HeaderContents {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.NavBar {
+    justify-content: center;
+    display: flex;
+    flex-grow: 1;
+}
+
+
+.NavItem {
+    margin: 15px 70px;
+    cursor: pointer;
+}
+
+
+.NavMenu {
+    font-size: 16px;
+}
+
+
+.NavLogo {
+    font-size: 20px;
+}
+
+.NavInner {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 0;
+    cursor: pointer;
+    display: none;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.NavCategories:hover .NavInner {
+    display: block;
+    transition: 1s;
+}
+
+.InnerItem {
+    margin: 10px;
+}
+
+.InnerItem:hover {
+    text-decoration: underline;
+}
+
+.NavRight {
+    display: flex;
+    margin-top: 20px;
+}
+
+.material-symbols-outlined {
+    margin: 0 5px;
+    cursor: pointer;
+}
