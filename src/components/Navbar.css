@@ -10,6 +10,11 @@
     text-align: right;
 }
 
+.Hello .userName {
+    border-bottom: 1px solid white; /* 간격 띄워진 밑줄 */
+    cursor: pointer;
+}
+
 .HeaderContents {
     display: flex;
     justify-content: space-between;

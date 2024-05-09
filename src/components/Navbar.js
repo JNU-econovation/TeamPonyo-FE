@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Navbar.css'
 
 function Navbar() {
+
+    const [userName, setUserName] = useState("현솔")
+
   return (
     <div className='Header'>
 
-        <div className='Hello'>반가워요 oo님</div>
+        <div className='Hello'>반가워요, <span className='userName'>{userName}</span>님</div>
         <div className='HeaderContents'>
             <div className='NavLeft'></div>
             <div className='NavBar'>
