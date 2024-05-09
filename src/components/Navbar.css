@@ -2,8 +2,12 @@
     background-color: black;
     width: 100%;
     color: white;
-    padding: 20px 50px 5px 50px;
+    padding: 10px 50px 5px 50px;
     box-sizing: border-box;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 .Hello {

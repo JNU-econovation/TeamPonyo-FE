@@ -4,7 +4,9 @@ import './Navbar.css'
 function Navbar() {
 
     const [userName, setUserName] = useState("서윤")
+    const [isLogin, setIsLogin] = useState(true)
     const [notification, setNotification] = useState(false)
+
 
     function isNotification(){
 
@@ -15,7 +17,9 @@ function Navbar() {
   return (
     <div className='Header'>
 
-        <div className='Hello'>반가워요, <span className='userName'>{userName}</span>님</div>
+        <div className={`Hello ${isLogin ? '' : 'hidden'}`}>
+            <p>반가워요, <span className='userName'>{userName}</span>님</p>
+        </div>
         <div className='HeaderContents'>
             <div className='NavLeft'></div>
             <div className='NavBar'>
@@ -29,9 +33,11 @@ function Navbar() {
                 </ul>
                 </div>
                 <div className='NavItem NavLogo'>OnJeon</div>
-                <div className='NavItem NavMenu'>MY PAGE</div>
+                <div className='NavItem NavMenu'>
+                    {isLogin ? 'MY PAGE' : 'LOGIN'}
+                </div>
             </div>
-            <div className='NavRight'>
+            <div className={`NavRight ${isLogin ? '' : 'hidden'}`}>
                 <span class="material-symbols-outlined">edit_square</span>
                 <span class="material-symbols-outlined">
                     {notification ? 'notifications_unread' : 'notifications'}
