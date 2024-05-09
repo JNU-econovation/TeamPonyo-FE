@@ -3,7 +3,14 @@ import './Navbar.css'
 
 function Navbar() {
 
-    const [userName, setUserName] = useState("현솔")
+    const [userName, setUserName] = useState("서윤")
+    const [notification, setNotification] = useState(false)
+
+    function isNotification(){
+
+        // 알림 있는지 확인해서 있으면 아래 문장 실행하도록 조건 처리하기
+        setNotification(!notification)
+    }
 
   return (
     <div className='Header'>
@@ -26,7 +33,9 @@ function Navbar() {
             </div>
             <div className='NavRight'>
                 <span class="material-symbols-outlined">edit_square</span>
-                <span class="material-symbols-outlined">notifications</span>
+                <span class="material-symbols-outlined">
+                    {notification ? 'notifications_unread' : 'notifications'}
+                </span> 
             </div>
             
         </div>
