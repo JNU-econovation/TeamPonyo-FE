@@ -5,6 +5,15 @@
     padding: 10px 50px 5px 50px;
     box-sizing: border-box;
 }
+.Header a {
+    color:white
+}
+.Header a:active {
+    color: white;
+}
+.Header a:visited {
+    color: white;
+}
 
 .hidden {
     visibility: hidden;
