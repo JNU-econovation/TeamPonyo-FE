@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Navbar() {
 
     const [userName, setUserName] = useState("서윤")
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
     const [notification, setNotification] = useState(false)
 
 
