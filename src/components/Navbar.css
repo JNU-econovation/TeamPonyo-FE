@@ -84,6 +84,6 @@
 .material-symbols-outlined {
     margin: 0 5px;
     cursor: pointer;
-    font-variation-settings: 
-        'wght' 200;
+    font-variation-settings: 'wght' 300;
+    font-size: 28px;
 }

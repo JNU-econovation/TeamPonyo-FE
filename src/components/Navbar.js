@@ -36,7 +36,7 @@ function Navbar() {
                     <p>반가워요, <span className='userName'><Link to={'/mypage'}>{userName}</Link></span>님</p>
                 </div>
                 <div className='NavIcon'>
-                    <span class="material-symbols-outlined"><Link to={'/edit'}>edit_square</Link></span>
+                    <span class="material-symbols-outlined" ><Link to={'/edit'}>edit_square</Link></span>
                     <span class="material-symbols-outlined">
                         {notification ? 'notifications_unread' : 'notifications'}
                     </span> 
