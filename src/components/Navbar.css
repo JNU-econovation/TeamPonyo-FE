@@ -2,17 +2,31 @@
     background-color: black;
     width: 100%;
     color: white;
-    padding: 10px 50px 5px 50px;
+    padding: 10px 30px 5px 30px;
     box-sizing: border-box;
 }
 .Header a {
-    color:white
+    color:white;
 }
 .Header a:active {
     color: white;
 }
 .Header a:visited {
     color: white;
+}
+
+.Header .NavCategories a {
+    color:#D1D1D1;
+}
+.Header .NavCategories a:active {
+    color: #D1D1D1;
+}
+.Header .NavCategories a:visited {
+    color: #D1D1D1;
+}
+.Header .NavCategories a:hover {
+    color: white;
+    font-weight: bold;
 }
 
 .hidden {
@@ -31,60 +45,45 @@
 .HeaderContents {
     display: flex;
     justify-content: space-between;
-
 }
 
 .NavBar {
-    justify-content: center;
     display: flex;
     flex-grow: 1;
 }
 
 
-.NavItem {
-    margin: 15px 70px;
+.NavLogo {
+    margin: 15px 20px;
     cursor: pointer;
 }
 
-
-.NavMenu {
-    font-size: 16px;
-}
-
-
-.NavLogo {
-    font-size: 20px;
-}
-
-.NavInner {
+.NavCategories {
+    display: flex;
     list-style-type: none;
     text-align: center;
-    padding-left: 0;
+    padding-left: 30px;
     cursor: pointer;
-    display: none;
-    margin-top: 30px;
+    margin-top: 32px;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.NavCategories:hover .NavInner {
-    display: block;
-    transition: 1s;
-}
 
 .InnerItem {
     margin: 10px;
 }
 
-.InnerItem:hover {
-    text-decoration: underline;
-}
 
-.NavRight {
+
+.NavIcon {
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .material-symbols-outlined {
     margin: 0 5px;
     cursor: pointer;
+    font-variation-settings: 
+        'wght' 200;
 }
