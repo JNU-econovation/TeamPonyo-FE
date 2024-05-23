@@ -1,8 +1,11 @@
 import React from 'react'
+import GridList from '../components/GridList'
 
 const Main = () => {
   return (
-    <div>Main</div>
+    <div>
+      <GridList />
+    </div>
   )
 }
 

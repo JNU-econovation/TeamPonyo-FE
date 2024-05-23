@@ -1,0 +1,36 @@
+.girdList {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.postGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    
+}
+
+.poster {
+    width: 180px;
+    height: 240px;
+}
+
+.postInfo {
+    text-align: center;
+    margin: 10px;
+}
+
+.postTitle {
+}
+
+.postPeriod {
+    font-size: 15px;
+    margin: 4px;
+    color: #615F5F;
+}
+
+.postState {
+    font-size: 15px;
+    color: #615F5F;
+}
