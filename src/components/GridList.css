@@ -11,10 +11,48 @@
     
 }
 
+.imageContainer{
+    position: relative;
+    width: 180px;
+}
+
 .poster {
     width: 180px;
     height: 240px;
 }
+.poster:hover {
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.overlay > * {
+    margin: 0;
+}
+
+.moreEn {
+    font-size: 13px;
+}
+
+.imageContainer:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
 
 .postInfo {
     text-align: center;
@@ -22,6 +60,10 @@
 }
 
 .postTitle {
+}
+
+.postTitle:hover {
+    cursor: pointer;
 }
 
 .postPeriod {
@@ -33,4 +75,9 @@
 .postState {
     font-size: 15px;
     color: #615F5F;
+}
+
+.arrow {
+    margin-top: 5px;
+    margin-bottom: 3px;
 }
