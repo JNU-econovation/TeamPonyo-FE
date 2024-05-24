@@ -1,0 +1,48 @@
+.CardBanner {
+    width: 800px;
+    height: 500px;
+}
+
+.CardContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.CardPoster {
+
+}
+
+.CardInfo {
+
+}
+
+.CardTitle {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.CardAuthor {
+    font-size: 20px;
+}
+
+.CardContent {
+    font-size: 20px;
+}
+
+.CardDate {
+    font-size: 20px;
+}
+
+.CardLocation {
+    font-size: 20px;
+}
+
+.CardLeft {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.CardRight {
+    display: flex;
+    justify-content: flex-end;
+}
