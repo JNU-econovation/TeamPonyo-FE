@@ -3,13 +3,17 @@ import './MainSlide.css'
 
 
 
-const CardBanner = () => {
+const MainSlide = () => {
   return (
     <div className='MainSlide'>
-        온전
+        <div className='typography'>
+            <div className='TypoChinese'>穩全</div>
+            <div className='TypoKorean'>온전</div>
+            <div className='TypoEnglish'>onjeon</div>
+        </div>
         
     </div>
   )
 }
 
-export default CardBanner
+export default MainSlide

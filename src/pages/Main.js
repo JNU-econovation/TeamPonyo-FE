@@ -7,8 +7,8 @@ import MainSlide from '../components/MainSlide'
 const Main = () => {
   return (
     <div>
-      <CardBanner />
       <MainSlide />
+      <CardBanner />
       <Banner />
       <GridList />
     </div>

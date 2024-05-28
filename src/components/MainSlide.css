@@ -1,0 +1,26 @@
+.MainSlide {
+    background-color: black;
+
+    height: 77rem ;
+}
+
+.typography {
+    color: white;
+    padding: 16rem 20rem;
+    font-family: pretendard black;
+    font-size: 12rem;
+    line-height: 105%;
+    }
+
+.TypoChinese{
+        font-weight: bolder;
+ }
+.TypoKorean {
+    margin-left: 8.7rem;
+    margin-top: 0.8rem;
+
+}
+
+.TypoEnglish {
+    margin-left: 15rem;
+}
