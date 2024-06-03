@@ -1,15 +1,15 @@
 .MainSlide {
-    background-color: black;
-
-    height: 77rem ;
+    
 }
 
 .typography {
     color: white;
-    padding: 16rem 20rem;
-    font-family: pretendard black;
-    font-size: 12rem;
+    padding: 10rem 20rem;
+    font-family: 'pretendard black';
+    font-size: 10rem;
     line-height: 105%;
+    background-color: black;
+    height: 55rem;
     }
 
 .TypoChinese{
