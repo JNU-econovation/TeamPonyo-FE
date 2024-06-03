@@ -3,11 +3,13 @@ import GridList from '../components/GridList'
 import Banner from '../components/Banner'
 import CardBanner from '../components/CardBanner'
 import MainSlide from '../components/MainSlide'
+import { SearchBox } from '../components/SearchBox'
 
 const Main = () => {
   return (
     <div>
       <MainSlide />
+      <SearchBox/>
       <CardBanner />
       <Banner />
       <GridList />

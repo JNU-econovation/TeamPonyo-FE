@@ -1,8 +1,14 @@
 import React from "react";
-import './Search.css'
+import './SearchBox.css'
 
-const Search = () => {
-    return(
-        
+export function SearchBox({value, onChange}){
+    return (
+        <div className="SearchBox">
+            <input
+                type="search"
+                placeholder="전시, 계정을 찾아보세요."
+                value={value}
+            onChange={onChange}
+        /></div>
     )
 }
