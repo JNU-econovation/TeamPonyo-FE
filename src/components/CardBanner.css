@@ -13,28 +13,35 @@
 }
 
 .CardInfo {
-
+    margin-top: 10px;
+    margin-left: 30px;
 }
 
 .CardTitle {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 700;
+    margin: 10px 10px 15px 5px;
 }
 
 .CardAuthor {
     font-size: 20px;
+    margin: 5px;
 }
 
 .CardContent {
     font-size: 20px;
+    margin: 5px;
 }
 
 .CardDate {
     font-size: 20px;
+    margin: 10px;
+
 }
 
 .CardLocation {
     font-size: 20px;
+    margin-top: 20px;
 }
 
 .CardLeft {
