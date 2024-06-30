@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './Banner.css';
-//import CardBanner from './CardBanner'
+//import CardBanner from './CardBanner.js';
 
 const Banner = () => {
 
