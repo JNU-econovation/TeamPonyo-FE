@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination a {
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #a1a1a1;
+  text-decoration: none;
+}
+
+.pagination .active a {
+  background-color: #e0e0e0;
+  color: #000000;
+  border-color: #e0e0e0;
+}
+
+.pagination .prevoius-item {
+
+}
+
+.pagination .next-item {
+  
+}
