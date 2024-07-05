@@ -8,10 +8,9 @@ import { SearchBox } from '../components/SearchBox'
 
 const Main = () => {
 
-  const [pageCount, setPageCount] = useState(1) // 총 페이지 수
+  const [pageCount, setPageCount] = useState(36) // 총 페이지 수
   const [currentPage, setCurrentPage] = useState(0) // 현재 페이지
   const [data, setData] = useState([])  // 해당 페이지의 데이터
-
   const itemsPerPage = 16 // 페이지당 아이템 수
 
   useEffect(() => {
@@ -52,7 +51,7 @@ const Main = () => {
       <GridList 
         // data = {data}
       />
-      {pageCount >= 1 && (
+      {pageCount > 1 && (
         <Pagination
           pageCount={pageCount}
           onPageChange={handlePageChange}
