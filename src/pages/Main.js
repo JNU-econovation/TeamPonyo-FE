@@ -49,7 +49,7 @@ const Main = () => {
       <SearchBox/>
       <Banner />
       <GridList 
-        // data = {data}
+        // data = {data}  // 데이터 전달
       />
       {pageCount > 1 && (
         <Pagination
