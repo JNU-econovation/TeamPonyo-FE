@@ -1,8 +1,11 @@
 import React from 'react'
+import InfoDatePicker from '../components/InfoDatePicker'
 
 const Create = () => {
   return (
-    <div>Create</div>
+    <div className='Create'>
+        <InfoDatePicker />
+    </div>
   )
 }
 
