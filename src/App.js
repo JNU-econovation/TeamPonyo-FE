@@ -8,6 +8,8 @@ import MyPagePerson from './pages/MyPagePerson';
 import MyPageGroup from './pages/MyPageGroup';
 import Login from './pages/Login';
 import Join from './pages/Join';
+import Info from './pages/Info';
+import Create from './pages/Create';
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path='/mypageGroup' element={<MyPageGroup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/join/:joinId' element={<Join />} />
+          <Route path='/info' element={<Info />} />
+          <Route path='/create' element={<Create />} />
         </Routes>
         <Footer />
       </div>

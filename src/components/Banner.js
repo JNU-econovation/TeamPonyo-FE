@@ -5,15 +5,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './Banner.css';
-//import CardBanner from './CardBanner.js';
+import CardBanner from './CardBanner.js';
 
 const Banner = () => {
 
   return (
     <Swiper
       direction={'horizontal'}
-      slidesPerView={5}
-      spaceBetween={300}
+      slidesPerView={3}
+      /** spaceBetween={200} **/
       centeredSlides={true}
       loop={true}
       autoplay={{
@@ -26,11 +26,11 @@ const Banner = () => {
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
-      <SwiperSlide>Slide1</SwiperSlide>
-      <SwiperSlide>Slide2</SwiperSlide>
-      <SwiperSlide>Slide3</SwiperSlide>
-      <SwiperSlide>Slide4</SwiperSlide>
-      <SwiperSlide>Slide5</SwiperSlide>
+      <SwiperSlide><CardBanner /></SwiperSlide>
+      <SwiperSlide><CardBanner /></SwiperSlide>
+      <SwiperSlide><CardBanner /></SwiperSlide>
+      <SwiperSlide><CardBanner /></SwiperSlide>
+      <SwiperSlide><CardBanner /></SwiperSlide>
     </Swiper>
   );
 };

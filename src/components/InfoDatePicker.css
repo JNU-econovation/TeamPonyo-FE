@@ -1,0 +1,21 @@
+.customInput {
+    display: flex;
+    position: relative;
+    border-radius: 4px;
+}
+
+
+.iconCalendar {
+    margin-right: 8px;
+    font-size: 18px; /* 원하는 크기로 조정 */
+    position: absolute;
+}
+
+input {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    flex-grow: 1;
+    cursor: pointer;
+}
