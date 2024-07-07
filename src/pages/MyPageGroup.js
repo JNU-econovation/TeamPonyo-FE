@@ -1,8 +1,12 @@
 import React from 'react'
+import Profile from '../components/Profile'
 
 const MyPageGroup = () => {
   return (
-    <div>MyPageGroup</div>
+   
+      <div>
+      <Profile/>
+      </div>
   )
 }
 

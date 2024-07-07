@@ -1,5 +1,7 @@
-import React from 'react'
+
 import { useParams } from 'react-router'
+import React, { useState } from 'react';
+import './Join.css'; 
 
 function Join() {
   const [form, setForm] = useState({
