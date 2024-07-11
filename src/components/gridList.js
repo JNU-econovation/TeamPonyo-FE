@@ -42,9 +42,10 @@ const postList = [
   },
 ];
 
+//TODO: 하단 girdList -> gridList 오타 수정
 const GridList = () => {
   return (
-    <div className='girdList'>
+    <div className='gridList'>
       <div className='postGrid'>
         {/* 임의 데이터 */}
         {postList.map((item, index) => (

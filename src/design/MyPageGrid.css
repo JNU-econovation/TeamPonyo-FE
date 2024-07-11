@@ -1,0 +1,6 @@
+
+.MyPageContainer .gridList {
+    display: flex;
+    justify-content: flex-start;
+    margin: 151px;
+}
