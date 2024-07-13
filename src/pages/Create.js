@@ -2,36 +2,89 @@ import React, { useState } from 'react';
 import InfoDatePicker from '../components/InfoDatePicker';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
+import axiosInstance from '../api/axiosInstance';
 
 const Create = () => {
-  // 각 입력 필드를 위한 상태 변수
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [location, setLocation] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [fee, setFee] = useState('');
-  const [contact, setContact] = useState('');
-  const [description, setDescription] = useState('');
-  const [uploadedPoster, setUploadedPoster] = useState(null);
+  const [data, setData] = useState({
+    title: '',
+    author: '',
+    location: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
+    fee: '',
+    contact: '',
+    description: '',
+    poster: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+  const handlePosterChange = (file) => {
+    setData({
+      ...data,
+      poster: file,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', data.title);
+    formData.append('author', data.author);
+    formData.append('location', data.location);
+    formData.append('startDate', data.startDate);
+    formData.append('endDate', data.endDate);
+    formData.append('startTime', data.startTime);
+    formData.append('endTime', data.endTime);
+    formData.append('fee', data.fee);
+    formData.append('contact', data.contact);
+    formData.append('description', data.description);
+    formData.append('poster', data.poster);
 
 
+    //Key 확인하기
+    for (let key of formData.keys()) {
+      console.log("key : " + key);
+    }
+
+    /* value 확인하기 */
+    for (let value of formData.values()) {
+      console.log("value : " + value);
+    }
+    
+    console.log('Form Data:', formData);
+
+    try {
+      const response = await axiosInstance.post('', formData);
+      console.log('전시 작성 FormData submitted:', response.data);
+    } catch (error) {
+      console.error('전시 작성 FormData submit 오류', error);
+    }
+  };
 
   return (
     <div className='Create'>
       <div className='topContainer'>
         <div className='uploadPoster'>
-          <UploadPoster uploadedPoster={uploadedPoster} setUploadedPoster={setUploadedPoster} />
+          <UploadPoster uploadedPoster={data.poster} setUploadedPoster={handlePosterChange} />
         </div>
         <div className='infoContainer'>
           <div className='informationContainer'>
             <div className='infoTitle'>
               <input
                 type='text'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                name='title'
+                value={data.title}
+                onChange={handleChange}
                 placeholder='전시 제목'
                 className='infoTitleText'
               />
@@ -39,8 +92,9 @@ const Create = () => {
             <div className='infoAuthor'>
               <input
                 type='text'
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
+                name='author'
+                value={data.author}
+                onChange={handleChange}
                 placeholder='주최'
                 className='infoAuthorText'
               />
@@ -49,36 +103,41 @@ const Create = () => {
               장소
               <input
                 type='text'
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                name='location'
+                value={data.location}
+                onChange={handleChange}
               />
             </div>
             <div className='infoPeriod'>
               기간
               <input
                 type='date'
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                name='startDate'
+                value={data.startDate}
+                onChange={handleChange}
               />
               ~
               <input
                 type='date'
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                name='endDate'
+                value={data.endDate}
+                onChange={handleChange}
               />
             </div>
             <div className='infoTime'>
               시간
               <input
                 type='time'
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
+                name='startTime'
+                value={data.startTime}
+                onChange={handleChange}
               />
               ~
               <input
                 type='time'
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
+                name='endTime'
+                value={data.endTime}
+                onChange={handleChange}
               />
             </div>
             <div className='infoPrice'>
@@ -87,16 +146,18 @@ const Create = () => {
               <button>유료</button>
               <input
                 type='text'
-                value={fee}
-                onChange={(e) => setFee(e.target.value)}
+                name='fee'
+                value={data.fee}
+                onChange={handleChange}
               />
             </div>
             <div className='infoAsk'>
               전시 문의
               <input
                 type='text'
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
+                name='contact'
+                value={data.contact}
+                onChange={handleChange}
               />
             </div>
             <div className='infoCategory'>
@@ -113,9 +174,11 @@ const Create = () => {
         <div className='descriptionTitle'>소개</div>
         <div className='descriptionBody'>
           <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className='textarea' />
+            name='description'
+            value={data.description}
+            onChange={handleChange}
+            className='textarea'
+          />
         </div>
       </div>
       <div className='infoPhotoContainer'>
@@ -129,6 +192,7 @@ const Create = () => {
         </div>
       </div>
       <InfoDatePicker />
+      <div className='submitBtn' onClick={handleSubmit}>작성 완료</div>
     </div>
   );
 };
