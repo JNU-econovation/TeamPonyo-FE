@@ -1,7 +1,7 @@
 .Info {
     display: flex;
     flex-direction: column;
-    margin: 100px 220px;
+    margin: 100px calc(13% + 20px);
   }
   
   .infoContainer {
@@ -11,6 +11,7 @@
   .topContainer {
     display: flex;
     flex-direction: row;
+    margin-bottom: 50px;
   }
   
   .posterContainer {
