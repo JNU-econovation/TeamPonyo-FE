@@ -1,0 +1,14 @@
+.UploadPoster {
+
+}
+
+.container {
+    width: 270px;
+    height: 370px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+

@@ -1,0 +1,5 @@
+.Create {
+    margin: 100px calc(13% + 20px);
+    display: flex;
+    flex-direction: column;
+}
