@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import './UploadPoster.css';
 
-const UploadPoster = () => {
-  const [uploadedPoster, setUploadedPoster] = useState(null);
+const UploadPoster = ({ uploadedPoster, setUploadedPoster }) => {
+  
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
