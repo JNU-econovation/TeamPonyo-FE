@@ -1,3 +1,11 @@
+.fileInput {
+    display: none;
+}
+
+.fileUpload {
+    
+}
+
 .filePreview {
     display: flex;
     flex-direction: column;
@@ -8,3 +16,4 @@
 .fileItem {
     margin-top: 20px;
 }
+

@@ -4,6 +4,7 @@ import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
 import axiosInstance from '../api/axiosInstance';
 import UploadFile from '../components/exhibition/UploadFile';
+import  '../components/exhibition/exhibitionCommon.css';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -156,8 +157,8 @@ const Create = () => {
             </div>
             <div className='infoPrice'>
               입장료
-              <button>무료</button>
-              <button>유료</button>
+              <div className='smallBtn'>무료</div>
+              <div className='smallBtn'>유료</div>
               <input
                 type='text'
                 name='fee'
@@ -176,10 +177,10 @@ const Create = () => {
             </div>
             <div className='infoCategory'>
               <div>카테고리 설정</div>
-              <button>전시회</button>
-              <button>공연</button>
-              <button>공모전 및 대회</button>
-              <button>기타</button>
+              <div className='smallBtn'>전시회</div>
+              <div className='smallBtn'>공연</div>
+              <div className='smallBtn'>공모전 및 대회</div>
+              <div className='smallBtn'>기타</div>
             </div>
           </div>
         </div>

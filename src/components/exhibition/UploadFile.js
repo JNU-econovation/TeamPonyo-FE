@@ -9,7 +9,8 @@ const UploadFile = ({ selectedFiles, onFilesSelect }) => {
 
   return (
     <div className='UploadFile'>
-      <input type="file" multiple onChange={handleFileChange} />
+      <input type="file" id="fileUpload" multiple onChange={handleFileChange} className='fileInput' />
+      <label htmlFor="fileUpload" className="middleBtn">파일</label>
       <div className="filePreview">
         {selectedFiles.map((file, index) => (
           <div key={index} className="fileItem">

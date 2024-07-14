@@ -1,0 +1,56 @@
+.smallBtn {
+    display: inline;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 3px 9px;
+    border: 1px solid #000;
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.smallBtnSelected {
+    display: inline;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 3px 8px;
+    border: 1px solid #000;
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtn {
+    display: inline;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #000;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtn:hover {
+    display: inline;
+    background-color: #EDEDED;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #000;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtnSelected {
+    display: inline;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 3px 10px;
+    border: 1px solid #000;
+    margin: 0 5px;
+    cursor: pointer;
+}
