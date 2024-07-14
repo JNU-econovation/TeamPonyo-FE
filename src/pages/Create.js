@@ -3,6 +3,7 @@ import InfoDatePicker from '../components/InfoDatePicker';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
 import axiosInstance from '../api/axiosInstance';
+import UploadFile from '../components/exhibition/UploadFile';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -17,6 +18,7 @@ const Create = () => {
     contact: '',
     description: '',
     poster: null,
+    photos: []
   });
 
   const handleChange = (e) => {
@@ -31,6 +33,13 @@ const Create = () => {
     setData({
       ...data,
       poster: file,
+    });
+  };
+
+  const handleFilesSelect = (files) => {
+    setData({
+      ...data,
+      photos: [...data.photos, ...files],
     });
   };
 
@@ -50,6 +59,10 @@ const Create = () => {
     formData.append('description', data.description);
     formData.append('poster', data.poster);
 
+    // 여러 개의 사진 파일을 FormData에 추가
+    data.photos.forEach((photo, index) => {
+      formData.append(`photo${index}`, photo);
+    });
 
     //Key 확인하기
     for (let key of formData.keys()) {
@@ -60,7 +73,7 @@ const Create = () => {
     for (let value of formData.values()) {
       console.log("value : " + value);
     }
-    
+
     console.log('Form Data:', formData);
 
     try {
@@ -180,6 +193,7 @@ const Create = () => {
             className='textarea'
           />
         </div>
+        <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>
       <div className='infoPhotoContainer'>
         {/* 필요 시 이미지를 추가할 수 있습니다 */}

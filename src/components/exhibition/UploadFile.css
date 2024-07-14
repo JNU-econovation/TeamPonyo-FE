@@ -1,0 +1,10 @@
+.filePreview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fileItem {
+    margin-top: 20px;
+}
