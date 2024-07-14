@@ -8,8 +8,9 @@ import UploadFile from '../components/exhibition/UploadFile';
 const Create = () => {
   const [data, setData] = useState({
     title: '',
+    category: '',
     author: '',
-    location: '',
+    address: '',
     startDate: '',
     endDate: '',
     startTime: '',
@@ -20,6 +21,7 @@ const Create = () => {
     poster: null,
     photos: []
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,22 +49,21 @@ const Create = () => {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append('poster_url', data.poster);
+    formData.append('exhibit_category', data.category);
     formData.append('title', data.title);
-    formData.append('author', data.author);
-    formData.append('location', data.location);
-    formData.append('startDate', data.startDate);
-    formData.append('endDate', data.endDate);
-    formData.append('startTime', data.startTime);
-    formData.append('endTime', data.endTime);
+    formData.append('address', data.address);
+    formData.append('open_times', data.startTime + ' ~ ' + data.endTime)
     formData.append('fee', data.fee);
     formData.append('contact', data.contact);
     formData.append('description', data.description);
-    formData.append('poster', data.poster);
-
     // 여러 개의 사진 파일을 FormData에 추가
     data.photos.forEach((photo, index) => {
       formData.append(`photo${index}`, photo);
     });
+    formData.append('startDate', data.startDate);
+    formData.append('endDate', data.endDate);
+    
 
     //Key 확인하기
     for (let key of formData.keys()) {
