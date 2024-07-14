@@ -194,6 +194,23 @@ const Create = () => {
             onChange={handleChange}
             className='textarea'
           />
+          {!data.description && (
+            <div className='descriptionPlaceholder'>
+              소개를 작성해주세요. 온전은 모두의 온전한 경험을 위해 이용규칙을 제정하여 운영하고 있습니다.{'\n'}
+              위반 시 게시물이 삭제되며 계정 이용이 일정 기간 제한될 수 있습니다.{'\n'}
+              {'\n'}
+              = 저작권 위반 금지{'\n'}
+              ∙타인의 전시 및 작품 등을 허락 없이 게시하는 행위{'\n'}
+              {'\n'}
+              = 불법촬영물 유통 금지{'\n'}
+              - 불법촬영물 등을 게재할 경우 전기통신사업법에 따라 삭제 조치 및 서비스 이용이 영구적으로 제한될 수 있으며 관련 법률에 따라 처벌 받을 수 있습니다.{'\n'}
+              {'\n'}
+              = 그 밖의 규칙 위반{'\n'}
+              - 타인의 권리를 침해하거나 불쾌감을 주는 행위{'\n'}
+              - 범죄, 불법 행위 등 법령을 위반하는 행위{'\n'}
+              - 음란물, 성적 수치심을 유발하는 행위{'\n'}
+            </div>
+          )}
         </div>
         <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>
