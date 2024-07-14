@@ -121,6 +121,7 @@ const Create = () => {
                 name='location'
                 value={data.location}
                 onChange={handleChange}
+                className='inputSmall'
               />
             </div>
             <div className='infoPeriod'>
@@ -130,6 +131,7 @@ const Create = () => {
                 name='startDate'
                 value={data.startDate}
                 onChange={handleChange}
+                className='inputSmall'
               />
               ~
               <input
@@ -137,6 +139,7 @@ const Create = () => {
                 name='endDate'
                 value={data.endDate}
                 onChange={handleChange}
+                className='inputSmall'
               />
             </div>
             <div className='infoTime'>
@@ -146,6 +149,7 @@ const Create = () => {
                 name='startTime'
                 value={data.startTime}
                 onChange={handleChange}
+                className='inputSmall'
               />
               ~
               <input
@@ -153,6 +157,7 @@ const Create = () => {
                 name='endTime'
                 value={data.endTime}
                 onChange={handleChange}
+                className='inputSmall'
               />
             </div>
             <div className='infoPrice'>
@@ -164,6 +169,7 @@ const Create = () => {
                 name='fee'
                 value={data.fee}
                 onChange={handleChange}
+                className='inputSmall inputFee'
               />
             </div>
             <div className='infoAsk'>
@@ -173,6 +179,7 @@ const Create = () => {
                 name='contact'
                 value={data.contact}
                 onChange={handleChange}
+                className='inputSmall'
               />
             </div>
             <div className='infoCategory'>

@@ -14,7 +14,6 @@
 }
 
 input {
-    width: 150px;
     height: 20px;
     margin: 0px 10px;
 }
@@ -34,6 +33,16 @@ input {
     margin: 0 0 3px 0;
     padding: 0;
     outline: none;
+}
+
+.inputSmall {
+    width: 150px;
+    height: 20px;
+    margin: 0px 10px;
+}
+
+.inputFee {
+
 }
 
 .infoCategory {

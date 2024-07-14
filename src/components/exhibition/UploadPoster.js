@@ -24,7 +24,12 @@ const UploadPoster = ({ uploadedPoster, setUploadedPoster }) => {
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         ) : (
-          <span>클릭하여 사진을 추가하세요</span>
+          
+          <div className='posterPlaceholder'>
+            <div class="material-symbols-outlined posterPlaceholderIcon">photo_camera</div>
+            <div className='posterPlaceholder posterPlaceholderText'>포스터를 추가해주세요</div>
+          </div>
+          
         )}
         <input
           type="file"
