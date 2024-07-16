@@ -52,7 +52,7 @@ const Create = () => {
       setIsFree(true);
       setData({
         ...data,
-        fee: '무료',
+        fee: '',
       });
     } else {
       setIsFree(false);
@@ -182,13 +182,13 @@ const Create = () => {
             </div>
             <div className='infoPrice infoItem'>
               <div className='inputTag'>입장료</div>
-              <div className={`smallBtn ${isFree ? 'active' : ''}`} onClick={() => handleFeeChange('무료')}>무료</div>
-              <div className={`smallBtn ${!isFree ? 'active' : ''}`} onClick={() => handleFeeChange('유료')}>유료</div>
+              <div className={`smallBtn ${isFree===true ? 'active' : ''}`} onClick={() => handleFeeChange('무료')}>무료</div>
+              <div className={`smallBtn ${isFree===false ? 'active' : ''}`} onClick={() => handleFeeChange('유료')}>유료</div>
               <div className='inputFeeContainer'>
                 <input
                   type='number'
                   name='fee'
-                  value={isFree !== false ? data.fee : ''}
+                  value={isFree === false ? data.fee : ''}
                   onChange={handleChange}
                   className='inputSmall inputFee'
                   disabled={isFree}
