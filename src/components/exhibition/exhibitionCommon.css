@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.smallBtnSelected {
+.smallBtn.active {
     display: inline;
     background-color: black;
     color: white;

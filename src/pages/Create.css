@@ -14,12 +14,27 @@
 }
 
 input {
-    height: 20px;
+    height: 25px;
     margin: 0px 10px;
+    border: 1.5px solid #333;
+    outline: none;
+    border-radius: 5px;
+    padding: 13px 10px;
+    box-sizing: border-box;
+}
+
+.infoItem {
+    margin: 8px 0;
+    align-items: center;
+}
+
+.inputTag {
+    display: inline;
+    margin-right: 8px;
 }
 
 .infoTitleText {
-    font-size: 20px;
+    font-size: 22px;
     border: none;
     margin: 0 0 5px 0;
     padding: 0;
@@ -36,13 +51,34 @@ input {
 }
 
 .inputSmall {
-    width: 150px;
+    width: 160px;
     height: 20px;
     margin: 0px 10px;
 }
 
-.inputFee {
+.inputFeeContainer {
+    position: relative;
+    display: inline-block;
+}
 
+.inputFee {
+    padding-right: 20px;
+    text-align: right;
+}
+
+.inputFee:disabled {
+    border: 1.5px solid #ADADAD;
+    background-color: #EDEDED;
+    cursor: not-allowed;
+}
+
+.currency {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
 }
 
 .infoCategory {

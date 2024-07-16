@@ -23,6 +23,7 @@ const Create = () => {
     photos: []
   });
 
+  const [isFree, setIsFree] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +47,30 @@ const Create = () => {
     });
   };
 
+  const handleFeeChange = (feeType) => {
+    if (feeType === '무료') {
+      setIsFree(true);
+      setData({
+        ...data,
+        fee: '무료',
+      });
+    } else {
+      setIsFree(false);
+      setData({
+        ...data,
+        fee: '',
+      });
+    }
+  };
+
+
+  const handleCategoryChange = (category) => {
+    setData({
+      ...data,
+      category: category,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,7 +80,7 @@ const Create = () => {
     formData.append('title', data.title);
     formData.append('address', data.address);
     formData.append('open_times', data.startTime + ' ~ ' + data.endTime)
-    formData.append('fee', data.fee);
+    formData.append('fee', isFree ? '무료' : `${data.fee}원`);
     formData.append('contact', data.contact);
     formData.append('description', data.description);
     // 여러 개의 사진 파일을 FormData에 추가
@@ -66,14 +91,9 @@ const Create = () => {
     formData.append('endDate', data.endDate);
     
 
-    //Key 확인하기
-    for (let key of formData.keys()) {
-      console.log("key : " + key);
-    }
-
-    /* value 확인하기 */
-    for (let value of formData.values()) {
-      console.log("value : " + value);
+    // FormData 값 확인
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
     }
 
     console.log('Form Data:', formData);
@@ -114,8 +134,8 @@ const Create = () => {
                 className='infoAuthorText'
               />
             </div>
-            <div className='infoPlace'>
-              장소
+            <div className='infoPlace infoItem'>
+              <div className='inputTag'>장소</div>
               <input
                 type='text'
                 name='location'
@@ -124,8 +144,8 @@ const Create = () => {
                 className='inputSmall'
               />
             </div>
-            <div className='infoPeriod'>
-              기간
+            <div className='infoPeriod infoItem'>
+              <div className='inputTag'>기간</div>
               <input
                 type='date'
                 name='startDate'
@@ -142,8 +162,8 @@ const Create = () => {
                 className='inputSmall'
               />
             </div>
-            <div className='infoTime'>
-              시간
+            <div className='infoTime infoItem'>
+              <div className='inputTag'>시간</div>
               <input
                 type='time'
                 name='startTime'
@@ -160,20 +180,25 @@ const Create = () => {
                 className='inputSmall'
               />
             </div>
-            <div className='infoPrice'>
-              입장료
-              <div className='smallBtn'>무료</div>
-              <div className='smallBtn'>유료</div>
-              <input
-                type='text'
-                name='fee'
-                value={data.fee}
-                onChange={handleChange}
-                className='inputSmall inputFee'
-              />
+            <div className='infoPrice infoItem'>
+              <div className='inputTag'>입장료</div>
+              <div className={`smallBtn ${isFree ? 'active' : ''}`} onClick={() => handleFeeChange('무료')}>무료</div>
+              <div className={`smallBtn ${!isFree ? 'active' : ''}`} onClick={() => handleFeeChange('유료')}>유료</div>
+              <div className='inputFeeContainer'>
+                <input
+                  type='number'
+                  name='fee'
+                  value={isFree !== false ? data.fee : ''}
+                  onChange={handleChange}
+                  className='inputSmall inputFee'
+                  disabled={isFree}
+                  step={500}
+                />
+                <div className='currency'>원</div>
+              </div>
             </div>
-            <div className='infoAsk'>
-              전시 문의
+            <div className='infoContact infoItem'>
+              <div className='inputTag'>전시 문의</div>
               <input
                 type='text'
                 name='contact'
@@ -182,12 +207,28 @@ const Create = () => {
                 className='inputSmall'
               />
             </div>
-            <div className='infoCategory'>
-              <div>카테고리 설정</div>
-              <div className='smallBtn'>전시회</div>
-              <div className='smallBtn'>공연</div>
-              <div className='smallBtn'>공모전 및 대회</div>
-              <div className='smallBtn'>기타</div>
+            <div className='infoCategory infoItem'>
+              <div className='inputTag'>카테고리</div>
+              <div
+                className={`smallBtn ${data.category === '전시회' ? 'active' : ''}`}
+                onClick={() => handleCategoryChange('전시회')}>
+                전시회
+              </div>
+              <div
+                className={`smallBtn ${data.category === '공연' ? 'active' : ''}`}
+                onClick={() => handleCategoryChange('공연')}>
+                공연
+              </div>
+              <div
+                className={`smallBtn ${data.category === '공모전 및 대회' ? 'active' : ''}`}
+                onClick={() => handleCategoryChange('공모전 및 대회')}>
+                공모전 및 대회
+              </div>
+              <div
+                className={`smallBtn ${data.category === '기타' ? 'active' : ''}`}
+                onClick={() => handleCategoryChange('기타')}>
+                기타
+              </div>
             </div>
           </div>
         </div>
