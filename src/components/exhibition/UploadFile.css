@@ -1,3 +1,7 @@
+.UploadFile {
+    justify-content: left;
+}
+
 .fileInput {
     display: none;
 }
@@ -13,7 +17,20 @@
     align-items: center;
 }
 
-.fileItem {
-    margin-top: 20px;
+.filePreview {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+.fileItem {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.fileImage {
+    max-width: 100%;
+    height: auto;
+}

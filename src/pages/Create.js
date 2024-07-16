@@ -262,9 +262,6 @@ const Create = () => {
         </div>
         <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>
-      <div className='infoPhotoContainer'>
-        {/* 필요 시 이미지를 추가할 수 있습니다 */}
-      </div>
       <div className='infoPlaceContainer'>
         <div className='infoPlaceTitle'>공간 정보</div>
         <div className='infoPlaceBody'></div>
