@@ -15,26 +15,29 @@
   }
   
   .posterContainer {
-    width: 270px;
-    height: 370px;
+    width: 273px;   /** 포스터 크기 210*297의 1.3배 **/
+    height: 386.1px;
     margin-right: 50px;
+    border: 1px solid #000;
   }
   
   .informationContainer {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
+    white-space: pre;
   }
   
   .infoTag {
     border: 1px solid #333;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    padding: 2px;
+    padding: 3px 2px;
+    margin: 0 0 5px 0;
   }
   
   .infoTitleContainer {
@@ -44,8 +47,6 @@
   
   .infoTitle {
     font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 8px;
     margin-top: 8px;
   }
   
@@ -74,8 +75,8 @@
 
   }
   
-  .btnContainer {
-    margin-top: 10px;
+  .infoBtnContainer {
+    margin-top: 20px;
   }
   
   .infoDescriptionContainer {

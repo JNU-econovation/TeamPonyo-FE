@@ -13,15 +13,9 @@
     margin-right: 50px;
 }
 
-input {
-    height: 25px;
-    margin: 0px 10px;
-    border: 1.5px solid #333;
-    outline: none;
-    border-radius: 5px;
-    padding: 13px 10px;
-    box-sizing: border-box;
-}
+/* .infoTitle {
+    margin-bottom: 8px;
+} */
 
 .infoItem {
     margin: 8px 0;
@@ -52,8 +46,13 @@ input {
 
 .inputSmall {
     width: 160px;
-    height: 20px;
+    height: 25px;
     margin: 0px 10px;
+    border: 1.5px solid #333;
+    outline: none;
+    border-radius: 5px;
+    padding: 13px 10px;
+    box-sizing: border-box;
 }
 
 .inputFeeContainer {
