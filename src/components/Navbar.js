@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from '../logo.svg'
 
 function Navbar() {
 
-    const [nickName, setNickrName] = useState("서윤")
+    const [nickName, setNickName] = useState("서윤")
     const [isLogin, setIsLogin] = useState(true)
     const [notification, setNotification] = useState(false)
 
@@ -40,7 +40,7 @@ function Navbar() {
                     <span class="material-symbols-outlined">
                         {notification ? 'notifications_unread' : 'notifications'}
                     </span> 
-                    <Link to={isLogin ? '/mypage' : '/login'}>{isLogin ? <span class="material-symbols-outlined">person</span> : 'LOGIN'}</Link>
+                    <Link to={isLogin ? '/mypagegroup' : '/login'}>{isLogin ? <span class="material-symbols-outlined">person</span> : 'LOGIN'}</Link>
                 </div>
                 
                 

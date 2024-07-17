@@ -1,0 +1,40 @@
+.profile {
+  display: flex;
+  align-items: flex-start ;
+  margin: 40px;
+  margin-inline-start: 150px;
+  padding: 20px;
+ 
+  background-color: #fff;
+}
+
+.profile-image {
+  width: 9rem ;
+  height: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.nickname {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.id {
+  color: #888;
+  margin: 5px 0;
+  font-size: 1.25rem;
+}
+
+.introduction {
+  margin: 10px 0 0;
+  font-size: 1em;
+  font-size: 1.25rem;
+}

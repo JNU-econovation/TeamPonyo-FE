@@ -1,0 +1,51 @@
+/* src/Join.css */
+.join-page {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .join-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .join-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .join-page form > div {
+    margin-bottom: 15px;
+  }
+  
+  .join-page label {
+    margin-bottom: 5px;
+  }
+  
+  .join-page input {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .join-page .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .join-page button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .join-page button:hover {
+    background-color: #0056b3;
+  }
+  
