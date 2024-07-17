@@ -1,3 +1,7 @@
 .Main {
     position: relative;
 }
+
+.filterBoxContainer {
+    padding-left: 100px;
+}

@@ -91,3 +91,25 @@ const GridList = () => {
 }
 
 export default GridList;
+
+
+
+// import React from 'react';
+
+// const GridList = ({ data }) => {
+//   return (
+//     <div className='GridList'>
+//       {data.map((exhibit) => (
+//         <div key={exhibit.exhibit_id} className='exhibit'>
+//           <img src={`data:${exhibit.poster.mime_type};base64,${exhibit.poster.base64_image}`} alt={exhibit.title} />
+//           <h3>{exhibit.title}</h3>
+//           <p>{exhibit.period}</p>
+//           <p>상태: {exhibit.exhibit_status}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default GridList;
+
