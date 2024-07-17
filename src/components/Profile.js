@@ -1,5 +1,5 @@
 import React from 'react';
-import './Profile.css'; // 스타일을 추가할 수 있도록 CSS 파일을 불러옵니다.
+import './Profile.css'; 
 
 const Profile = ({ profileImage, nickname, Id, introduction }) => {
   const defaultImage = process.env.PUBLIC_URL + '/defaultProfile.png';

@@ -6,7 +6,7 @@ import './Join.css';
 function Join() {
   const [form, setForm] = useState({
     nickname: '',
-    username: '',
+    id: '',
     password: '',
     confirmPassword: '',
     email: '',
@@ -24,8 +24,8 @@ function Join() {
   const validate = () => {
     let newErrors = {};
 
-    if (!form.username.match(/^[a-zA-Z0-9]{1,10}$/)) {
-      newErrors.username = '아이디는 영어와 숫자로 10자리 이하여야 합니다.';
+    if (!form.id.match(/^[a-zA-Z0-9]{1,10}$/)) {
+      newErrors.id = '아이디는 영어와 숫자로 10자리 이하여야 합니다.';
     }
 
     if (!form.password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,20}$/)) {
@@ -58,8 +58,8 @@ function Join() {
         </div>
         <div>
           <label>아이디</label>
-          <input type="text" name="username" value={form.username} onChange={handleChange} required />
-          {errors.username && <p className="error">{errors.username}</p>}
+          <input type="text" name="id" value={form.id} onChange={handleChange} required />
+          {errors.id && <p className="error">{errors.id}</p>}
         </div>
         <div>
           <label>비밀번호</label>
