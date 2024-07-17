@@ -1,42 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { infoData } from '../mokupData/infoData';
+import './Info.css'
 
 const Info = () => {
+
+    const [isSave, setIsSave] = useState(false)
+    const [isCompleted, setIsCompleted] = useState(false)
+
   return (
     <div className='Info'>
-        <div className='infoContainer'>
-            <div className='posterContainer'></div>
-            <div className='informationContainer'>
-                <div className='infoTag'></div>
-                <div className='infoTitleContainer'>
-                    <div className='infoTitle'></div>
-                </div>
-                <div className='infoAuthor'></div>
-                <div className='infoPlace'>장소 | {}</div>
-                <div className='infoPeriod'>기간 | </div>
-                <div className='infoTime'>시간 | </div>
-                <div className='infoPrice'>입장료 | </div>
-                <div className='infoAsk'>전시 문의 | </div>
-                <div className='btnContainer'>
-                    <button>저장</button>
-                    <button>관람 완료</button>
-                </div>
+      {infoData.map((data, index) => (
+        <div className='infoContainer' key={index}>
+          <div className='topContainer'>
+            <div className='posterContainer'>
+              <img src={data.poster_url} alt='포스터' />
             </div>
-        </div>
-        <div className='infoDescriptionContainer'>
+            <div className='informationContainer'>
+              <div className='infoTag'>{data.status}</div>
+              <div className='infoTitleContainer'>
+                <div className='infoTitle infoItem'><div className='infoTitleText'>{data.title}</div></div>
+              </div>
+              <div className='infoAuthor'>작성자</div>
+              <div className='infoPlace infoItem'>장소  |  {data.address}</div> 
+              <div className='infoPeriod infoItem'>기간  |  {data.startDate} ~ {data.endDate}</div>
+              <div className='infoTime infoItem'>시간  |  {data.open_times}</div>
+              <div className='infoPrice infoItem'>입장료  |  {data.fee}</div>
+              <div className='infoAsk infoItem'>전시 문의  |  {data.contact}</div>
+              <div className='infoBtnContainer'>
+                <div
+                    className={`middleBtnGray ${isSave ? 'active' : ''}`}
+                    onClick={() => setIsSave(!isSave)}>
+                    저장
+                </div>
+                <div
+                    className={`middleBtnGray ${isCompleted ? 'active' : ''}`}
+                    onClick={() => setIsCompleted(!isCompleted)}>
+                    관람완료
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='infoDescriptionContainer'>
             <div className='descriptionTitle'>소개</div>
-            <div className='descriptionBody'></div>
-        </div>
-        <div className='infoPhotoContainer'>
-
-        </div>
-        <div className='infoPlaceContainer'>
+            <div className='descriptionBody'>{data.description}</div>
+          </div>
+          <div className='infoPhotoContainer'>
+            {/* 첨부된 사진들 불러올 곳 */}
+          </div>
+          <div className='infoPlaceContainer'>
             <div className='infoPlaceTitle'>공간 정보</div>
-            <div className='infoPlaceBody'></div>
-            <div className='infoPlaceMap'></div>
+            <div className='infoPlaceBody'>{data.address}</div>
+            <div className='infoPlaceMap'>
+              {/* 공간정보 카카오맵 */}
+            </div>
+          </div>
         </div>
-
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Info
+export default Info;

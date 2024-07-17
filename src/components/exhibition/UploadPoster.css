@@ -1,0 +1,30 @@
+.UploadPoster {
+
+}
+
+.container {
+    width: 273px;   /** 포스터 크기 210*297의 1.3배 **/
+    height: 386.1px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+ .posterPlaceholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #777777;
+ }
+
+ .posterPlaceholderIcon {
+    margin-bottom: 10px;
+    font-size: 35px;
+ }
+
+ .posterPlaceholderText {
+
+ }

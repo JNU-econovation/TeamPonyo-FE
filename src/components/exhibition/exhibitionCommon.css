@@ -1,0 +1,90 @@
+.smallBtn {
+    display: inline;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 3px 9px;
+    border: 1px solid #000;
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.smallBtn.active {
+    display: inline;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 3px 9px;
+    border: 1px solid #000;
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtn {
+    display: inline;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #000;
+    margin: 0;
+    cursor: pointer;
+}
+
+.middleBtn:hover {
+    display: inline;
+    background-color: #EDEDED;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #000;
+    margin: 0;
+    cursor: pointer;
+}
+
+.middleBtn.active {
+    display: inline;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid black;
+    margin: 0;
+    cursor: pointer;
+}
+
+.middleBtnGray {
+    display: inline;
+    background-color: #EBEBEB;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #EBEBEB;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtnGray:hover {
+    display: inline;
+    background-color: #DDD;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid #DDD;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.middleBtnGray.active {
+    display: inline;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 18px;
+    border: 1px solid black;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
