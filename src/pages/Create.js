@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfoDatePicker from '../components/InfoDatePicker';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
@@ -83,7 +83,8 @@ const Create = () => {
     new window.daum.Postcode({
       oncomplete: function(selectedData) {
         // 사용자가 도로명 주소를 선택했을 때 실행되는 콜백 함수
-        const fullAddress = selectedData.roadAddress;
+        const fullAddress = selectedData.roadAddress
+        console.log('Selected Address:', fullAddress)
         setData({
           ...data,
           address: fullAddress // 주소 업데이트
@@ -94,13 +95,20 @@ const Create = () => {
         geocoder.addressSearch(fullAddress, function(result, status) {
           if (status === window.daum.maps.services.Status.OK) {
             const coords = new window.daum.maps.LatLng(result[0].y, result[0].x);
+            console.log('Coordinates:', coords.getLat(), coords.getLng()); // Debugging
             setPosition({ lat: coords.getLat(), lng: coords.getLng() });
+          } else {
+            console.error('Geocoding failed:', status); // Debugging
           }
         });
       }
     }).open();
   };
 
+  useEffect(() => {
+    console.log('Position updated:', position);
+  }, [position]); // position이 변경될 때마다 콘솔에 출력
+  
 
   const handleCategoryChange = (category) => {
     setData({
@@ -306,9 +314,9 @@ const Create = () => {
         </div>
         <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>
-      <div className='infoPlaceContainer'>
+      <div className='infoMapContainer'>
         <div className='infoPlaceTitle'>공간 정보</div>
-        <div className='infoPlaceBody'></div>
+        <div>{data.address}</div>
         <div className='infoPlaceMap'>
           {/* 여기 지도 컴포넌트를 추가할 수 있습니다 */}
           <Location address={data.address} position={position} />

@@ -57,7 +57,8 @@
 
 .infoPlaceContainer {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .infoPlaceBtnContainer {
@@ -95,7 +96,8 @@
 }
 
 .infoDescriptionContainer{
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .descriptionBody {
@@ -130,6 +132,11 @@
 .textarea:focus + .placeholder,
 .textarea:not(:placeholder-shown) + .placeholder {
     display: none;
+}
+
+.infoMapContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 .submitBtn {

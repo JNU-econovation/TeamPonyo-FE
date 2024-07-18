@@ -3,6 +3,17 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const Location = ({ address, position }) => {
 
+    console.log(address)
+    console.log(position)
+
+    if (!address || !position.lat || !position.lng) {
+        return (
+          <div style={{ width: "100%", height: "400px", backgroundColor: "#f0f0f0", textAlign: "center", lineHeight: "400px" }}>
+            주소를 입력하세요
+          </div>
+        );
+      }
+
   return (
     <Map 
         center={{ lat: position.lat, lng: position.lng }} 
