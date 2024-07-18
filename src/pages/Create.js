@@ -71,6 +71,8 @@ const Create = () => {
   const handleOnlineChange = (type) => {
     if (type == '온라인') { 
       setIsOnline(true)
+      setRoadAddress('')
+      setDetailAddress('')
       setData({
         ...data,
         address: ''
@@ -199,6 +201,7 @@ const Create = () => {
                   onChange={(e) => setDetailAddress(e.target.value)}
                   className='inputSmall'
                   placeholder='상세주소를 입력하세요'
+                  disabled={isOnline}
                 />
                 <div className='infoPlaceBtnContainer'>
                   <div className={`smallBtn ${isOnline===false ? 'active' : ''}`} onClick={() => handleOnlineChange('주소 찾기')}>주소 찾기</div>
