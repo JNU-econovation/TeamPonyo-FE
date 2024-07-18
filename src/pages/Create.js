@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import InfoDatePicker from '../components/InfoDatePicker';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
 import axiosInstance from '../api/axiosInstance';
@@ -335,7 +334,6 @@ const Create = () => {
           <Location address={data.address} position={position} />
         </div>
       </div>
-      <InfoDatePicker />
       <div className='submitBtn' onClick={handleSubmit}>작성 완료</div>
     </div>
   );
