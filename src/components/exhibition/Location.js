@@ -1,34 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-const Location = () => {
-  useEffect(() => {
-    // Kakao Maps API 로드 여부를 주기적으로 확인
-    const checkKakaoMapsLoaded = setInterval(() => {
-      if (window.kakao && window.kakao.maps) {
-        clearInterval(checkKakaoMapsLoaded); // 로드되면 체크 멈춤
-        window.kakao.maps.load(() => {
-          console.log('Kakao maps 로드됨.');
-          const mapContainer = document.getElementById('map');
-          const options = {
-            center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3
-          };
-          new window.kakao.maps.Map(mapContainer, options);
-          console.log('지도 생성됨.');
-        });
-      }
-    }, 100); // 100ms마다 체크
-
-    // 클린업 함수: 컴포넌트 언마운트 시 인터벌 제거
-    return () => {
-      clearInterval(checkKakaoMapsLoaded);
-    };
-  }, []);
+const Location = ({ address, position }) => {
 
   return (
-    <div className='Location'>
-      <div id='map' style={{ width: '500px', height: '400px' }}></div>
-    </div>
+    <Map 
+        center={{ lat: position.lat, lng: position.lng }} 
+        style={{ width: "100%", height: "400px" }}
+        level={3}
+    >
+        <MapMarker position={{ lat: position.lat, lng: position.lng }}>
+            <div style={{ padding: "5px", color: "#000" }}>{address}</div>
+        </MapMarker>
+    </Map>
   );
 };
 

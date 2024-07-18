@@ -26,6 +26,7 @@ const Create = () => {
 
   const [isFree, setIsFree] = useState(null);
   const [isOnline, setIsOnline] = useState(null)
+  const [position, setPosition] = useState({ lat: 33.450701, lng: 126.570667 })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,12 +75,31 @@ const Create = () => {
       })
     } else {  // 주소 찾기 (오프라인)
       setIsOnline(false)
-      setData({
-        ...data,
-        address: ''
-      })
+      openAddressSearch()
     }
   }
+
+  const openAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: function(selectedData) {
+        // 사용자가 도로명 주소를 선택했을 때 실행되는 콜백 함수
+        const fullAddress = selectedData.roadAddress;
+        setData({
+          ...data,
+          address: fullAddress // 주소 업데이트
+        });
+
+        // 주소로 좌표 검색
+        const geocoder = new window.daum.maps.services.Geocoder();
+        geocoder.addressSearch(fullAddress, function(result, status) {
+          if (status === window.daum.maps.services.Status.OK) {
+            const coords = new window.daum.maps.LatLng(result[0].y, result[0].x);
+            setPosition({ lat: coords.getLat(), lng: coords.getLng() });
+          }
+        });
+      }
+    }).open();
+  };
 
 
   const handleCategoryChange = (category) => {
@@ -291,7 +311,7 @@ const Create = () => {
         <div className='infoPlaceBody'></div>
         <div className='infoPlaceMap'>
           {/* 여기 지도 컴포넌트를 추가할 수 있습니다 */}
-          <Location />
+          <Location address={data.address} position={position} />
         </div>
       </div>
       <InfoDatePicker />
