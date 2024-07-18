@@ -61,8 +61,18 @@
     align-items: center;
 }
 
+.roadAddress{
+    width: 190px;
+    margin-left: 12px;
+    margin-right: 10px;
+}
+
+.roadAddressPlaceholder { 
+    color: #AEAEAE;
+}
+
 .infoPlaceBtnContainer {
-    margin-left: 40px;
+    margin-left: 5px;
 }
 
 .inputFeeContainer {
@@ -137,6 +147,10 @@
 .infoMapContainer {
     display: flex;
     flex-direction: column;
+}
+
+.infoPlaceMap {
+    margin-top: 15px;
 }
 
 .submitBtn {

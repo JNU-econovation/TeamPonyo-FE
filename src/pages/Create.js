@@ -27,6 +27,8 @@ const Create = () => {
   const [isFree, setIsFree] = useState(null);
   const [isOnline, setIsOnline] = useState(null)
   const [position, setPosition] = useState({ lat: 33.450701, lng: 126.570667 })
+  const [roadAddress, setRoadAddress] = useState('')
+  const [detailAddress, setDetailAddress] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,16 +85,14 @@ const Create = () => {
     new window.daum.Postcode({
       oncomplete: function(selectedData) {
         // 사용자가 도로명 주소를 선택했을 때 실행되는 콜백 함수
-        const fullAddress = selectedData.roadAddress
-        console.log('Selected Address:', fullAddress)
-        setData({
-          ...data,
-          address: fullAddress // 주소 업데이트
-        });
+        const roadNameAddress = selectedData.roadAddress
+        setRoadAddress(roadNameAddress)
+        console.log('Selected Address:', roadAddress)
+        
 
         // 주소로 좌표 검색
         const geocoder = new window.daum.maps.services.Geocoder();
-        geocoder.addressSearch(fullAddress, function(result, status) {
+        geocoder.addressSearch(roadNameAddress, function(result, status) {
           if (status === window.daum.maps.services.Status.OK) {
             const coords = new window.daum.maps.LatLng(result[0].y, result[0].x);
             console.log('Coordinates:', coords.getLat(), coords.getLng()); // Debugging
@@ -108,7 +108,15 @@ const Create = () => {
   useEffect(() => {
     console.log('Position updated:', position);
   }, [position]); // position이 변경될 때마다 콘솔에 출력
-  
+
+
+  useEffect(() => {
+    setData((prevData) => ({
+        ...prevData,
+        address: `${roadAddress} ${detailAddress}`.trim()
+    }));
+}, [roadAddress, detailAddress]);
+
 
   const handleCategoryChange = (category) => {
     setData({
@@ -183,12 +191,14 @@ const Create = () => {
             <div className='infoPlace infoItem'>
               <div className='infoPlaceContainer'>
                 <div className='inputTag'>장소</div>
+                <div className={`roadAddress ${data.address === '' ? 'roadAddressPlaceholder' : ''}`}>{data.address === '' ? '찾기 버튼을 눌러주세요' : roadAddress}</div>
                 <input
                   type='text'
-                  name='location'
-                  value={data.location}
-                  onChange={handleChange}
+                  name='detailAddress'
+                  value={detailAddress}
+                  onChange={(e) => setDetailAddress(e.target.value)}
                   className='inputSmall'
+                  placeholder='상세주소를 입력하세요'
                 />
                 <div className='infoPlaceBtnContainer'>
                   <div className={`smallBtn ${isOnline===false ? 'active' : ''}`} onClick={() => handleOnlineChange('주소 찾기')}>주소 찾기</div>
