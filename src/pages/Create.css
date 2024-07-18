@@ -55,6 +55,15 @@
     box-sizing: border-box;
 }
 
+.infoPlaceContainer {
+    display: flex;
+    align-items: center;
+}
+
+.infoPlaceBtnContainer {
+    margin-left: 40px;
+}
+
 .inputFeeContainer {
     position: relative;
     display: inline-block;

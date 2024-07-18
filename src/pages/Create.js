@@ -5,6 +5,7 @@ import './Create.css';
 import axiosInstance from '../api/axiosInstance';
 import UploadFile from '../components/exhibition/UploadFile';
 import  '../components/exhibition/exhibitionCommon.css';
+import Location from '../components/exhibition/Location';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -24,6 +25,7 @@ const Create = () => {
   });
 
   const [isFree, setIsFree] = useState(null);
+  const [isOnline, setIsOnline] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +65,22 @@ const Create = () => {
     }
   };
 
+  const handleOnlineChange = (type) => {
+    if (type == '온라인') { 
+      setIsOnline(true)
+      setData({
+        ...data,
+        address: ''
+      })
+    } else {  // 주소 찾기 (오프라인)
+      setIsOnline(false)
+      setData({
+        ...data,
+        address: ''
+      })
+    }
+  }
+
 
   const handleCategoryChange = (category) => {
     setData({
@@ -78,7 +96,7 @@ const Create = () => {
     formData.append('poster_url', data.poster);
     formData.append('exhibit_category', data.category);
     formData.append('title', data.title);
-    formData.append('address', data.address);
+    formData.append('address', isOnline ? '온라인' : data.address);
     formData.append('open_times', data.startTime + ' ~ ' + data.endTime)
     formData.append('fee', isFree ? '무료' : `${data.fee}원`);
     formData.append('contact', data.contact);
@@ -135,14 +153,20 @@ const Create = () => {
               />
             </div>
             <div className='infoPlace infoItem'>
-              <div className='inputTag'>장소</div>
-              <input
-                type='text'
-                name='location'
-                value={data.location}
-                onChange={handleChange}
-                className='inputSmall'
-              />
+              <div className='infoPlaceContainer'>
+                <div className='inputTag'>장소</div>
+                <input
+                  type='text'
+                  name='location'
+                  value={data.location}
+                  onChange={handleChange}
+                  className='inputSmall'
+                />
+                <div className='infoPlaceBtnContainer'>
+                  <div className={`smallBtn ${isOnline===false ? 'active' : ''}`} onClick={() => handleOnlineChange('주소 찾기')}>주소 찾기</div>
+                  <div className={`smallBtn ${isOnline===true ? 'active' : ''}`} onClick={() => handleOnlineChange('온라인')}>온라인</div>
+                </div>
+              </div>
             </div>
             <div className='infoPeriod infoItem'>
               <div className='inputTag'>기간</div>
@@ -267,6 +291,7 @@ const Create = () => {
         <div className='infoPlaceBody'></div>
         <div className='infoPlaceMap'>
           {/* 여기 지도 컴포넌트를 추가할 수 있습니다 */}
+          <Location />
         </div>
       </div>
       <InfoDatePicker />
