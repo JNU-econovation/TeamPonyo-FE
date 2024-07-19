@@ -2,12 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { infoData } from '../mokupData/infoData';
 import './Info.css'
 import Location from '../components/exhibition/Location';
+import axiosInstance from '../api/axiosInstance';
 
 const Info = () => {
 
     const [isSave, setIsSave] = useState(false)
     const [isCompleted, setIsCompleted] = useState(false)
     const [tag, setTag] = useState('')
+    // const [data, setData] = useState(null)
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axiosInstance.get('/api/v1/exhibits/{exhibit-id}')
+    //             setData(response.data)
+    //         } catch(error) {
+    //             console.error('Fetch error: ', error)
+    //         }
+    //     }
+    //     fetchData()
+    // }, [])
 
     const data = infoData
 
@@ -27,6 +41,10 @@ const Info = () => {
     useEffect(() => {
         console.log("태그 상태:", tag); // 상태 변경 후 상태 확인
     }, [tag]);
+
+    if (!data) {
+        return <div>Loading...</div>; // 데이터가 로딩 중일 때의 대체 UI
+    }
 
   return (
     <div className='Info'>
