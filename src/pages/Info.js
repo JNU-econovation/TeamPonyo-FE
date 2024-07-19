@@ -6,9 +6,7 @@ import axiosInstance from '../api/axiosInstance';
 
 const Info = () => {
 
-    const [isSave, setIsSave] = useState(false)
-    const [isCompleted, setIsCompleted] = useState(false)
-    const [tag, setTag] = useState('')
+    
     // const [data, setData] = useState(null)
 
     // useEffect(() => {
@@ -24,6 +22,10 @@ const Info = () => {
     // }, [])
 
     const data = infoData
+
+    const [isSave, setIsSave] = useState(data.saved)
+    const [isCompleted, setIsCompleted] = useState(data.visited)
+    const [tag, setTag] = useState('')
 
     console.log(data.exhibit_status)
 
@@ -41,6 +43,32 @@ const Info = () => {
     useEffect(() => {
         console.log("태그 상태:", tag); // 상태 변경 후 상태 확인
     }, [tag]);
+
+    const handleSave = async () => {
+        setIsSave(!isSave)
+        try {
+            if (!isSave) {  // 저장된 전시
+                await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': data.id})
+            } else {    // 저장된 전시 X
+                await axiosInstance.delete(`/api/v1/user/saved-exhibits/${data.id}`);
+            }
+        } catch (error) {
+            console.error('Save state error: ', error)
+        }
+    }
+
+    const handleCompleted = async () => {
+        setIsCompleted(!isCompleted)
+        try {
+            if (!isCompleted) { // 관람한 전시
+                await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': data.id})
+            } else {
+                await axiosInstance.delete(`/api/v1/user/visited-exhibits/${data.id}`)
+            }
+        } catch (error) {
+            console.error('Completed state error: ', error)
+        }
+    }
 
     if (!data) {
         return <div>Loading...</div>; // 데이터가 로딩 중일 때의 대체 UI
@@ -68,12 +96,12 @@ const Info = () => {
                 <div className='infoBtnContainer'>
                 <div
                     className={`middleBtnGray ${isSave ? 'active' : ''}`}
-                    onClick={() => setIsSave(!isSave)}>
+                    onClick={handleSave}>
                     저장
                 </div>
                 <div
                     className={`middleBtnGray ${isCompleted ? 'active' : ''}`}
-                    onClick={() => setIsCompleted(!isCompleted)}>
+                    onClick={handleCompleted}>
                     관람완료
                 </div>
                 </div>
