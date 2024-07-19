@@ -20,12 +20,12 @@ const Create = () => {
     contact: '',
     description: '',
     poster: null,
-    photos: []
+    photos: [],
+    position: { lat: 33.450701, lng: 126.570667 }
   });
 
   const [isFree, setIsFree] = useState(null);
   const [isOnline, setIsOnline] = useState(null)
-  const [position, setPosition] = useState({ lat: 33.450701, lng: 126.570667 })
   const [roadAddress, setRoadAddress] = useState('')
   const [detailAddress, setDetailAddress] = useState('')
 
@@ -97,7 +97,10 @@ const Create = () => {
           if (status === window.daum.maps.services.Status.OK) {
             const coords = new window.daum.maps.LatLng(result[0].y, result[0].x);
             console.log('Coordinates:', coords.getLat(), coords.getLng()); // Debugging
-            setPosition({ lat: coords.getLat(), lng: coords.getLng() });
+            setData(prevData => ({
+              ...prevData,
+              position: { lat: coords.getLat(), lng: coords.getLng() } // position을 data 객체에서 업데이트
+            }));
           } else {
             console.error('Geocoding failed:', status); // Debugging
           }
@@ -107,8 +110,8 @@ const Create = () => {
   };
 
   useEffect(() => {
-    console.log('Position updated:', position);
-  }, [position]); // position이 변경될 때마다 콘솔에 출력
+    console.log('Position updated:', data.position);
+  }, [data.position]); // position이 변경될 때마다 콘솔에 출력
 
 
   useEffect(() => {
@@ -144,6 +147,7 @@ const Create = () => {
     });
     formData.append('startDate', data.startDate);
     formData.append('endDate', data.endDate);
+    formData.append('position', JSON.stringify(data.position));
     
 
     // FormData 값 확인
@@ -330,7 +334,7 @@ const Create = () => {
         <div className='infoPlaceTitle'>공간 정보</div>
         <div>{data.address}</div>
         <div className='infoPlaceMap'>
-          <Location address={data.address} position={position} />
+          <Location address={data.address} position={data.position} />
         </div>
       </div>
       <div className='submitBtn' onClick={handleSubmit}>작성 완료</div>
