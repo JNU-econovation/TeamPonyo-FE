@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import './Pagination.css';
 
 const Pagination = ({ pageCount, onPageChange, currentPage }) => {
-  const [pageRange, setPageRange] = useState({ start: 0, end: 9 });
+  const [pageRange, setPageRange] = useState({ start: 1, end: 10 });
 
   useEffect(() => {
-    const newStart = Math.floor(currentPage / 10) * 10;
-    const newEnd = Math.min(newStart + 9, pageCount - 1);
+    const newStart = Math.floor((currentPage - 1) / 10) * 10 + 1;
+    const newEnd = Math.min(newStart + 9, pageCount);
     setPageRange({ start: newStart, end: newEnd });
   }, [currentPage, pageCount]);
 
@@ -23,20 +22,26 @@ const Pagination = ({ pageCount, onPageChange, currentPage }) => {
   // 사용자가 클릭한 페이지 번호에 따라 페이지 범위 업데이트
   const handlePageClick = (selectedPage) => {
     if (selectedPage < pageRange.start) {
-      // 현재 페이지기 배열의 시작일때 이전 버튼을 누르면, 이전 10개 페이지 범위로 업데이트
-      setPageRange({ start: pageRange.start - 10, end: pageRange.end - 10 });
+      // 현재 페이지가 배열의 시작일 때 이전 버튼을 누르면, 이전 10개 페이지 범위로 업데이트
+      setPageRange({
+        start: Math.max(pageRange.start - 10, 1),
+        end: Math.max(pageRange.end - 10, 10),
+      });
     } else if (selectedPage > pageRange.end) {
-      // 현재 페이지가 배열의 끝일때 다음 버튼을 누르면, 다음 10개 페이지 범위로 업데이트
-      setPageRange({ start: pageRange.start + 10, end: pageRange.end + 10 });
+      // 현재 페이지가 배열의 끝일 때 다음 버튼을 누르면, 다음 10개 페이지 범위로 업데이트
+      setPageRange({
+        start: Math.min(pageRange.start + 10, pageCount - 9),
+        end: Math.min(pageRange.end + 10, pageCount),
+      });
     }
-    onPageChange({ selected: selectedPage });
+    onPageChange({ selected: selectedPage - 1 }); // 0-based index로 변환하여 전달
   };
 
   return (
     <ul className="pagination">
       <li
-        className={`items previous-item ${currentPage === 0 ? 'disabled' : ''}`}
-        onClick={() => currentPage > 0 && handlePageClick(currentPage - 1)}
+        className={`items previous-item ${currentPage === 1 ? 'disabled' : ''}`}
+        onClick={() => currentPage > 1 && handlePageClick(currentPage - 1)}
       >
         {'<'}
       </li>
@@ -46,12 +51,12 @@ const Pagination = ({ pageCount, onPageChange, currentPage }) => {
           className={`items page-item ${page === currentPage ? 'active' : ''}`}
           onClick={() => handlePageClick(page)}
         >
-          {page + 1}
+          {page}
         </li>
       ))}
       <li
-        className={`items next-item ${currentPage === pageCount - 1 ? 'disabled' : ''}`}
-        onClick={() => currentPage < pageCount - 1 && handlePageClick(currentPage + 1)}
+        className={`items next-item ${currentPage === pageCount ? 'disabled' : ''}`}
+        onClick={() => currentPage < pageCount && handlePageClick(currentPage + 1)}
       >
         {'>'}
       </li>
