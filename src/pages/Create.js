@@ -143,7 +143,12 @@ const Create = () => {
     formData.append('description', data.description);
     // 여러 개의 사진 파일을 FormData에 추가
     data.photos.forEach((photo, index) => {
-      formData.append(`photo${index}`, photo);
+      if (photo instanceof File) {
+        formData.append(`photo${index}`, photo);
+      } else {
+        console.warn('사진이 파일 객체가 아님')
+      }
+      
     });
     formData.append('startDate', data.startDate);
     formData.append('endDate', data.endDate);
@@ -158,7 +163,7 @@ const Create = () => {
     console.log('Form Data:', formData);
 
     try {
-      const response = await axiosInstance.post('', formData);
+      const response = await axiosInstance.post('/api/v1/exhibits', formData);
       console.log('전시 작성 FormData submitted:', response.data);
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
