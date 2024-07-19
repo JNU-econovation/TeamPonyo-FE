@@ -330,7 +330,6 @@ const Create = () => {
         <div className='infoPlaceTitle'>공간 정보</div>
         <div>{data.address}</div>
         <div className='infoPlaceMap'>
-          {/* 여기 지도 컴포넌트를 추가할 수 있습니다 */}
           <Location address={data.address} position={position} />
         </div>
       </div>
