@@ -19,6 +19,8 @@
     height: 386.1px;
     margin-right: 50px;
     border: 1px solid #000;
+    display: flex;
+    justify-content: center;
   }
   
   .informationContainer {
