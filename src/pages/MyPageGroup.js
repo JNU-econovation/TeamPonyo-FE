@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Profile from '../components/Profile';
-import GridList from '../components/GridList';
+import MyGridList from '../components/MyGridList';
 import '../design/MyPageGrid.css';
 import Follow from '../components/Follow';
 import HorizonLine from '../components/HorizonLine';
@@ -29,7 +29,7 @@ const MyPageGroup = () => {
         </button>
       </div>
       <div className='MyPageContainer'>
-        <GridList sortOrder={sortOrder} />
+        <MyGridList sortOrder={sortOrder} />
       </div>
     </div>
   );

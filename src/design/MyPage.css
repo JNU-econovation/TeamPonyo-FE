@@ -4,4 +4,26 @@
     align-items: center;
     margin: 0px;
   }
+  .filter-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0px;
+  }
+  
+  .filter-buttons button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    background: none;
+    color: #a1a1a1;
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .filter-buttons .active {
+    background: none;
+    color: black;
+    font-weight:700;
+    border: none;
+  }
   
