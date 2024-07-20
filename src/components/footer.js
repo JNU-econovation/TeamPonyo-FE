@@ -11,7 +11,7 @@ const footer = () => {
       })
       const accessToken = response.data.access_token
       console.log('team test accessToken: ', accessToken)
-      sessionStorage.setItem('access_token', accessToken)
+      localStorage.setItem('access_token', accessToken)
     } catch (error) {
       console.error ('테스트 팀계정 로그인 에러', error)
     }
