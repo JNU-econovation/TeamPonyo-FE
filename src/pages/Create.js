@@ -168,6 +168,8 @@ const Create = () => {
     try {
       const response = await axiosInstance.post('/api/v1/exhibits', formData);
       console.log('전시 작성 FormData submitted:', response.data);
+      const exhibitId = response.data['exhibit_id']
+      console.log('exhibit_id', exhibitId)
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
     }
