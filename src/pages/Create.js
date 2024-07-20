@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import InfoDatePicker from '../components/InfoDatePicker';
+import React, { useEffect, useState } from 'react';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
 import axiosInstance from '../api/axiosInstance';
 import UploadFile from '../components/exhibition/UploadFile';
 import  '../components/exhibition/exhibitionCommon.css';
+import Location from '../components/exhibition/Location';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -20,10 +20,14 @@ const Create = () => {
     contact: '',
     description: '',
     poster: null,
-    photos: []
+    photos: [],
+    position: { lat: 33.450701, lng: 126.570667 }
   });
 
   const [isFree, setIsFree] = useState(null);
+  const [isOnline, setIsOnline] = useState(null)
+  const [roadAddress, setRoadAddress] = useState('')
+  const [detailAddress, setDetailAddress] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +67,60 @@ const Create = () => {
     }
   };
 
+  const handleOnlineChange = (type) => {
+    if (type == '온라인') { 
+      setIsOnline(true)
+      setRoadAddress('')
+      setDetailAddress('')
+      setData({
+        ...data,
+        address: ''
+      })
+    } else {  // 주소 찾기 (오프라인)
+      setIsOnline(false)
+      openAddressSearch()
+    }
+  }
+
+  const openAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: function(selectedData) {
+        // 사용자가 도로명 주소를 선택했을 때 실행되는 콜백 함수
+        const roadNameAddress = selectedData.roadAddress
+        setRoadAddress(roadNameAddress)
+        console.log('Selected Address:', roadAddress)
+        
+
+        // 주소로 좌표 검색
+        const geocoder = new window.daum.maps.services.Geocoder();
+        geocoder.addressSearch(roadNameAddress, function(result, status) {
+          if (status === window.daum.maps.services.Status.OK) {
+            const coords = new window.daum.maps.LatLng(result[0].y, result[0].x);
+            console.log('Coordinates:', coords.getLat(), coords.getLng()); // Debugging
+            setData(prevData => ({
+              ...prevData,
+              position: { lat: coords.getLat(), lng: coords.getLng() } // position을 data 객체에서 업데이트
+            }));
+          } else {
+            console.error('Geocoding failed:', status); // Debugging
+          }
+        });
+      }
+    }).open();
+  };
+
+  useEffect(() => {
+    console.log('Position updated:', data.position);
+  }, [data.position]); // position이 변경될 때마다 콘솔에 출력
+
+
+  useEffect(() => {
+    setData((prevData) => ({
+        ...prevData,
+        address: `${roadAddress} ${detailAddress}`.trim()
+    }));
+}, [roadAddress, detailAddress]);
+
 
   const handleCategoryChange = (category) => {
     setData({
@@ -75,21 +133,30 @@ const Create = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('poster_url', data.poster);
-    formData.append('exhibit_category', data.category);
-    formData.append('title', data.title);
-    formData.append('address', data.address);
-    formData.append('open_times', data.startTime + ' ~ ' + data.endTime)
-    formData.append('fee', isFree ? '무료' : `${data.fee}원`);
-    formData.append('contact', data.contact);
-    formData.append('description', data.description);
+
+    // 포스터 사진 추가
+    formData.append('poster_url', data.poster); 
+
     // 여러 개의 사진 파일을 FormData에 추가
     data.photos.forEach((photo, index) => {
-      formData.append(`photo${index}`, photo);
+      console.log(`photo${index}`, photo)
+      formData.append('photos', photo)
     });
-    formData.append('startDate', data.startDate);
-    formData.append('endDate', data.endDate);
-    
+
+    // info를 FormData에 추가
+    const jsonData = JSON.stringify({
+      exhibit_category: data.category,
+      title: data.title,
+      address: data.isOnline ? '온라인' : data.address,
+      open_times: `${data.startTime} ~ ${data.endTime}`,
+      fee: data.isFree ? 0 : data.fee,
+      contact: data.contact,
+      description: data.description,
+      start_date: data.startDate,
+      end_date: data.endDate,
+      position: data.position
+    });
+    formData.append('info', new Blob([jsonData], { type: 'application/json' }));
 
     // FormData 값 확인
     for (let pair of formData.entries()) {
@@ -99,8 +166,10 @@ const Create = () => {
     console.log('Form Data:', formData);
 
     try {
-      const response = await axiosInstance.post('', formData);
+      const response = await axiosInstance.post('/api/v1/exhibits', formData);
       console.log('전시 작성 FormData submitted:', response.data);
+      const exhibitId = response.data['exhibit_id']
+      console.log('exhibit_id', exhibitId)
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
     }
@@ -135,14 +204,23 @@ const Create = () => {
               />
             </div>
             <div className='infoPlace infoItem'>
-              <div className='inputTag'>장소</div>
-              <input
-                type='text'
-                name='location'
-                value={data.location}
-                onChange={handleChange}
-                className='inputSmall'
-              />
+              <div className='infoPlaceContainer'>
+                <div className='inputTag'>장소</div>
+                <div className={`roadAddress ${data.address === '' ? 'roadAddressPlaceholder' : ''}`}>{data.address === '' ? '찾기 버튼을 눌러주세요' : roadAddress}</div>
+                <input
+                  type='text'
+                  name='detailAddress'
+                  value={detailAddress}
+                  onChange={(e) => setDetailAddress(e.target.value)}
+                  className='inputSmall'
+                  placeholder='상세주소를 입력하세요'
+                  disabled={isOnline}
+                />
+                <div className='infoPlaceBtnContainer'>
+                  <div className={`smallBtn ${isOnline===false ? 'active' : ''}`} onClick={() => handleOnlineChange('주소 찾기')}>주소 찾기</div>
+                  <div className={`smallBtn ${isOnline===true ? 'active' : ''}`} onClick={() => handleOnlineChange('온라인')}>온라인</div>
+                </div>
+              </div>
             </div>
             <div className='infoPeriod infoItem'>
               <div className='inputTag'>기간</div>
@@ -262,14 +340,13 @@ const Create = () => {
         </div>
         <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>
-      <div className='infoPlaceContainer'>
+      <div className='infoMapContainer'>
         <div className='infoPlaceTitle'>공간 정보</div>
-        <div className='infoPlaceBody'></div>
+        <div>{data.address}</div>
         <div className='infoPlaceMap'>
-          {/* 여기 지도 컴포넌트를 추가할 수 있습니다 */}
+          <Location address={data.address} position={data.position} />
         </div>
       </div>
-      <InfoDatePicker />
       <div className='submitBtn' onClick={handleSubmit}>작성 완료</div>
     </div>
   );

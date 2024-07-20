@@ -1,34 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-const Location = () => {
+const Location = ({ address, position }) => {
+  const mapRef = useRef(null);
+
   useEffect(() => {
-    // Kakao Maps API 로드 여부를 주기적으로 확인
-    const checkKakaoMapsLoaded = setInterval(() => {
-      if (window.kakao && window.kakao.maps) {
-        clearInterval(checkKakaoMapsLoaded); // 로드되면 체크 멈춤
-        window.kakao.maps.load(() => {
-          console.log('Kakao maps 로드됨.');
-          const mapContainer = document.getElementById('map');
-          const options = {
-            center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3
-          };
-          new window.kakao.maps.Map(mapContainer, options);
-          console.log('지도 생성됨.');
-        });
-      }
-    }, 100); // 100ms마다 체크
+    if (mapRef.current) {
+      const map = mapRef.current;
 
-    // 클린업 함수: 컴포넌트 언마운트 시 인터벌 제거
-    return () => {
-      clearInterval(checkKakaoMapsLoaded);
-    };
-  }, []);
+      // 지도 클릭 이벤트 핸들러
+      kakao.maps.event.addListener(map, 'click', () => {
+        map.setCenter(new kakao.maps.LatLng(position.lat, position.lng));
+        map.setLevel(2); // 줌 레벨을 원래대로 설정
+      });
+    }
+  }, [position]);
+
+  if (!address || !position.lat || !position.lng) {
+    return (
+      <div style={{ width: "100%", height: "400px", backgroundColor: "#f0f0f0", textAlign: "center", lineHeight: "400px" }}>
+        주소를 입력하세요
+      </div>
+    );
+  }
 
   return (
-    <div className='Location'>
-      <div id='map' style={{ width: '500px', height: '400px' }}></div>
-    </div>
+    <Map
+      ref={mapRef}
+      center={{ lat: position.lat, lng: position.lng }}
+      style={{ width: "100%", height: "400px" }}
+      level={2}
+    >
+      <MapMarker position={{ lat: position.lat, lng: position.lng }}>
+        <div style={{ padding: "5px", color: "#000" }}>{address}</div>
+      </MapMarker>
+    </Map>
   );
 };
 

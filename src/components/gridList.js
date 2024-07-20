@@ -1,57 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './GridList.css'
 import { ReactComponent as Arrow1 } from '../Arrow1.svg'
 
 //TODO: 추후 백엔드 연결시 아래 더미데이터 지우고, 데이터 받아오기
-const postList = [
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-  {
-    title: "2021 홍익대 미대 전시회",
-    period: "2021.12.06 (목)",
-    state: "전시중",
-    path: "http://homa.hongik.ac.kr/data/boarddata/ex_main_114309.jpg"
-  },
-];
+
 
 //TODO: 하단 girdList -> gridList 오타 수정
-const GridList = () => {
+const GridList = ({ data }) => {
+
+    const getTag = (status) => {
+        if (status === "ONGOING") {
+          return '전시 중';
+        } else if (status === "BEFORE") {
+          return '진행 예정';
+        } else if (status === "AFTER") {
+          return '진행 완료';
+        }
+        return '';
+      };
+
+
   return (
     <div className='gridList'>
       <div className='postGrid'>
         {/* 임의 데이터 */}
-        {postList.map((item, index) => (
+        {data.map((item, index) => (
           <div key={index}>
             <div className='imageContainer'>
-              <img className='poster' src={item.path} alt='게시물'/>
+              <img src={item.poster.base64_image} alt='포스터' />
+              {/* <img className='poster' src={item.path} alt='게시물'/> */}
               <div className='overlay'>
                 <div>자세히 보기</div>
                 <Arrow1 className='arrow'/>
@@ -61,7 +38,7 @@ const GridList = () => {
             <div className='postInfo'>
               <div className='postTitle'>{item.title}</div>
               <div className='postPeriod'>{item.period}</div>
-              <div className='postState'>{item.state}</div>
+              <div className='postState'>{getTag(item.exhibit_status)}</div>
             </div>
         </div>
         ))}
@@ -91,3 +68,25 @@ const GridList = () => {
 }
 
 export default GridList;
+
+
+
+// import React from 'react';
+
+// const GridList = ({ data }) => {
+//   return (
+//     <div className='GridList'>
+//       {data.map((exhibit) => (
+//         <div key={exhibit.exhibit_id} className='exhibit'>
+//           <img src={`data:${exhibit.poster.mime_type};base64,${exhibit.poster.base64_image}`} alt={exhibit.title} />
+//           <h3>{exhibit.title}</h3>
+//           <p>{exhibit.period}</p>
+//           <p>상태: {exhibit.exhibit_status}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default GridList;
+

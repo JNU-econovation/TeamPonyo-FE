@@ -55,6 +55,26 @@
     box-sizing: border-box;
 }
 
+.infoPlaceContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.roadAddress{
+    width: 190px;
+    margin-left: 12px;
+    margin-right: 10px;
+}
+
+.roadAddressPlaceholder { 
+    color: #AEAEAE;
+}
+
+.infoPlaceBtnContainer {
+    margin-left: 5px;
+}
+
 .inputFeeContainer {
     position: relative;
     display: inline-block;
@@ -86,7 +106,8 @@
 }
 
 .infoDescriptionContainer{
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .descriptionBody {
@@ -121,6 +142,15 @@
 .textarea:focus + .placeholder,
 .textarea:not(:placeholder-shown) + .placeholder {
     display: none;
+}
+
+.infoMapContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoPlaceMap {
+    margin-top: 15px;
 }
 
 .submitBtn {

@@ -10,6 +10,10 @@
     font-size: 13px;
 }
 
-.FooterBottom {
+.footerLogo {
+    cursor: pointer;
+}
+
+.footerBottom {
     padding-Top: 25px;
 }
