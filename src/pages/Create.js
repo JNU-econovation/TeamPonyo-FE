@@ -135,7 +135,7 @@ const Create = () => {
     const formData = new FormData();
 
     // 포스터 사진 추가
-    formData.append('poster_url', data.poster); 
+    formData.append('poster', data.poster); 
 
     // 여러 개의 사진 파일을 FormData에 추가
     data.photos.forEach((photo, index) => {
@@ -166,9 +166,20 @@ const Create = () => {
     console.log('Form Data:', formData);
 
     try {
-      const response = await axiosInstance.post('/api/v1/exhibits', formData);
+      const accessToken = localStorage.getItem('access_token')
+
+      if (!accessToken) {
+        throw new Error('No access token found in session storage')
+      }
+
+      const response = await axiosInstance.post('/api/v1/exhibits', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',  // Content-Type 설정
+          'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+        }
+      });
       console.log('전시 작성 FormData submitted:', response.data);
-      const exhibitId = response.data['exhibit_id']
+      const exhibitId = response.data
       console.log('exhibit_id', exhibitId)
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
