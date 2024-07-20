@@ -133,27 +133,30 @@ const Create = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('poster_url', data.poster);
-    formData.append('exhibit_category', data.category);
-    formData.append('title', data.title);
-    formData.append('address', isOnline ? '온라인' : data.address);
-    formData.append('open_times', data.startTime + ' ~ ' + data.endTime)
-    formData.append('fee', isFree ? '무료' : `${data.fee}원`);
-    formData.append('contact', data.contact);
-    formData.append('description', data.description);
+
+    // 포스터 사진 추가
+    formData.append('poster_url', data.poster); 
+
     // 여러 개의 사진 파일을 FormData에 추가
     data.photos.forEach((photo, index) => {
-      if (photo instanceof File) {
-        formData.append(`photo${index}`, photo);
-      } else {
-        console.warn('사진이 파일 객체가 아님')
-      }
-      
+      console.log(`photo${index}`, photo)
+      formData.append('photos', photo)
     });
-    formData.append('startDate', data.startDate);
-    formData.append('endDate', data.endDate);
-    formData.append('position', JSON.stringify(data.position));
-    
+
+    // info를 FormData에 추가
+    const jsonData = JSON.stringify({
+      exhibit_category: data.category,
+      title: data.title,
+      address: data.isOnline ? '온라인' : data.address,
+      open_times: `${data.startTime} ~ ${data.endTime}`,
+      fee: data.isFree ? 0 : data.fee,
+      contact: data.contact,
+      description: data.description,
+      start_date: data.startDate,
+      end_date: data.endDate,
+      position: data.position
+    });
+    formData.append('info', new Blob([jsonData], { type: 'application/json' }));
 
     // FormData 값 확인
     for (let pair of formData.entries()) {
