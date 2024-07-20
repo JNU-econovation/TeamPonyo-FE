@@ -6,7 +6,7 @@ const footer = () => {
 
   const handleLogoClick = async () => {
     try {
-      const response = await axiosInstance.post('/api/v1/auth/signup/team', {
+      const response = await axiosInstance.post('/test/api/v1/auth/signup/team', {
         access_token: "sample"
       })
       const accessToken = response.data.access_token
