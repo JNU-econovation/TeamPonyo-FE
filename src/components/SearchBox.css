@@ -1,8 +1,7 @@
 .SearchBox {
-    position: absolute;
-    left: 50%;
-    
-
+    display: flex;
+    justify-content: center;
+    ;
     input::-webkit-search-decoration,
     input::-webkit-search-cancel-button,
     input::-webkit-search-results-button,
@@ -11,13 +10,13 @@
     }   /*크롬 기본 style 제거*/
     }
     
-    input{
+    input {
         border-radius: 0%;
         border-color: black;
-        width: 30rem;
-        height: 3rem;
-        margin: 3rem;
-      
-
+        width: 55rem;
+        height: 3.5rem;
+        margin: 4rem;
+        padding: 1.5rem;
+        font-size: large;
         
     }

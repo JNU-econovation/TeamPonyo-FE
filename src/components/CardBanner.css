@@ -1,26 +1,30 @@
 .CardBanner {
-    width: 800px;
-    height: 500px;
+    width: 50rem;
+    height: 30rem;
 }
 
 .CardContainer {
     display: flex;
     flex-direction: row;
+    box-shadow : 0.3em 0.3em 0.9em  rgb(204, 204, 204);
+    margin: 0.5rem;
 }
 
 .CardPoster {
+    opacity: ;
 
 }
 
 .CardInfo {
     margin-top: 10px;
     margin-left: 30px;
+    font-weight: 100;
 }
 
 .CardTitle {
     font-size: 40px;
     font-weight: 700;
-    margin: 10px 10px 15px 5px;
+    margin: 15px 10px 20px 5px;
 }
 
 .CardAuthor {
@@ -35,7 +39,7 @@
 
 .CardDate {
     font-size: 20px;
-    margin: 10px;
+    margin: 5px;
 
 }
 
