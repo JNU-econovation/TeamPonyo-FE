@@ -3,26 +3,36 @@ import { infoData } from '../mokupData/infoData';
 import './Info.css'
 import Location from '../components/exhibition/Location';
 import axiosInstance from '../api/axiosInstance';
+import { useParams } from 'react-router';
 
 const Info = () => {
+
+    const { exhibit_id } = useParams();
+
     const [data, setData] = useState(null); 
     const [isSave, setIsSave] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
     const [tag, setTag] = useState('');
+    
+    const accessToken = localStorage.getItem('access_token')
 
-    const exhibitId = '123' // 이 부분 동적 라우팅에 따라 exhibit_id값 넘겨받기
+
+    console.log('accessToken: ', accessToken)
+    console.log('exhibit_id: ', exhibit_id)
+
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibitId}`);
+                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibit_id}`);
                 setData(response.data);
             } catch (error) {
                 console.error('Fetch error: ', error);
             }
         };
         fetchData();
-    }, [exhibitId]);
+    }, [exhibit_id]);
 
     useEffect(() => {
         if (data) {  // data가 로드된 후에만 실행
@@ -42,9 +52,19 @@ const Info = () => {
     const handleSave = async () => {
         try {
             if (!isSave) {  // 저장되지 않은 전시
-                await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': data.id});
+                await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': exhibit_id}, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             } else {    // 저장된 전시
-                await axiosInstance.delete(`/api/v1/user/saved-exhibits/${data.id}`);
+                await axiosInstance.delete(`/api/v1/user/saved-exhibits/${exhibit_id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             }
             setIsSave(!isSave);  // 상태 토글
         } catch (error) {
@@ -55,9 +75,19 @@ const Info = () => {
     const handleCompleted = async () => {
         try {
             if (!isCompleted) { // 관람하지 않은 전시
-                await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': data.id});
+                await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': exhibit_id}, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             } else {  // 관람한 전시
-                await axiosInstance.delete(`/api/v1/user/visited-exhibits/${data.id}`);
+                await axiosInstance.delete(`/api/v1/user/visited-exhibits/${exhibit_id}`,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             }
             setIsCompleted(!isCompleted);  // 상태 토글
         } catch (error) {
