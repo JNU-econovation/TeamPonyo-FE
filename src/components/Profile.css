@@ -9,11 +9,11 @@
 }
 
 .profile-image {
-  width: 9rem ;
-  height: 9rem;
+  width: 8rem ;
+  height: 8rem;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
+  margin-right: 2rem;
 }
 
 .profile-details {
