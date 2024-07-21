@@ -5,6 +5,9 @@ import Location from '../components/exhibition/Location';
 import axiosInstance from '../api/axiosInstance';
 
 const Info = () => {
+
+    const { exhibit_id } = useParams();
+
     const [data, setData] = useState(null); 
     const [isSave, setIsSave] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);

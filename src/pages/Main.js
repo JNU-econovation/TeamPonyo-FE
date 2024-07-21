@@ -23,31 +23,32 @@ const Main = () => {
   const itemsPerPage = 16 // 페이지당 아이템 수
 
 
-  useEffect(() => {
-    setData(gridData)
-  }, [gridData])
-
   // useEffect(() => {
-  //   // 현재 페이지에 해당하는 데이터를 서버에서 받아옴
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axiosInstance.get('/api/v1/exhibits', {
-  //         params: {
-  //           'team-id': filters.teamId,  // 특정 팀의 전시만 가져올 수 있다
-  //           'number': itemsPerPage, // 가져올 전시 개수
-  //           'page-number': currentPage, // 페이지네이션을 위한 값
-  //           'sort': filters.sort, // 정렬 기준 선택
-  //           'exhibit-category': filters.exhibitCategory, // 카테고리 필터링
-  //           'exhibit-status': filters.exhibitStatus  // 전시 진행 상태 필터링
-  //         }
-  //       });
-  //       setData(response.data); // 실제 데이터 확인후 수정하기
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [currentPage, filters]);
+  //   setData(gridData)
+  // }, [gridData])
+
+  useEffect(() => {
+    // 현재 페이지에 해당하는 데이터를 서버에서 받아옴
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/api/v1/exhibits', {
+          params: {
+            'team-id': filters.teamId,  // 특정 팀의 전시만 가져올 수 있다
+            'number': itemsPerPage, // 가져올 전시 개수
+            'page-number': currentPage, // 페이지네이션을 위한 값
+            'sort': filters.sort, // 정렬 기준 선택
+            'exhibit-category': filters.exhibitCategory, // 카테고리 필터링
+            'exhibit-status': filters.exhibitStatus  // 전시 진행 상태 필터링
+          }
+        });
+        setData(response.data.exhibits); // 실제 데이터 확인후 수정하기
+        setPageCount(response.data.total_pages)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [currentPage, filters]);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected + 1)  // 페이지 번호에 따라 데이터 다시 가져옴
@@ -70,7 +71,7 @@ const Main = () => {
       <GridList 
         data = {data}  // 데이터 전달
       />
-      {pageCount > 1 && (
+      {pageCount >= 1 && (
         <Pagination
           pageCount={pageCount}
           onPageChange={handlePageChange}

@@ -19,7 +19,7 @@ const GridList = ({ data }) => {
         return '';
       };
 
-
+    
   return (
     <div className='gridList'>
       <div className='postGrid'>

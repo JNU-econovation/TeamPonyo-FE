@@ -23,7 +23,7 @@ function App() {
           <Route path='/mypageGroup' element={<MyPageGroup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/join/:joinId' element={<Join />} />
-          <Route path='/info' element={<Info />} />
+          <Route path='/info/:exhibit_id' element={<Info />} />
           <Route path='/create' element={<Create />} />
         </Routes>
         <Footer />
