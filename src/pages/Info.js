@@ -13,6 +13,13 @@ const Info = () => {
     const [isSave, setIsSave] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
     const [tag, setTag] = useState('');
+    
+    const accessToken = localStorage.getItem('access_token')
+
+
+    console.log('accessToken: ', accessToken)
+    console.log('exhibit_id: ', exhibit_id)
+
 
 
     useEffect(() => {
@@ -45,9 +52,17 @@ const Info = () => {
     const handleSave = async () => {
         try {
             if (!isSave) {  // 저장되지 않은 전시
-                await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': data.id});
+                await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': exhibit_id}, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             } else {    // 저장된 전시
-                await axiosInstance.delete(`/api/v1/user/saved-exhibits/${data.id}`);
+                await axiosInstance.delete(`/api/v1/user/saved-exhibits/${exhibit_id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             }
             setIsSave(!isSave);  // 상태 토글
         } catch (error) {
@@ -58,9 +73,17 @@ const Info = () => {
     const handleCompleted = async () => {
         try {
             if (!isCompleted) { // 관람하지 않은 전시
-                await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': data.id});
+                await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': exhibit_id}, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             } else {  // 관람한 전시
-                await axiosInstance.delete(`/api/v1/user/visited-exhibits/${data.id}`);
+                await axiosInstance.delete(`/api/v1/user/visited-exhibits/${exhibit_id}`,{
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }
+                });
             }
             setIsCompleted(!isCompleted);  // 상태 토글
         } catch (error) {
