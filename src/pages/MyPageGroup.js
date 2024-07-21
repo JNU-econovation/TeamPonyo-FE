@@ -5,6 +5,8 @@ import '../design/MyPageGrid.css';
 import Follow from '../components/Follow';
 import HorizonLine from '../components/HorizonLine';
 import '../design/MyPage.css';
+import { Link } from 'react-router-dom';
+
 
 const MyPageGroup = () => {
   const userId = 'econovation'; // 예시 userId
@@ -36,3 +38,4 @@ const MyPageGroup = () => {
 }
 
 export default MyPageGroup;
+
