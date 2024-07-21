@@ -3,6 +3,7 @@ import { infoData } from '../mokupData/infoData';
 import './Info.css'
 import Location from '../components/exhibition/Location';
 import axiosInstance from '../api/axiosInstance';
+import { useParams } from 'react-router';
 
 const Info = () => {
 
@@ -13,19 +14,18 @@ const Info = () => {
     const [isCompleted, setIsCompleted] = useState(false);
     const [tag, setTag] = useState('');
 
-    const exhibitId = '123' // 이 부분 동적 라우팅에 따라 exhibit_id값 넘겨받기
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibitId}`);
+                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibit_id}`);
                 setData(response.data);
             } catch (error) {
                 console.error('Fetch error: ', error);
             }
         };
         fetchData();
-    }, [exhibitId]);
+    }, [exhibit_id]);
 
     useEffect(() => {
         if (data) {  // data가 로드된 후에만 실행
