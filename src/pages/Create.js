@@ -129,6 +129,18 @@ const Create = () => {
     });
   };
 
+  const readBlob = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsText(blob);
+    });
+  };
+
+  
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -162,6 +174,23 @@ const Create = () => {
     for (let pair of formData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }
+
+    // FormData의 값 확인하기
+    for (let [key, value] of formData.entries()) {
+      if (key === 'info' && value instanceof Blob) {
+        try {
+          const blobText = await readBlob(value);
+          console.log(`${key}: ${blobText}`);
+        } catch (error) {
+          console.error(`Blob 읽기 오류 (${key}):`, error);
+        }
+      } else if (value instanceof File) {
+        // File 객체의 경우, 메타정보만 로그에 남기기
+        console.log(`${key}: ${value.name} (${value.size} bytes)`);
+      }
+    }
+    
+
 
     console.log('Form Data:', formData);
 
