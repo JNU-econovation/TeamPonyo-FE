@@ -54,12 +54,14 @@ const Info = () => {
             if (!isSave) {  // 저장되지 않은 전시
                 await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit-id': exhibit_id}, {
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
                     }
                 });
             } else {    // 저장된 전시
                 await axiosInstance.delete(`/api/v1/user/saved-exhibits/${exhibit_id}`, {
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
                     }
                 });
@@ -75,12 +77,14 @@ const Info = () => {
             if (!isCompleted) { // 관람하지 않은 전시
                 await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit-id': exhibit_id}, {
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
                     }
                 });
             } else {  // 관람한 전시
                 await axiosInstance.delete(`/api/v1/user/visited-exhibits/${exhibit_id}`,{
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
                     }
                 });
