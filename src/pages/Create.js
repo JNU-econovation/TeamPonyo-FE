@@ -156,19 +156,19 @@ const Create = () => {
     });
 
     // info를 FormData에 추가
-    const jsonData = JSON.stringify({
+    const info = JSON.stringify({
       exhibit_category: data.category,
       title: data.title,
-      address: data.isOnline ? '온라인' : data.address,
+      address: isOnline ? '온라인' : data.address,
       open_times: `${data.startTime} ~ ${data.endTime}`,
-      fee: data.isFree ? 0 : data.fee,
+      fee: isFree ? '무료' : `${data.fee}원`,
       contact: data.contact,
       description: data.description,
       start_date: data.startDate,
       end_date: data.endDate,
       position: data.position
     });
-    formData.append('info', new Blob([jsonData], { type: 'application/json' }));
+    formData.append('info', new Blob([info], { type: 'application/json' }));
 
     // FormData 값 확인
     for (let pair of formData.entries()) {
@@ -191,7 +191,8 @@ const Create = () => {
     }
     
 
-
+    console.log('isFree: ', isFree)
+    console.log('isOnline: ', isOnline)
     console.log('Form Data:', formData);
 
     try {
