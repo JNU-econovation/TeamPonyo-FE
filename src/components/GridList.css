@@ -57,6 +57,13 @@
     cursor: pointer;
 }
 
+.gridListPoster {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+}
+
 
 .postInfo {
     text-align: center;
@@ -64,7 +71,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .postTitle {

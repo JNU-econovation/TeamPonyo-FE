@@ -104,7 +104,7 @@ const Info = () => {
             <div className='infoContainer'>
                 <div className='topContainer'>
                     <div className='posterContainer'>
-                        <img src={data.poster_url} alt='포스터' />
+                        <img src={data.poster_url} alt='포스터' className='infoPoster' />
                     </div>
                     <div className='informationContainer'>
                         <div className='infoTag'>{tag}</div>
