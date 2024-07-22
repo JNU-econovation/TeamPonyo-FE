@@ -5,6 +5,7 @@ import axiosInstance from '../api/axiosInstance';
 import UploadFile from '../components/exhibition/UploadFile';
 import  '../components/exhibition/exhibitionCommon.css';
 import Location from '../components/exhibition/Location';
+import { useNavigate } from 'react-router';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -45,6 +46,8 @@ const Create = () => {
     description: useRef(null),
     poster: useRef(null),
   };
+
+  const navigate = useNavigate()
 
 
   const handleChange = (e) => {
@@ -265,6 +268,9 @@ const Create = () => {
       console.log('전시 작성 FormData submitted:', response.data);
       const exhibitId = response.data
       console.log('exhibit_id', exhibitId)
+
+      alert('전시가 등록되었습니다.')
+      navigate('/')
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
     }
