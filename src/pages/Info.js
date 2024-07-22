@@ -104,7 +104,7 @@ const Info = () => {
             <div className='infoContainer'>
                 <div className='topContainer'>
                     <div className='posterContainer'>
-                        <img src={data.poster.base64_image} alt='포스터' />
+                        <img src={data.poster_url} alt='포스터' />
                     </div>
                     <div className='informationContainer'>
                         <div className='infoTag'>{tag}</div>
@@ -141,6 +141,11 @@ const Info = () => {
                 </div>
                 <div className='infoPhotoContainer'>
                     {/* 첨부된 사진들 불러올 곳 */}
+                    {data.photo_urls.map((item, index) => (
+                        <div key={index}>
+                            <img src={item} alt={`첨부 사진 ${index + 1}`} />
+                        </div>
+                    ))}
                 </div>
                 <div className='infoMapContainer'>
                     <div className='infoPlaceTitle'>공간 정보</div>
