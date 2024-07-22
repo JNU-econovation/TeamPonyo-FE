@@ -45,16 +45,21 @@
   .infoTitleContainer {
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
+    margin-top: 5px;
   }
   
-  .infoTitle {
+  .infoTitleText {
     font-weight: bold;
     margin-top: 8px;
+    height: 36px;
+    align-items: center;
   }
   
   .infoAuthor {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 17px;
+    height: 16px;
   }
   
   .infoPlace {
