@@ -21,12 +21,12 @@ const UploadPoster = ({ uploadedPoster, setUploadedPoster }) => {
           <img
             src={URL.createObjectURL(uploadedPoster)}
             alt="Uploaded"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            className='uploadedImage'
           />
         ) : (
           
           <div className='posterPlaceholder'>
-            <div class="material-symbols-outlined posterPlaceholderIcon">photo_camera</div>
+            <div className="material-symbols-outlined posterPlaceholderIcon">photo_camera</div>
             <div className='posterPlaceholder posterPlaceholderText'>포스터를 추가해주세요</div>
           </div>
           

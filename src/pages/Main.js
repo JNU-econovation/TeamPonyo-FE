@@ -7,7 +7,7 @@ import { SearchBox } from '../components/SearchBox'
 import FilterBox from '../components/FilterBox'
 import axiosInstance from '../api/axiosInstance'
 import { gridData } from '../mokupData/infoData'
-
+import './Main.css'
 
 const Main = () => {
 
@@ -78,6 +78,7 @@ const Main = () => {
           currentPage={currentPage}
         />
       )}
+      <div className='bottomSpace'></div>
     </div>
   )
 }

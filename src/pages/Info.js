@@ -104,14 +104,12 @@ const Info = () => {
             <div className='infoContainer'>
                 <div className='topContainer'>
                     <div className='posterContainer'>
-                        <img src={data.poster_url} alt='포스터' />
+                        <img src={data.poster_url} alt='포스터' className='infoPoster' />
                     </div>
                     <div className='informationContainer'>
                         <div className='infoTag'>{tag}</div>
                         <div className='infoTitleContainer'>
-                            <div className='infoTitle infoItem'>
-                                <div className='infoTitleText'>{data.title}</div>
-                            </div>
+                            <div className='infoTitleText'>{data.title}</div>
                         </div>
                         <div className='infoAuthor'>작성자</div>
                         <div className='infoPlace infoItem'>장소  |  {data.address}</div> 
