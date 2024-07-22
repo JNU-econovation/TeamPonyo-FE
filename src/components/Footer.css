@@ -1,10 +1,9 @@
 .Footer {
     display: flex;
     flex-direction: column;
-
     background-color: black;
     width: 100%;
-    height: 10rem;
+    height: 8rem;
     justify-content: space-between;
     box-sizing: border-box;
     color: white;
@@ -16,11 +15,31 @@
 }
 
 .footerLogo {
-    cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    width: 100px;
 }
 
 .footerBottom {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.footerFAQ {
+
+}
+
+.footerToken {
+    display: flex;
+    flex-direction: row;
+    color: #333;
+}
+
+.footerTokenTeam {
+    cursor: pointer;
+}
+
+.footerTokenPersonal {
+    cursor: pointer;
 }
