@@ -30,6 +30,11 @@
     font-weight: bold;
 }
 
+.Header .NavCategories .selected a {
+    color: white;
+    font-weight: bold;
+}
+
 .hidden {
     visibility: hidden;
 }
@@ -74,7 +79,6 @@
 .InnerItem {
     margin: 10px;
 }
-
 
 
 .NavIcon {

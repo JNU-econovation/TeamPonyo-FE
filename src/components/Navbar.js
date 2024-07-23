@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ReactComponent as Logo } from '../logo.svg'
 
 function Navbar() {
@@ -8,6 +8,8 @@ function Navbar() {
     const [nickName, setNickName] = useState("서윤")
     const [isLogin, setIsLogin] = useState(true)
     const [notification, setNotification] = useState(false)
+
+    const location = useLocation()
 
 
     function isNotification(){
@@ -24,11 +26,11 @@ function Navbar() {
             <div className='NavBar'>
                 <div className='NavLogo'><Link to={'/'}><Logo /></Link></div>
                 <ul className='NavCategories'>
-                        <li className='InnerItem'><Link to={'/category/all'}>전체</Link></li>
-                        <li className='InnerItem'><Link to={'/category/exhibition'}>전시회</Link></li>
-                        <li className='InnerItem'><Link to={'/category/performance'}>공연</Link></li>
-                        <li className='InnerItem'><Link to={'/category/contest'}>공모전 및 대회</Link></li>
-                        <li className='InnerItem'><Link to={'/category/etc'}>기타</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/all' ? 'selected' : ''}`}><Link to={'/category/all'}>전체</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/exhibition' ? 'selected' : ''}`}><Link to={'/category/exhibition'}>전시회</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/performance' ? 'selected' : ''}`}><Link to={'/category/performance'}>공연</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/contest' ? 'selected' : ''}`}><Link to={'/category/contest'}>공모전 및 대회</Link></li>
+                        <li className={`InnerItem ${location.pathname=== '/category/etc' ? 'selected' : ''}`}><Link to={'/category/etc'}>기타</Link></li>
                     </ul>
             </div>
             <div className={`NavRight ${isLogin ? '' : 'hidden'}`}>
