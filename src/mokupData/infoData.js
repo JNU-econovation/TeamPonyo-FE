@@ -1,6 +1,6 @@
 
 import kmuposter from '../kmuposter.png';
-import cardPoster2 from  '../cardPoster2.png'
+import cardPoster2 from '../cardPoster2.png'
 import cardPoster3 from '../cardPoster3.png'
 import cardPoster4 from '../cardPoster4.png'
 import cardPoster5 from '../cardPoster5.jpeg'

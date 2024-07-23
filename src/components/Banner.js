@@ -26,7 +26,7 @@ const Banner = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      slidesOffsetBefore={200} // 슬라이드 왼쪽 오프셋 조정
+      slidesOffsetBefore={220} // 슬라이드 왼쪽 오프셋 조정
       slidesOffsetAfter={0} // 슬라이드 오른쪽 오프셋 조정
     >
       {cardList.map((item, index) => (
