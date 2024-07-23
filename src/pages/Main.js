@@ -80,7 +80,7 @@ const Main = () => {
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected + 1)  // 페이지 번호에 따라 데이터 다시 가져옴
-    window.scrollTo({ top: 0, behavior: 'smooth' });   // 스크롤 위치 맨 위로 이동
+    window.scrollTo({ top: 750, behavior: 'smooth' });   // 스크롤 위치 맨 위로 이동
   }
   console.log(pageCount)
 
