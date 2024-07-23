@@ -7,7 +7,7 @@
   .filter-buttons {
     display: flex;
     justify-content: flex-start;
-    margin: 20px 0px;
+    margin: 1rem 5rem;
   }
   
   .filter-buttons button {
