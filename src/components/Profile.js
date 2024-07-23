@@ -1,15 +1,15 @@
 import React from 'react';
 import './Profile.css'; 
 
-const Profile = ({ userId }) => {
-  const mockProfileData = {
-    profileImage: process.env.PUBLIC_URL + '/econoLogo.png',
-    nickname: "ECONOVATION",
-    Id: "econovation",
-    introduction: "전남대학교 IT 개발 동아리 에코노베이션입니다."
+const Profile = ({ ProfileImage, Nickname, LoginId, Introduction }) => {
+  const profileData = {
+    profileImage: ProfileImage,
+    nickname: Nickname,
+    Id: LoginId,
+    introduction: Introduction
   };
 
-  const { profileImage, nickname, Id, introduction } = mockProfileData;
+  const { profileImage, nickname, Id, introduction } = profileData;
 
   return (
     <div className="profile">

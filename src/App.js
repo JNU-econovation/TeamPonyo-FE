@@ -19,8 +19,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/mypagePerson' element={<MyPagePerson />} />
-          <Route path='/mypageGroup' element={<MyPageGroup />} />
+          <Route path='/mypagePerson/:userId' element={<MyPagePerson />} />
+          <Route path='/mypageGroup/:userId' element={<MyPageGroup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/join/:joinId' element={<Join />} />
           <Route path='/info/:exhibit_id' element={<Info />} />
