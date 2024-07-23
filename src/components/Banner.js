@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './Banner.css';
 import CardBanner from './CardBanner.js';
+import { cardList } from '../mokupData/infoData.js';
 
 const Banner = () => {
 
@@ -26,11 +27,12 @@ const Banner = () => {
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
+      {cardList.map((item, index) => (
+        <SwiperSlide key={index}>
+          <CardBanner item={item} />
+        </SwiperSlide>
+      ))}
+      
     </Swiper>
   );
 };
