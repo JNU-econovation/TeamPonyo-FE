@@ -17,10 +17,11 @@ const Info = () => {
     const accessToken = localStorage.getItem('access_token')
 
 
-    console.log('accessToken: ', accessToken)
-    console.log('exhibit_id: ', exhibit_id)
-
-
+    useEffect(() => {
+        console.log('accessToken: ', accessToken)
+        console.log('exhibit_id: ', exhibit_id)
+    }, [accessToken, exhibit_id])
+    
 
     useEffect(() => {
         const fetchData = async () => {
