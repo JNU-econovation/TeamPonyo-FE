@@ -8,44 +8,63 @@
     flex-direction: row;
     box-shadow : 0.3em 0.3em 0.9em  rgb(204, 204, 204);
     margin: 0.5rem;
+    width: 95%;
+    height: 90%;
+    justify-content: space-between;
+}
+
+.CardPosterContainer {
+    overflow: hidden
 }
 
 .CardPoster {
-    /* opacity: ; */
+    width: 320px;
+    height: 100%;
+    object-fit: fill;
 
 }
 
 .CardInfo {
-    margin-top: 10px;
-    margin-left: 30px;
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 25px;
     font-weight: 100;
+    justify-content: flex-end;
+    width: 49%;
 }
 
 .CardTitle {
-    font-size: 40px;
     font-weight: 700;
-    margin: 15px 10px 20px 5px;
+    margin: 20px 10px 25px 5px;
+}
+
+.CardTitle.Eng {
+    font-size: 28px;
+}
+
+.CardTitle.noEng {
+    font-size: 25px;
 }
 
 .CardAuthor {
     font-size: 20px;
-    margin: 5px;
+    margin: 7px;
 }
 
 .CardContent {
     font-size: 20px;
-    margin: 5px;
+    margin: 8px;
 }
 
 .CardDate {
     font-size: 20px;
-    margin: 5px;
+    margin: 7px;
 
 }
 
 .CardLocation {
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 190px;
 }
 
 .CardLeft {
