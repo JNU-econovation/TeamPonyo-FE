@@ -1,29 +1,53 @@
+.my-page-group {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
 .profile-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px;
-  }
-  .filter-buttons {
-    display: flex;
-    justify-content: flex-start;
-    margin: 1rem 5rem;
-  }
-  
-  .filter-buttons button {
-    margin: 0 5px;
-    padding: 10px 20px;
-    background: none;
-    color: #a1a1a1;
-    font-size: 1.25rem;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .filter-buttons .active {
-    background: none;
-    color: black;
-    font-weight:700;
-    border: none;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.content-left {
+  width: 70%;
+}
+
+.content-right {
+  width: 28%;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 0;
+}
+
+.filter-buttons button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  background: none;
+  color: #a1a1a1;
+  font-size: 1.25rem;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-buttons .active {
+  background: none;
+  color: black;
+  font-weight: 700;
+  border: none;
+}
+
+.MyPageContainer {
+  margin-top: 20px;
+}
