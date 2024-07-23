@@ -307,17 +307,7 @@ const Create = () => {
                 <div className='createError'>{errors.title}</div>
               }
             </div>
-            <div className='infoAuthor'>
-              <input
-                type='text'
-                name='author'
-                value={data.author}
-                onChange={handleChange}
-                placeholder='주최'
-                className='infoAuthorText'
-              />
-            </div>
-            <div className='infoPlace infoItem'>
+            <div className='infoPlace createItem'>
               <div className='infoPlaceContainer'>
                 <div className='inputTag'>장소</div>
                 <div className={`roadAddress ${data.address === '' ? 'roadAddressPlaceholder' : ''}`}>{data.address === '' ? '찾기 버튼을 눌러주세요' : roadAddress}</div>
@@ -341,7 +331,7 @@ const Create = () => {
                 <div className='createError'>{errors.address}</div>
               }
             </div>
-            <div className='infoPeriod infoItem'>
+            <div className='infoPeriod createItem'>
               <div className='inputTag'>기간</div>
               <input
                 type='date'
@@ -373,7 +363,7 @@ const Create = () => {
                 }
               </div>
             </div>
-            <div className='infoTime infoItem'>
+            <div className='infoTime createItem'>
               <div className='inputTag'>시간</div>
               <input
                 type='time'
@@ -406,7 +396,7 @@ const Create = () => {
               </div>
             </div>
               
-            <div className='infoPrice infoItem'>
+            <div className='infoPrice createItem'>
               <div className='inputTag'>입장료</div>
               <div className={`smallBtn ${isFree===true ? 'active' : ''}`} onClick={() => handleFeeChange('무료')}>무료</div>
               <div className={`smallBtn ${isFree===false ? 'active' : ''}`} onClick={() => handleFeeChange('유료')}>유료</div>
@@ -428,7 +418,7 @@ const Create = () => {
               }
               </div>
             </div>
-            <div className='infoContact infoItem'>
+            <div className='infoContact createItem'>
               <div className='inputTag'>전시 문의</div>
               <input
                 type='text'
@@ -445,7 +435,7 @@ const Create = () => {
                 }
               </div>
             </div>
-            <div className='infoCategory infoItem'>
+            <div className='infoCategory createItem'>
               <div className='inputTag'>카테고리</div>
               <div
                 className={`smallBtn ${data.category === '전시회' ? 'active' : ''}`}

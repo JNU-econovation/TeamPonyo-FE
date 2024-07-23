@@ -48,6 +48,13 @@
     padding: 3px 2px;
     margin: 0 0 10px 0;
   }
+
+  .infoItem {
+    margin: 12px 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
   
   .infoTitleContainer {
     display: flex;
