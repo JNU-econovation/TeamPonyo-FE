@@ -146,7 +146,7 @@ const Info = () => {
                 <div className='infoPhotoContainer'>
                     {/* 첨부된 사진들 불러올 곳 */}
                     {data.photo_urls.map((item, index) => (
-                        <div key={index}>
+                        <div key={index} className='infoPhotoItem'>
                             <img src={item} alt={`첨부 사진 ${index + 1}`} />
                         </div>
                     ))}

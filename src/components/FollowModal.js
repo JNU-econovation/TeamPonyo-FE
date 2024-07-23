@@ -1,5 +1,5 @@
 import React from 'react';
-import './FollowModal.css'; // FollowModal에 대한 스타일링
+//import './FollowModal.css'; // FollowModal에 대한 스타일링
 
 const FollowModal = ({ title, content, onClose }) => {
     return (
