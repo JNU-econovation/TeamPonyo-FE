@@ -7,17 +7,34 @@ import { SearchBox } from '../components/SearchBox'
 import FilterBox from '../components/FilterBox'
 import axiosInstance from '../api/axiosInstance'
 import { gridData } from '../mokupData/infoData'
+import './Main.css'
+import { useParams } from 'react-router'
 
+const categoryKorean = (category) => {
+  switch (category) {
+    case 'exhibition':
+      return '전시회'
+    case 'performance':
+      return '공연'
+    case 'contest':
+      return '공모전 및 대회'
+    case 'etc':
+      return '기타'
+    case 'all':
+    default:
+      return null;
+  }
+}
 
 const Main = () => {
-
+  const { category } = useParams()
   const [pageCount, setPageCount] = useState(36) // 총 페이지 수
   const [currentPage, setCurrentPage] = useState(1) // 현재 페이지
   const [data, setData] = useState([])  // 해당 페이지의 데이터
   const [filters, setFilters] = useState({  // 필터링
     teamId: null,
     sort: null,
-    exhibitCategory: null,
+    exhibitCategory: category === 'all' ? null : categoryKorean(category),
     exhibitStatus: null,
   });
   const itemsPerPage = 16 // 페이지당 아이템 수
@@ -26,6 +43,17 @@ const Main = () => {
   // useEffect(() => {
   //   setData(gridData)
   // }, [gridData])
+
+  
+
+  useEffect(() => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      exhibitCategory: category === 'all' ? null : categoryKorean(category),
+    }));
+    setCurrentPage(1);
+  }, [category]);
+
 
   useEffect(() => {
     // 현재 페이지에 해당하는 데이터를 서버에서 받아옴
@@ -78,6 +106,7 @@ const Main = () => {
           currentPage={currentPage}
         />
       )}
+      <div className='bottomSpace'></div>
     </div>
   )
 }

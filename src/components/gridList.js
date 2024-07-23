@@ -29,7 +29,7 @@ const GridList = ({ data }) => {
           <div key={index}>
             <Link to={`/info/${item.exhibit_id}`}>
                 <div className='imageContainer'>
-                <img src={item.poster.base64_image} alt='포스터' />
+                <img src={item.poster_url} alt='포스터' className='gridListPoster' />
                 {/* <img className='poster' src={item.path} alt='게시물'/> */}
                 <div className='overlay'>
                     <div>자세히 보기</div>

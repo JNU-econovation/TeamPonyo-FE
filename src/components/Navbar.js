@@ -28,7 +28,7 @@ function Navbar() {
                         <li className='InnerItem'><Link to={'/category/exhibition'}>전시회</Link></li>
                         <li className='InnerItem'><Link to={'/category/performance'}>공연</Link></li>
                         <li className='InnerItem'><Link to={'/category/contest'}>공모전 및 대회</Link></li>
-                        <li className='InnerItem'><Link to={'/category/event'}>행사</Link></li>
+                        <li className='InnerItem'><Link to={'/category/etc'}>기타</Link></li>
                     </ul>
             </div>
             <div className={`NavRight ${isLogin ? '' : 'hidden'}`}>

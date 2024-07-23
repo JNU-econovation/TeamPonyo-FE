@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import UploadPoster from '../components/exhibition/UploadPoster';
 import './Create.css';
 import axiosInstance from '../api/axiosInstance';
 import UploadFile from '../components/exhibition/UploadFile';
 import  '../components/exhibition/exhibitionCommon.css';
 import Location from '../components/exhibition/Location';
+import { useNavigate } from 'react-router';
 
 const Create = () => {
   const [data, setData] = useState({
@@ -28,6 +29,28 @@ const Create = () => {
   const [isOnline, setIsOnline] = useState(null)
   const [roadAddress, setRoadAddress] = useState('')
   const [detailAddress, setDetailAddress] = useState('')
+  const [errors, setErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const refs = {
+    title: useRef(null),
+    category: useRef(null),
+    author: useRef(null),
+    address: useRef(null),
+    startDate: useRef(null),
+    endDate: useRef(null),
+    startTime: useRef(null),
+    endTime: useRef(null),
+    fee: useRef(null),
+    contact: useRef(null),
+    description: useRef(null),
+    poster: useRef(null),
+  };
+
+
+  const navigate = useNavigate()
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +58,7 @@ const Create = () => {
       ...data,
       [name]: value,
     });
+    if (isSubmit) validateFields({ ...data, [name]: value });
   };
 
   const handlePosterChange = (file) => {
@@ -42,6 +66,7 @@ const Create = () => {
       ...data,
       poster: file,
     });
+    if (isSubmit) validateFields({ ...data, poster: file });
   };
 
   const handleFilesSelect = (files) => {
@@ -65,6 +90,7 @@ const Create = () => {
         fee: '',
       });
     }
+    if (isSubmit) validateFields({ ...data, fee: ''})
   };
 
   const handleOnlineChange = (type) => {
@@ -80,6 +106,7 @@ const Create = () => {
       setIsOnline(false)
       openAddressSearch()
     }
+    if (isSubmit) validateFields({ ...data, address: '' });
   }
 
   const openAddressSearch = () => {
@@ -127,7 +154,33 @@ const Create = () => {
       ...data,
       category: category,
     });
+    if (isSubmit) validateFields({ ...data, category: category });
   };
+
+  const validateFields = (dataToValidate) => {
+    const newErrors = {};
+
+    if (!dataToValidate.title) newErrors.title = '전시 제목을 입력하세요';
+    if (!dataToValidate.category) newErrors.category = '카테고리를 선택하세요';
+    if (!isOnline && !dataToValidate.address) newErrors.address = '주소를 입력하세요';
+    if (!dataToValidate.startDate) newErrors.startDate = '시작 날짜를 선택하세요';
+    if (!dataToValidate.endDate) newErrors.endDate = '종료 날짜를 선택하세요';
+    if (!dataToValidate.startTime) newErrors.startTime = '시작 시간을 선택하세요';
+    if (!dataToValidate.endTime) newErrors.endTime = '종료 시간을 선택하세요';
+    if (!isFree && !dataToValidate.fee) newErrors.fee = '입장료를 입력하세요';
+    if (!dataToValidate.contact) newErrors.contact = '전시 문의를 입력하세요';
+    if (!dataToValidate.description) newErrors.description = '소개를 입력하세요';
+    if (!dataToValidate.poster) newErrors.poster = '포스터를 추가하세요';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // useEffect(() => {
+  //   validateFields();
+  // }, [data]);
+
+
 
   const readBlob = (blob) => {
     return new Promise((resolve, reject) => {
@@ -143,6 +196,12 @@ const Create = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmit(true)
+
+    if (!validateFields(data)) {
+      console.log('Validation failed');
+      return;
+    }
 
     const formData = new FormData();
 
@@ -211,6 +270,9 @@ const Create = () => {
       console.log('전시 작성 FormData submitted:', response.data);
       const exhibitId = response.data
       console.log('exhibit_id', exhibitId)
+
+      alert('전시가 등록되었습니다.')
+      navigate('/')
     } catch (error) {
       console.error('전시 작성 FormData submit 오류', error);
     }
@@ -219,8 +281,15 @@ const Create = () => {
   return (
     <div className='Create'>
       <div className='topContainer'>
-        <div className='uploadPoster'>
-          <UploadPoster uploadedPoster={data.poster} setUploadedPoster={handlePosterChange} />
+        <div className='uploadPosterContainer'>
+          <div className='uploadPoster'>
+            <UploadPoster uploadedPoster={data.poster} setUploadedPoster={handlePosterChange} />
+          </div>
+          <div className='posterErrorContainer'>
+            {errors.poster && 
+              <div className='createError'>{errors.poster}</div>
+            }
+          </div>
         </div>
         <div className='infoContainer'>
           <div className='informationContainer'>
@@ -232,7 +301,11 @@ const Create = () => {
                 onChange={handleChange}
                 placeholder='전시 제목'
                 className='infoTitleText'
+                ref={refs.title}
               />
+              {errors.title && 
+                <div className='createError'>{errors.title}</div>
+              }
             </div>
             <div className='infoAuthor'>
               <input
@@ -263,6 +336,11 @@ const Create = () => {
                 </div>
               </div>
             </div>
+            <div className='enterErrorContainer'>
+              {errors.address && 
+                <div className='createError'>{errors.address}</div>
+              }
+            </div>
             <div className='infoPeriod infoItem'>
               <div className='inputTag'>기간</div>
               <input
@@ -271,6 +349,7 @@ const Create = () => {
                 value={data.startDate}
                 onChange={handleChange}
                 className='inputSmall'
+                ref={refs.startDate}
               />
               ~
               <input
@@ -279,7 +358,20 @@ const Create = () => {
                 value={data.endDate}
                 onChange={handleChange}
                 className='inputSmall'
+                ref={refs.endDate}
               />
+            </div>
+            <div className='enterErrorContainer'>
+              <div className='enterErrorFirstItem'>
+                {errors.startDate && 
+                  <div className='createError'>{errors.startDate}</div>
+                }
+              </div>
+              <div>
+                {errors.endDate && 
+                    <div className='createError'>{errors.endDate}</div>
+                }
+              </div>
             </div>
             <div className='infoTime infoItem'>
               <div className='inputTag'>시간</div>
@@ -289,6 +381,7 @@ const Create = () => {
                 value={data.startTime}
                 onChange={handleChange}
                 className='inputSmall'
+                ref={refs.startTime}
               />
               ~
               <input
@@ -297,8 +390,22 @@ const Create = () => {
                 value={data.endTime}
                 onChange={handleChange}
                 className='inputSmall'
+                ref={refs.endTime}
               />
             </div>
+            <div className='enterErrorContainer'>
+              <div className='enterErrorFirstItem'>
+                {errors.startTime && 
+                  <div className='createError'>{errors.startTime}</div>
+                }
+              </div>
+              <div>
+                {errors.endTime && 
+                  <div className='createError'>{errors.endTime}</div>
+                }
+              </div>
+            </div>
+              
             <div className='infoPrice infoItem'>
               <div className='inputTag'>입장료</div>
               <div className={`smallBtn ${isFree===true ? 'active' : ''}`} onClick={() => handleFeeChange('무료')}>무료</div>
@@ -315,6 +422,11 @@ const Create = () => {
                 />
                 <div className='currency'>원</div>
               </div>
+              <div className='errorMargin'>
+              {errors.fee && 
+                <div className='createError'>{errors.fee}</div>
+              }
+              </div>
             </div>
             <div className='infoContact infoItem'>
               <div className='inputTag'>전시 문의</div>
@@ -323,8 +435,15 @@ const Create = () => {
                 name='contact'
                 value={data.contact}
                 onChange={handleChange}
+                placeholder='ecnv@gmail.com'
                 className='inputSmall'
+                ref={refs.contact}
               />
+              <div className='errorMargin'>
+                {errors.contact && 
+                  <div className='createError'>{errors.contact}</div>
+                }
+              </div>
             </div>
             <div className='infoCategory infoItem'>
               <div className='inputTag'>카테고리</div>
@@ -348,7 +467,13 @@ const Create = () => {
                 onClick={() => handleCategoryChange('기타')}>
                 기타
               </div>
+              <div className='errorMargin'>
+                {errors.category && 
+                  <div className='createError'>{errors.category}</div>
+                }
+              </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -360,6 +485,7 @@ const Create = () => {
             value={data.description}
             onChange={handleChange}
             className='textarea'
+            ref={refs.description}
           />
           {!data.description && (
             <div className='descriptionPlaceholder'>
@@ -378,6 +504,9 @@ const Create = () => {
               - 음란물, 성적 수치심을 유발하는 행위{'\n'}
             </div>
           )}
+          {errors.description && 
+            <div className='createError'>{errors.description}</div>
+          }
         </div>
         <UploadFile selectedFiles={data.photos} onFilesSelect={handleFilesSelect} />
       </div>

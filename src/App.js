@@ -25,6 +25,7 @@ function App() {
           <Route path='/join/:joinId' element={<Join />} />
           <Route path='/info/:exhibit_id' element={<Info />} />
           <Route path='/create' element={<Create />} />
+          <Route path='/category/:category' element={<Main />} />
         </Routes>
         <Footer />
       </div>
