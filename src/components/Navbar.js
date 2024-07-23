@@ -1,14 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../logo.svg'
+import axiosInstance from '../api/axiosInstance';
+
 
 function Navbar() {
-
-    const [nickName, setNickName] = useState("서윤")
+    const [myInfo, setMyInfo] = useState({user_id: 0, nickname: ""})
     const [isLogin, setIsLogin] = useState(true)
     const [notification, setNotification] = useState(false)
+    
+    const accessToken = localStorage.getItem('access_token')
 
+    useEffect(() => {
+        const fetchMyInfo = async () => {
+          try {
+            const response = await axiosInstance.get('/api/v1/user/my-info',{
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                    }}
+            );
+            setMyInfo(response.data);
+            setIsLogin(true);
+          } catch (error) {
+            console.error('Failed to fetch my info:', error);
+          }
+        };
+    
+        fetchMyInfo();
+      }, []);
 
     function isNotification(){
 
@@ -33,14 +53,14 @@ function Navbar() {
             </div>
             <div className={`NavRight ${isLogin ? '' : 'hidden'}`}>
                 <div className={`Hello ${isLogin ? '' : 'hidden'}`}>
-                    <p>반가워요, <span className='nickName'><Link to={'/mypage'}>{nickName}</Link></span>님</p>
+                    <p>반가워요, <span className='nickName'><Link to={`/mypagegroup/${myInfo.user_id}`}>{myInfo.nickname}</Link></span>님</p>
                 </div>
                 <div className='NavIcon'>
                     <span class="material-symbols-outlined" ><Link to={'/create'}>edit_square</Link></span>
                     <span class="material-symbols-outlined">
                         {notification ? 'notifications_unread' : 'notifications'}
                     </span> 
-                    <Link to={isLogin ? '/mypagegroup' : '/login'}>{isLogin ? <span class="material-symbols-outlined">person</span> : 'LOGIN'}</Link>
+                    <Link to={isLogin ? `/mypagegroup/${myInfo.user_id}` : '/login'}>{isLogin ? <span class="material-symbols-outlined">person</span> : 'LOGIN'}</Link>
                 </div>
                 
                 
