@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ReactComponent as Logo } from '../logo.svg'
 import axiosInstance from '../api/axiosInstance';
 
@@ -11,6 +11,9 @@ function Navbar() {
     const [notification, setNotification] = useState(false)
     
     const accessToken = localStorage.getItem('access_token')
+
+    const location = useLocation()
+
 
     useEffect(() => {
         const fetchMyInfo = async () => {
@@ -30,6 +33,7 @@ function Navbar() {
         fetchMyInfo();
       }, []);
 
+
     function isNotification(){
 
         // 알림 있는지 확인해서 있으면 아래 문장 실행하도록 조건 처리하기
@@ -44,11 +48,11 @@ function Navbar() {
             <div className='NavBar'>
                 <div className='NavLogo'><Link to={'/'}><Logo /></Link></div>
                 <ul className='NavCategories'>
-                        <li className='InnerItem'><Link to={'/category/all'}>전체</Link></li>
-                        <li className='InnerItem'><Link to={'/category/exhibition'}>전시회</Link></li>
-                        <li className='InnerItem'><Link to={'/category/performance'}>공연</Link></li>
-                        <li className='InnerItem'><Link to={'/category/contest'}>공모전 및 대회</Link></li>
-                        <li className='InnerItem'><Link to={'/category/etc'}>기타</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/all' ? 'selected' : ''}`}><Link to={'/category/all'}>전체</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/exhibition' ? 'selected' : ''}`}><Link to={'/category/exhibition'}>전시회</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/performance' ? 'selected' : ''}`}><Link to={'/category/performance'}>공연</Link></li>
+                        <li className={`InnerItem ${location.pathname === '/category/contest' ? 'selected' : ''}`}><Link to={'/category/contest'}>공모전 및 대회</Link></li>
+                        <li className={`InnerItem ${location.pathname=== '/category/etc' ? 'selected' : ''}`}><Link to={'/category/etc'}>기타</Link></li>
                     </ul>
             </div>
             <div className={`NavRight ${isLogin ? '' : 'hidden'}`}>

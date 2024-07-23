@@ -1,4 +1,54 @@
 
+import kmuposter from '../kmuposter.png';
+import cardPoster2 from '../cardPoster2.png'
+import cardPoster3 from '../cardPoster3.png'
+import cardPoster4 from '../cardPoster4.png'
+import cardPoster5 from '../cardPoster5.jpeg'
+
+export const cardList = [
+  {
+    poster: kmuposter,
+    title: "OVER THE DIMENSION",
+    author: "국민대학교 공간 디자인학과",
+    content: "23회 졸업 전시회",
+    date: "2023. 11. 10 - 11. 19",
+    location: "국민대학교 조형관 1F 2F"
+  },
+  {
+    poster: cardPoster2,
+    title: "Econovation SUMMER DEV",
+    author: "에코노베이션",
+    content: "IT 개발 동아리 에코노베이션의 성과공유회",
+    date: "2024.07.26",
+    location: "전남대학교 스토리움 1F"
+  },
+  {
+    poster: cardPoster3,
+    title: "INTERFERENCE WAVE",
+    author: "새벽울림",
+    content: "새벽울림 겨울 공연",
+    date: "2024.02.15",
+    location: "광주 문화전당로 보헤미안 소극장 지하 1층"
+  },
+  {
+    poster: cardPoster4,
+    title: "51기 정기 전시회 <나만의 이야기>",
+    author: "zoom",
+    content: "2024학년도 1학기 사진 전시회",
+    date: "2024.05.20 ~ 2024.05.24",
+    location: "전남대학교 디지털도서관 3F 갤러리콘"
+  },
+  {
+    poster: cardPoster5,
+    title: "SU:M 정기공연 19번째 호흡",
+    author: "전남대 흑인음악동아리 SU:M",
+    content: "19번째 호흡, 정기공연",
+    date: "2024.05.24",
+    location: "전대후문 북구 중흥동 275-4 부드러운 직선"
+  }
+];
+
+
 export const infoData2 = [
     {
         poster: '',

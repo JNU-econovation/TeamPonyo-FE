@@ -1,38 +1,30 @@
-import React from 'react'
-import './CardBanner.css'
-import kmuposter from '../kmuposter.png'
+import React from 'react';
+import './CardBanner.css';
 
-const cardList = [
-  {
-    poster: kmuposter,
-    title: "OVER THE DIMENSION",
-    author: "국민대학교 공간 디자인학과",
-    content: "23회 졸업 전시회",
-    date: "2023. 11. 10 - 11. 19",
-    location: "국민대학교 조형관 1F 2F"
-  },
-]
+const CardBanner = ({ item }) => {
 
-const CardBanner = () => {
+  const isAllEnglish = (text) => {
+    // 문자열이 모두 영어 알파벳으로만 구성되어 있는지 검사하는 정규식
+    return /^[A-Za-z\s]+$/.test(text);
+  };
+
+
   return (
     <div className='CardBanner'>
-        {cardList.map((item, index) => (
-            <div className='CardContainer' key={index}>
-
-              <img className='CardPoster' src={item.poster}/>
-              <div className='CardInfo'>
-                <div className='CardTitle CardRight'>{item.title}</div>
-                <div className='CardAuthor CardRight'>{item.author}</div>
-                <div className='CardContent CardRight'>{item.content}</div>
-                <div className='CardDate CardRight'>{item.date}</div>
-                <div className='CardLocation CardLeft'>{item.location}</div>
-              </div>
-
-            </div>
-          ))}
-        
+      <div className='CardContainer'>
+        <div className='CardPosterContainer'>
+          <img className='CardPoster' src={item.poster} alt="Poster" />
+        </div>
+        <div className='CardInfo'>
+          <div className={`CardTitle CardRight ${isAllEnglish(item.title) ? 'Eng' : 'noEng'}`}>{item.title}</div>
+          <div className='CardAuthor CardRight'>{item.author}</div>
+          <div className='CardContent CardRight'>{item.content}</div>
+          <div className='CardDate CardRight'>{item.date}</div>
+          <div className='CardLocation CardLeft'>{item.location}</div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default CardBanner
+export default CardBanner;

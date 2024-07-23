@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './Banner.css';
 import CardBanner from './CardBanner.js';
+import { cardList } from '../mokupData/infoData.js';
 
 const Banner = () => {
 
@@ -13,7 +14,7 @@ const Banner = () => {
     <Swiper
       direction={'horizontal'}
       slidesPerView={3}
-      /** spaceBetween={200} **/
+      spaceBetween={20}
       centeredSlides={true}
       loop={true}
       autoplay={{
@@ -25,12 +26,15 @@ const Banner = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
+      slidesOffsetBefore={220} // 슬라이드 왼쪽 오프셋 조정
+      slidesOffsetAfter={0} // 슬라이드 오른쪽 오프셋 조정
     >
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
-      <SwiperSlide><CardBanner /></SwiperSlide>
+      {cardList.map((item, index) => (
+        <SwiperSlide key={index}>
+          <CardBanner item={item} />
+        </SwiperSlide>
+      ))}
+      
     </Swiper>
   );
 };
