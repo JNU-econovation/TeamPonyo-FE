@@ -77,7 +77,7 @@ const Follow = ({ UserId }) => {
                 <div className="FollowerNumber" onClick={() => fetchModalContent('followers')}>
                     팔로워 <strong>{followInfo.follower_number}</strong>
                 </div>
-                <div className="FollowingNumber" onClick={() => fetchModalContent('following')}>
+                <div className="FollowingNumber" onClick={() => fetchModalContent('followings')}>
                     팔로잉 <strong>{followInfo.following_number}</strong>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Profile from '../components/Profile';
 import MyGridList from '../components/MyGridList';
 import '../design/MyPageGrid.css';
@@ -8,7 +8,7 @@ import '../design/MyPage.css';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
 import { useParams } from 'react-router';
-
+import Members from '../components/Members'; // Members 컴포넌트 import
 
 const MyPageGroup = () => {
   const { userId } = useParams();
@@ -42,6 +42,7 @@ const MyPageGroup = () => {
         <Follow UserId={userId}/>
       </div>
       <HorizonLine />
+      <Members groupId={userId} /> {/* Members 컴포넌트 추가 */}
       <div className='filter-buttons'>
         <button onClick={() => setSortOrder('LATEST')} className={sortOrder === 'LATEST' ? 'active' : ''}>
           최신순
