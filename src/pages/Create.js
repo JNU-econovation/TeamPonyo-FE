@@ -47,7 +47,9 @@ const Create = () => {
     poster: useRef(null),
   };
 
+
   const navigate = useNavigate()
+
 
 
   const handleChange = (e) => {
@@ -433,6 +435,7 @@ const Create = () => {
                 name='contact'
                 value={data.contact}
                 onChange={handleChange}
+                placeholder='ecnv@gmail.com'
                 className='inputSmall'
                 ref={refs.contact}
               />

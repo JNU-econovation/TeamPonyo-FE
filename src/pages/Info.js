@@ -25,7 +25,12 @@ const Info = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibit_id}`);
+                const response = await axiosInstance.get(`/api/v1/exhibits/${exhibit_id}`, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',  // Content-Type 설정
+                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                      }
+                });
                 setData(response.data);
             } catch (error) {
                 console.error('Fetch error: ', error);
