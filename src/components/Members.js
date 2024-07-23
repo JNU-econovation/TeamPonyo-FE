@@ -31,7 +31,7 @@ const Members = ({ groupId }) => {
     return (
         <div>
             <div className="members-header">
-                <h2>속해있는 사람들</h2>
+                <h3>속해있는 사람들</h3>
                 <button className="add-member-button" onClick={handleAddButtonClick}>+</button>
             </div>
             <div className="members-container">
