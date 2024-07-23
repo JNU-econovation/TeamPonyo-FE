@@ -6,25 +6,31 @@
     padding: 10px 30px 5px 30px;
     box-sizing: border-box;
 }
+
 .Header a {
-    color:white;
+    color: white;
 }
+
 .Header a:active {
     color: white;
 }
+
 .Header a:visited {
     color: white;
 }
 
 .Header .NavCategories a {
-    color:#D1D1D1;
+    color: #D1D1D1;
 }
+
 .Header .NavCategories a:active {
     color: #D1D1D1;
 }
+
 .Header .NavCategories a:visited {
     color: #D1D1D1;
 }
+
 .Header .NavCategories a:hover {
     color: white;
     font-weight: bold;
@@ -39,25 +45,16 @@
     visibility: hidden;
 }
 
-.Hello {
-    text-align: right;
-}
-
-.Hello .userName {
-    border-bottom: 1px solid white; /* 간격 띄워진 밑줄 */
-    cursor: pointer;
-}
-
 .HeaderContents {
     display: flex;
     justify-content: space-between;
+    align-items: center; 
 }
 
 .NavBar {
     display: flex;
     flex-grow: 1;
 }
-
 
 .NavLogo {
     margin: 23px 20px;
@@ -75,20 +72,39 @@
     font-size: 18px;
 }
 
-
 .InnerItem {
     margin: 10px;
 }
 
+.NavRight {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+}
+
+.Hello {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 5px; 
+}
+
+.Hello .userName {
+    border-bottom: 1px solid white; /* 간격 띄워진 밑줄 */
+    cursor: pointer;
+}
 
 .NavIcon {
     display: flex;
-    margin-top: 10px;
+    gap: 0.3rem; 
+    padding-bottom: 0.5rem;
 }
 
 .material-symbols-outlined {
-    margin: 0 5px;
     cursor: pointer;
     font-variation-settings: 'wght' 300;
     font-size: 28px;
+}
+
+.NavIcon .icon-edit {
+    margin-right: 2rem;
 }

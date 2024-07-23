@@ -22,13 +22,14 @@
 }
 
 .content-right {
-  width: 28%;
+  width: 18%;
+  margin: 0 7rem;
 }
 
 .filter-buttons {
   display: flex;
   justify-content: flex-start;
-  margin: 1rem 0;
+  margin: 1rem 10rem;
 }
 
 .filter-buttons button {
