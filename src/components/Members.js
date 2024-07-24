@@ -3,14 +3,14 @@ import axiosInstance from '../api/axiosInstance';
 import './Members.css';
 import AddMemberModal from './AddMemberModal';
 
-const Members = ({ groupId }) => {
+const Members = ({ teamId, nickname }) => {
     const [members, setMembers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/groups/${groupId}/members`);
+                const response = await axiosInstance.get(`/api/v1/teams/${teamId}/members`);
                 setMembers(response.data);
             } catch (error) {
                 console.error('Failed to fetch members:', error);
@@ -18,7 +18,7 @@ const Members = ({ groupId }) => {
         };
 
         fetchMembers();
-    }, [groupId]);
+    }, [teamId]);
 
     const handleAddButtonClick = () => {
         setIsModalOpen(true);
@@ -45,7 +45,7 @@ const Members = ({ groupId }) => {
                     <div className="no-members">멤버를 추가해보세요</div>
                 )}
             </div>
-            {isModalOpen && <AddMemberModal onClose={handleCloseModal} groupId={groupId} />}
+            {isModalOpen && <AddMemberModal onClose={handleCloseModal} teamId={teamId} nickname={nickname}/>}
         </div>
     );
 };

@@ -1,58 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './AddMemberModal.css';
 
-const AddMemberModal = ({ onClose, groupId, currentUserNickname }) => {
+const AddMemberModal = ({ onClose, nickname}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [accounts, setAccounts] = useState([]);
+    const accessToken = localStorage.getItem('access_token');
 
-    useEffect(() => {
-        const fetchAccounts = async () => {
+    const handleSearch = async (e) => {
+        setSearchTerm(e.target.value);
+        if (e.key === 'Enter') {
             try {
-                const response = await axiosInstance.get('/api/v1/accounts');
+                const response = await axiosInstance.get('/api/v1/users/search', {
+                    params: {
+                        'nickname-or-login-id': searchTerm
+                    }
+                });
                 setAccounts(response.data);
             } catch (error) {
-                console.error('Failed to fetch accounts:', error);
+                console.error('Error searching accounts:', error);
             }
-        };
-
-        fetchAccounts();
-    }, []);
-
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value.toLowerCase());
+        }
     };
 
-    const filteredAccounts = accounts.filter(account =>
-        account.nickname.toLowerCase().includes(searchTerm) || account.login_id.toLowerCase().includes(searchTerm)
-    );
-
     const handleAddMember = async (userId) => {
-        try {
-            await axiosInstance.post(`/api/v1/groups/${groupId}/members`, { user_id: userId });
-            onClose();
-        } catch (error) {
-            console.error('Failed to add member:', error);
-        }
+            try {
+                const response = await axiosInstance.post('/api/v1/team/member', {invitee_id: userId}, {headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }});
+            } catch (error) {
+                console.error('Error searching accounts:', error);
+            }
     };
 
     return (
         <div className="modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h3>{currentUserNickname}에 사람 추가하기</h3>
+                    <h3>{nickname}에 사람 추가하기</h3>
                     <button className="close-button" onClick={onClose}>X</button>
                 </div>
                 <input
                     type="text"
                     placeholder="닉네임 또는 아이디를 검색하세요."
                     value={searchTerm}
-                    onChange={handleSearch}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleSearch}
                     className="search-input"
                     autoFocus
                 />
                 <div className="account-list">
-                    {filteredAccounts.map(account => (
+                    {accounts.map(account => (
                         <div key={account.user_id} className="account-item">
                             <img src={account.profile_image_url} alt={`Profile of ${account.nickname}`} className="account-image" />
                             <div className="account-info">
