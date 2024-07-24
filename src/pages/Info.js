@@ -157,11 +157,16 @@ const Info = () => {
                 </div>
                 <div className='infoMapContainer'>
                     <div className='infoPlaceTitle'>공간 정보</div>
-                    <div className='infoPlaceBody'>{data.address}</div>
-                    <div className='infoPlaceMap'>
-                        {/* 공간정보 카카오맵 */}
-                        <Location address={data.address} position={data.position} />
-                    </div>
+                    {data.address === '온라인' ? (
+                        <div className='infoPlaceMapOnline'>온라인 전시입니다. 자세한 사항은 소개란 혹은 전시 문의에서 확인해주시길 바랍니다.</div>
+                    ) : (
+                        <>
+                            <div className='infoPlaceBody'>{data.address}</div><div className='infoPlaceMap'>
+                                {/* 공간정보 카카오맵 */}
+                                <Location address={data.address} position={data.position} />
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
