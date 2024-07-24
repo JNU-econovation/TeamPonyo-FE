@@ -33,8 +33,36 @@
   font-size: 1.25rem;
 }
 
+.introduction-container{
+  display: flex;
+  align-items:center;
+  justify-content: left;
+  height: 25px; /* 원하는 높이 설정 */
+  font-size: 14px;
+  padding: 2px 0px;
+}
+
 .introduction {
-  margin: 10px 0 0;
-  font-size: 1em;
-  font-size: 1.25rem;
+  margin: auto 0px;
+  height: 100%;
+  font-size: 14px;
+  color: gray;
+  cursor: pointer;
+}
+.static-introduction {
+  margin: auto 0px;
+  height: 100%;
+  font-size: 14px;
+  color: gray;
+}
+
+.introduction-input {
+  font-size: 14px;
+  padding: 0px;
+  margin: -2px;
+  border: 1px solid #ccc;
+  height: 100%;
+  width: 250px;
+  border-radius: 2px;
+  outline: none;
 }
