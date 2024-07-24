@@ -120,7 +120,7 @@ const Info = () => {
                         </div>
                         <div className='infoAuthor'>
                                 작성자  |  
-                                <Link to={`/mypagegroup/1`}><span className='infoAuthorNickname'>  {data.team_name}</span></Link>
+                                <Link to={`/mypagegroup/${data.team_id}`}><span className='infoAuthorNickname'>  {data.team_name}</span></Link>
                         </div>
                         <div className='infoPlace infoItem'>장소  |  {data.address}</div> 
                         <div className='infoPeriod infoItem'>기간  |  {data.period}</div>
