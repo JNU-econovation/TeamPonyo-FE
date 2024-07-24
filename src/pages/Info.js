@@ -4,6 +4,7 @@ import './Info.css'
 import Location from '../components/exhibition/Location';
 import axiosInstance from '../api/axiosInstance';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom'
 
 const Info = () => {
 
@@ -117,7 +118,10 @@ const Info = () => {
                         <div className='infoTitleContainer'>
                             <div className='infoTitleText'>{data.title}</div>
                         </div>
-                        <div className='infoAuthor'>작성자</div>
+                        <div className='infoAuthor'>
+                                작성자  |  
+                                <Link to={`/mypagegroup/1`}><span className='infoAuthorNickname'>  {data.team_name}</span></Link>
+                        </div>
                         <div className='infoPlace infoItem'>장소  |  {data.address}</div> 
                         <div className='infoPeriod infoItem'>기간  |  {data.period}</div>
                         <div className='infoTime infoItem'>시간  |  {data.open_times}</div>
