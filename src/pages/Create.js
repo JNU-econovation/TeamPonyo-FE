@@ -173,14 +173,10 @@ const Create = () => {
     if (!dataToValidate.poster) newErrors.poster = '포스터를 추가하세요';
 
     setErrors(newErrors);
+    
     return Object.keys(newErrors).length === 0;
   };
-
-  // useEffect(() => {
-  //   validateFields();
-  // }, [data]);
-
-
+  
 
   const readBlob = (blob) => {
     return new Promise((resolve, reject) => {
@@ -190,8 +186,6 @@ const Create = () => {
       reader.readAsText(blob);
     });
   };
-
-  
   
 
   const handleSubmit = async (e) => {
@@ -200,6 +194,10 @@ const Create = () => {
 
     if (!validateFields(data)) {
       console.log('Validation failed');
+
+      alert('모든 필수 항목을 입력하세요.')
+      window.scrollTo(0, 0)
+
       return;
     }
 
