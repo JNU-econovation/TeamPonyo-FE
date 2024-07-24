@@ -33,17 +33,21 @@
   font-size: 1.25rem;
 }
 
+/* 소개 컴포넌트 */
+
 .introduction-container{
   display: flex;
+  margin-top: 0.5rem;
   align-items:center;
   justify-content: left;
-  height: 25px; /* 원하는 높이 설정 */
+  height: 25px; 
   font-size: 14px;
-  padding: 2px 0px;
+
 }
 
 .introduction {
   margin: auto 0px;
+  margin-top: 0.5rem;
   height: 100%;
   font-size: 14px;
   color: gray;
@@ -58,8 +62,9 @@
 
 .introduction-input {
   font-size: 14px;
-  padding: 0px;
+  padding: 3px;
   margin: -2px;
+  margin-top: 2px;
   border: 1px solid #ccc;
   height: 100%;
   width: 250px;

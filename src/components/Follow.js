@@ -7,8 +7,8 @@ const Follow = ({ UserId }) => {
     const accessToken = localStorage.getItem('access_token');
     const [followInfo, setFollowInfo] = useState({ follower_number: 0, following_number: 0, followed: false });
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalContent, setModalContent] = useState([]);
-    const [modalTitle, setModalTitle] = useState('');
+    const [modalContent, setModalContent] = useState({ followers: [], followings: [] });
+    const [initialTab, setInitialTab] = useState('followers');
 
     const handleFollowButtonClick = async () => {
         try {
@@ -54,16 +54,24 @@ const Follow = ({ UserId }) => {
 
     const fetchModalContent = async (type) => {
         try {
-            const response = await axiosInstance.get(`/api/v1/users/${UserId}/${type}`, {
+            const followersResponse = await axiosInstance.get(`/api/v1/users/${UserId}/followers`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
                 }
             });
-            setModalContent(response.data);
-            setModalTitle(type === 'followers' ? '팔로워' : '팔로잉');
+            const followingsResponse = await axiosInstance.get(`/api/v1/users/${UserId}/followings`, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+            setModalContent({
+                followers: followersResponse.data,
+                followings: followingsResponse.data
+            });
+            setInitialTab(type);
             setIsModalOpen(true);
         } catch (error) {
-            console.error(`Failed to fetch ${type} list:`, error);
+            console.error('Failed to fetch follow lists:', error);
         }
     };
 
@@ -90,7 +98,12 @@ const Follow = ({ UserId }) => {
                 </button>
             )}
             {isModalOpen && (
-                <FollowModal title={modalTitle} content={modalContent} onClose={() => setIsModalOpen(false)} />
+                <FollowModal 
+                    initialTab={initialTab}
+                    followers={modalContent.followers} 
+                    followings={modalContent.followings} 
+                    onClose={() => setIsModalOpen(false)} 
+                />
             )}
         </div>
     );
