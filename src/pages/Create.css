@@ -18,17 +18,38 @@
 } */
 
 .createItem {
-    margin: 11px 0;
+    margin: 12px 0;
     align-items: center;
     display: flex;
     flex-direction: row;
 }
 
 .inputTag {
-    display: inline;
+    /* display: inline; */
     margin-right: 8px;
+    white-space: nowrap;
 }
 
+.dateInputContainer,
+.timeInputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.dateInputWrapper,
+.timeInputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    position: relative;
+}
+
+.timeInputWrapper.hasError,
+.dateInputWrapper.hasError {
+    padding-bottom: 10px;
+}
 
 .infoTitleText {
     font-size: 22px;
@@ -174,7 +195,15 @@
 
 .createError {
     color: red;
+}
+
+.createErrorAbsolute {
+    color: red;
     margin-bottom: 5px;
+    margin-top: 7px;
+    position: absolute;
+    top: 27px;
+    left: 10px;
 }
 
 .enterErrorContainer {

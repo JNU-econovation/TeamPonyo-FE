@@ -307,7 +307,7 @@ const Create = () => {
                 <div className='createError'>{errors.title}</div>
               }
             </div>
-            <div className='infoPlace createItem'>
+            <div className='infoPlace'>
               <div className='infoPlaceContainer'>
                 <div className='inputTag'>장소</div>
                 <div className={`roadAddress ${data.address === '' ? 'roadAddressPlaceholder' : ''}`}>{data.address === '' ? '찾기 버튼을 눌러주세요' : roadAddress}</div>
@@ -331,70 +331,73 @@ const Create = () => {
                 <div className='createError'>{errors.address}</div>
               }
             </div>
+            
             <div className='infoPeriod createItem'>
-              <div className='inputTag'>기간</div>
-              <input
-                type='date'
-                name='startDate'
-                value={data.startDate}
-                onChange={handleChange}
-                className='inputSmall'
-                ref={refs.startDate}
-              />
-              ~
-              <input
-                type='date'
-                name='endDate'
-                value={data.endDate}
-                onChange={handleChange}
-                className='inputSmall'
-                ref={refs.endDate}
-              />
-            </div>
-            <div className='enterErrorContainer'>
-              <div className='enterErrorFirstItem'>
+            <div className='inputTag'>기간</div>
+            <div className='dateInputContainer'>
+              <div className={`dateInputWrapper ${errors.startDate ? 'hasError' : ''}`}>
+                <input
+                  type='date'
+                  name='startDate'
+                  value={data.startDate}
+                  onChange={handleChange}
+                  className='inputSmall'
+                  ref={refs.startDate}
+                />
                 {errors.startDate && 
-                  <div className='createError'>{errors.startDate}</div>
+                  <div className='createErrorAbsolute'>{errors.startDate}</div>
                 }
               </div>
-              <div>
-                {errors.endDate && 
-                    <div className='createError'>{errors.endDate}</div>
-                }
-              </div>
-            </div>
-            <div className='infoTime createItem'>
-              <div className='inputTag'>시간</div>
-              <input
-                type='time'
-                name='startTime'
-                value={data.startTime}
-                onChange={handleChange}
-                className='inputSmall'
-                ref={refs.startTime}
-              />
               ~
-              <input
-                type='time'
-                name='endTime'
-                value={data.endTime}
-                onChange={handleChange}
-                className='inputSmall'
-                ref={refs.endTime}
-              />
+              <div className={`dateInputWrapper ${errors.endDate ? 'hasError' : ''}`}>
+                <input
+                  type='date'
+                  name='endDate'
+                  value={data.endDate}
+                  onChange={handleChange}
+                  className='inputSmall'
+                  ref={refs.endDate}
+                />
+                {errors.endDate && 
+                  <div className='createErrorAbsolute'>{errors.endDate}</div>
+                }
+              </div>
             </div>
-            <div className='enterErrorContainer'>
-              <div className='enterErrorFirstItem'>
+          </div>
+
+          <div className='infoTime createItem'>
+            <div className='inputTag'>시간</div>
+            <div className='timeInputContainer'>
+              <div className={`timeInputWrapper ${errors.startTime ? 'hasError' : ''}`}>
+                <input
+                  type='time'
+                  name='startTime'
+                  value={data.startTime}
+                  onChange={handleChange}
+                  className='inputSmall'
+                  ref={refs.startTime}
+                />
                 {errors.startTime && 
-                  <div className='createError'>{errors.startTime}</div>
+                  <div className='createErrorAbsolute'>{errors.startTime}</div>
                 }
               </div>
-              <div>
+              ~
+              <div className={`timeInputWrapper ${errors.endTime ? 'hasError' : ''}`}>
+                <input
+                  type='time'
+                  name='endTime'
+                  value={data.endTime}
+                  onChange={handleChange}
+                  className='inputSmall'
+                  ref={refs.endTime}
+                />
                 {errors.endTime && 
-                  <div className='createError'>{errors.endTime}</div>
+                  <div className='createErrorAbsolute'>{errors.endTime}</div>
                 }
               </div>
             </div>
+          </div>
+
               
             <div className='infoPrice createItem'>
               <div className='inputTag'>입장료</div>
