@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardBanner.css';
-
+import {Link} from 'react-router-dom'
 const CardBanner = ({ item }) => {
 
   const isAllEnglish = (text) => {
@@ -11,7 +11,7 @@ const CardBanner = ({ item }) => {
 
   return (
     <div className='CardBanner'>
-      
+      <Link to={`/info/${item.exhibit_id}`}>
         <div className='CardContainer'>
           <div className='CardPosterContainer'>
             <img className='CardPoster' src={item.poster_url} alt="Poster" />
@@ -23,7 +23,7 @@ const CardBanner = ({ item }) => {
             <div className='CardLocation CardLeft'>{item.address}</div>
           </div>
         </div>
-      
+      </Link>
     </div>
   );
 };
