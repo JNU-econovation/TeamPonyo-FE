@@ -51,6 +51,12 @@ const MyPageGroup = () => {
             <button onClick={() => setSortOrder('POPULARITY')} className={sortOrder === 'POPULARITY' ? 'active' : ''}>
               인기순
             </button>
+            <button onClick={() => setSortOrder('VISITED')} className={sortOrder === 'VISITED' ? 'active' : ''}>
+              다녀온 전시
+            </button>
+            <button onClick={() => setSortOrder('SAVED')} className={sortOrder === 'SAVED' ? 'active' : ''}>
+              저장한 전시
+            </button>
           </div>
           <div className="MyPageContainer">
             <MyGridList sortOrder={sortOrder} />
