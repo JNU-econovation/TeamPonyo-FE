@@ -11,18 +11,19 @@ const CardBanner = ({ item }) => {
 
   return (
     <div className='CardBanner'>
-      <div className='CardContainer'>
-        <div className='CardPosterContainer'>
-          <img className='CardPoster' src={item.poster} alt="Poster" />
+      
+        <div className='CardContainer'>
+          <div className='CardPosterContainer'>
+            <img className='CardPoster' src={item.poster_url} alt="Poster" />
+          </div>
+          <div className='CardInfo'>
+            <div className={`CardTitle CardRight ${isAllEnglish(item.title) ? 'Eng' : 'noEng'}`}>{item.title}</div>
+            <div className='CardAuthor CardRight'>{item.nickname}</div>
+            <div className='CardDate CardRight'>{item.open_times}</div>
+            <div className='CardLocation CardLeft'>{item.address}</div>
+          </div>
         </div>
-        <div className='CardInfo'>
-          <div className={`CardTitle CardRight ${isAllEnglish(item.title) ? 'Eng' : 'noEng'}`}>{item.title}</div>
-          <div className='CardAuthor CardRight'>{item.author}</div>
-          <div className='CardContent CardRight'>{item.content}</div>
-          <div className='CardDate CardRight'>{item.date}</div>
-          <div className='CardLocation CardLeft'>{item.location}</div>
-        </div>
-      </div>
+      
     </div>
   );
 };
