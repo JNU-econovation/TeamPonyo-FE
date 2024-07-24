@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0px;
+  margin-right: 8rem;
 }
 
 .main-content {
@@ -23,7 +24,7 @@
 
 .content-right {
   width: 18%;
-  margin: 0 7rem;
+  margin: 0 10rem;
 }
 
 .filter-buttons {
@@ -52,3 +53,4 @@
 .MyPageContainer {
   margin-top: 20px;
 }
+
