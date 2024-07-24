@@ -30,8 +30,9 @@ const Banner = () => {
     <Swiper
       direction={'horizontal'}
       slidesPerView={3}
-      spaceBetween={20}
+      spaceBetween={850} //20
       centeredSlides={true}
+      
       loop={true}
       autoplay={{
         delay: 5000,
@@ -42,8 +43,10 @@ const Banner = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      slidesOffsetBefore={220} // 슬라이드 왼쪽 오프셋 조정
+      slidesOffsetBefore={1276} // 슬라이드 왼쪽 오프셋 조정
       slidesOffsetAfter={0} // 슬라이드 오른쪽 오프셋 조정
+
+      style={{ width: '100%', justifyContent: 'center' }}
     >
       {cardList.map((item, index) => (
         <SwiperSlide key={index}>
