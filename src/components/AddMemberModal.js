@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './AddMemberModal.css';
 
-const AddMemberModal = ({ onClose, groupId }) => {
+const AddMemberModal = ({ onClose, groupId, currentUserNickname }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [accounts, setAccounts] = useState([]);
 
@@ -20,11 +20,11 @@ const AddMemberModal = ({ onClose, groupId }) => {
     }, []);
 
     const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
+        setSearchTerm(event.target.value.toLowerCase());
     };
 
     const filteredAccounts = accounts.filter(account =>
-        account.nickname.includes(searchTerm) || account.login_id.includes(searchTerm)
+        account.nickname.toLowerCase().includes(searchTerm) || account.login_id.toLowerCase().includes(searchTerm)
     );
 
     const handleAddMember = async (userId) => {
@@ -40,7 +40,7 @@ const AddMemberModal = ({ onClose, groupId }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h3>사람 추가하기</h3>
+                    <h3>{currentUserNickname}에 사람 추가하기</h3>
                     <button className="close-button" onClick={onClose}>X</button>
                 </div>
                 <input
@@ -49,11 +49,12 @@ const AddMemberModal = ({ onClose, groupId }) => {
                     value={searchTerm}
                     onChange={handleSearch}
                     className="search-input"
+                    autoFocus
                 />
                 <div className="account-list">
                     {filteredAccounts.map(account => (
                         <div key={account.user_id} className="account-item">
-                            <img src={account.profile_image_url} alt={`${account.nickname}'s profile`} className="account-image" />
+                            <img src={account.profile_image_url} alt={`Profile of ${account.nickname}`} className="account-image" />
                             <div className="account-info">
                                 <span className="nickname">{account.nickname}</span>
                                 <span className="login-id">{account.login_id}</span>

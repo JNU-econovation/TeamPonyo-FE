@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import Members from '../components/Members'; // Members 컴포넌트 임포트
 import Profile from '../components/Profile';
-import MyGridList from '../components/MyGridList';
+import GridList from '../components/GridList.js'
+import Pagination from '../components/Pagination'
 import '../design/MyPageGrid.css';
 import Follow from '../components/Follow';
 import HorizonLine from '../components/HorizonLine';
-import Members from '../components/Members'; // Members 컴포넌트 임포트
 import '../design/MyPage.css';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
@@ -14,6 +15,9 @@ const MyPageGroup = () => {
   const { userId } = useParams();
   const [profileInfo, setProfileInfo] = useState({ profile_image_url: '', nickname: "", login_id: "", introduction: "" });
   const [sortOrder, setSortOrder] = useState('LATEST'); // 정렬 기준 상태
+  const [pageCount, setPageCount] = useState(36) // 총 페이지 수
+  const [currentPage, setCurrentPage] = useState(1) // 현재 페이지
+  const [exhibitSummaries, setExhibitSummaries] = useState([])
 
   const accessToken = localStorage.getItem('access_token');
 
@@ -30,6 +34,37 @@ const MyPageGroup = () => {
     fetchProfileInfo();
   }, [userId]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/api/v1/exhibits', {
+          params: {
+            'team-id':  userId,
+            'number': 16,
+            'page-number': currentPage,
+            'sort': sortOrder,
+          }
+        });
+        setExhibitSummaries(response.data.exhibits);
+        setPageCount(response.data.total_pages)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+  };
+  fetchData();
+}, [currentPage, sortOrder]);
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected + 1)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const handleFiltersChange = (sortOrder) => {
+    setSortOrder(sortOrder);
+    setCurrentPage(1);
+  };
+
+
   return (
     <div className="my-page-group">
       <div className="profile-container">
@@ -44,24 +79,28 @@ const MyPageGroup = () => {
       <HorizonLine />
       <div className="main-content">
         <div className="content-left">
-          <div className="filter-buttons">
-            <button onClick={() => setSortOrder('LATEST')} className={sortOrder === 'LATEST' ? 'active' : ''}>
+
+          <div className='filter-buttons'>
+            <button onClick={()=>handleFiltersChange('LATEST')} className={sortOrder === 'LATEST' ? 'active' : ''}>
               최신순
             </button>
-            <button onClick={() => setSortOrder('POPULARITY')} className={sortOrder === 'POPULARITY' ? 'active' : ''}>
+            <button onClick={() => handleFiltersChange('POPULARITY')} className={sortOrder === 'POPULARITY' ? 'active' : ''}>
               인기순
             </button>
-            <button onClick={() => setSortOrder('VISITED')} className={sortOrder === 'VISITED' ? 'active' : ''}>
-              다녀온 전시
-            </button>
-            <button onClick={() => setSortOrder('SAVED')} className={sortOrder === 'SAVED' ? 'active' : ''}>
-              저장한 전시
-            </button>
           </div>
-          <div className="MyPageContainer">
-            <MyGridList sortOrder={sortOrder} />
-          </div>
+          <GridList 
+            data = {exhibitSummaries}  // 데이터 전달
+          />
+          {pageCount >= 1 && (
+            <Pagination
+              pageCount={pageCount}
+              onPageChange={handlePageChange}
+              currentPage={currentPage}
+            />
+          )}
+
         </div>
+
         <div className="content-right">
           <Members groupId={userId} /> {/* Members 컴포넌트 추가 */}
         </div>
