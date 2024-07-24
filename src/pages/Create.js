@@ -408,7 +408,7 @@ const Create = () => {
                   onChange={handleChange}
                   className='inputSmall inputFee'
                   disabled={isFree}
-                  step={500}
+                  // step={500}
                 />
                 <div className='currency'>원</div>
               </div>

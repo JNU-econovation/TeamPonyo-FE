@@ -51,7 +51,7 @@
     width: 180px;
     height: 25px;
     margin: 0px 10px;
-    border: 1.5px solid #333;
+    border: 1px solid #646464;
     outline: none;
     border-radius: 5px;
     padding: 13px 10px;
@@ -85,12 +85,18 @@
 }
 
 .inputFee {
-    padding-right: 20px;
+    padding-right: 25px;
     text-align: right;
 }
 
+.inputFee[type="number"]::-webkit-outer-spin-button,
+.inputFee[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .inputFee:disabled {
-    border: 1.5px solid #ADADAD;
+    border: 1px solid #646464;
     background-color: #EDEDED;
     cursor: not-allowed;
 }
@@ -142,7 +148,6 @@
     pointer-events: none;
     white-space: pre-wrap;
  }
-
 
 .textarea:focus + .placeholder,
 .textarea:not(:placeholder-shown) + .placeholder {

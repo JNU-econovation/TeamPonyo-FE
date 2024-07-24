@@ -22,6 +22,7 @@ function Navbar() {
                     }
                 });
                 setMyInfo(response.data);
+                localStorage.setItem('login_user_id', response.data.user_id)
                 setIsLogin(true);
             } catch (error) {
                 console.error('Failed to fetch my info:', error);
