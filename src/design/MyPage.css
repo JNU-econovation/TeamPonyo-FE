@@ -30,7 +30,8 @@
 .filter-buttons {
   display: flex;
   justify-content: flex-start;
-  margin: 1rem 10rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
 }
 
 .filter-buttons button {
@@ -53,4 +54,3 @@
 .MyPageContainer {
   margin-top: 20px;
 }
-
