@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './Banner.css';
-import CardBanner from './CardBanner.js';
-import { cardList } from '../mokupData/infoData.js';
+import CardBanner from './CardBanner';
+import axios from 'axios';
 
 const Banner = () => {
+  const [cardList, setCardList] = useState([]);
+  const number = 5;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/v1/exhibits/banners', {
+          params: { number }
+        });
+        setCardList(response.data);
+      } catch (error) {
+        console.error('Failed to fetch banners', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Swiper
@@ -34,7 +50,6 @@ const Banner = () => {
           <CardBanner item={item} />
         </SwiperSlide>
       ))}
-      
     </Swiper>
   );
 };
