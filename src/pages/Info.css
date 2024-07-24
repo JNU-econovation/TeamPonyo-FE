@@ -136,4 +136,25 @@
   .infoPlaceMap {
 
   }
+
+  .infoPhotoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .infoPhotoItem {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .infoPhotoItem img {
+    max-height: 500px;
+    height: auto;
+}
+
+  .infoMapContainer {
+    margin-top: 50px;
+  }
   
