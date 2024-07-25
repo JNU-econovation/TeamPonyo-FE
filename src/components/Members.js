@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './Members.css';
 import AddMemberModal from './AddMemberModal';
+import Tooltip from './Tooltip';
 
 const Members = ({ teamId, nickname }) => {
     const [members, setMembers] = useState([]);
@@ -46,6 +47,7 @@ const Members = ({ teamId, nickname }) => {
                     members.map(member => (
                         <div key={member.user_id} className="member-item">
                             <img src={member.profile_image_url} alt={`${member.nickname}'s profile`} className="member-image" />
+                            <Tooltip member={member} />
                         </div>
                     ))
                 ) : (

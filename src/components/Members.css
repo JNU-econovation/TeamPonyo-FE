@@ -19,6 +19,7 @@
 }
 
 .members-container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -30,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .member-image {
