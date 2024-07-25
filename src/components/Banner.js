@@ -46,7 +46,7 @@ const Banner = () => {
       slidesOffsetBefore={745} // 슬라이드 왼쪽 오프셋 조정
       slidesOffsetAfter={0} // 슬라이드 오른쪽 오프셋 조정
 
-      style={{ width: '100%', justifyContent: 'center' }}
+      style={{ width: '100%', justifyContent: 'center', marginBottom: '80px' }}
     >
       {cardList.map((item, index) => (
         <SwiperSlide key={index}>

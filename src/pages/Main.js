@@ -95,7 +95,7 @@ const Main = () => {
     <div className='Main'>
       <SearchBox/>
       <Banner />
-      <FilterBox onFiltersChange={handleFiltersChange} className='filterBoxContainer' />
+      {/* <FilterBox onFiltersChange={handleFiltersChange} className='filterBoxContainer' /> */}
       <GridList 
         data = {data}  // 데이터 전달
       />
