@@ -30,7 +30,7 @@
 .filter-buttons {
   display: flex;
   justify-content: flex-start;
-  margin: 1rem 0;
+  margin: 1rem 3rem 0 0;
   flex-wrap: wrap;
 }
 

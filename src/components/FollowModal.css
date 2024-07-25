@@ -1,3 +1,6 @@
+/* TODO:팔로우 팔로잉 모달 - css, 스크롤 구현
+속해있는 사람 호버링 시 나타나는 작은 창 - css
+속해있는 사람 추가하는 모달 - css */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -32,28 +35,29 @@
 .tab-button {
     background: none;
     border: none;
-    font-size: 1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     padding: 10px 20px;
 }
 
 .tab-button.active {
     font-weight: bold;
-    border-bottom: 2px solid black;
 }
 
 .modal-close-button {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
 .modal-content {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    background: white;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    padding: 20px;
+    box-shadow:0 0 0 0 white;}
 
 .modal-item {
     display: flex;

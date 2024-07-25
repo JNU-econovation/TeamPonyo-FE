@@ -30,7 +30,7 @@ const FollowModal = ({ initialTab, followers, followings, onClose }) => {
                     >
                         팔로잉
                     </button>
-                    <button className="modal-close-button" onClick={onClose}>X</button>
+                    <button className="modal-close-button" onClick={onClose}>×</button>
                 </div>
                 <ul className="modal-content">
                     {content.map((user) => (
