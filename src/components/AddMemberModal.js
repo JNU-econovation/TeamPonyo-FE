@@ -64,8 +64,8 @@ const AddMemberModal = ({ onClose, teamId, nickname, onMemberAdded}) => {
                         <div key={account.user_id} className="account-item">
                             <img src={account.profile_image_url} alt={`Profile of ${account.nickname}`} className="account-image" />
                             <div className="account-info">
-                                <span className="nickname">{account.nickname}</span>
-                                <span className="login-id">{account.login_id}</span>
+                                <div className="nickname">{account.nickname}</div>
+                                <div className="login-id">{account.login_id}</div>
                             </div>
                             {account.is_member ?
                                 <span className="login-id">멤버</span> : 
