@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './Tooltip.css';
 
-const Tooltip = ({ member }) => {
+const Tooltip = ({ member, onFollowUpdate }) => {
     const [isFollowing, setIsFollowing] = useState(member.followed);
     const accessToken = localStorage.getItem('access_token');
 
@@ -23,6 +23,7 @@ const Tooltip = ({ member }) => {
                 );
                 setIsFollowing(false);
             }
+            onFollowUpdate()
         } catch (error) {
             console.error('Error following user:', error);
         }

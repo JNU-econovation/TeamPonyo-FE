@@ -18,11 +18,28 @@ const MyPageGroup = () => {
     login_id: '',
     introduction: '',
   });
+
+  const accessToken = localStorage.getItem('access_token');
+  const [followInfo, setFollowInfo] = useState({ follower_number: 0, following_number: 0, followed: false });
+
   const [sortOrder, setSortOrder] = useState('LATEST'); // 정렬 기준 상태
   const [filterType, setFilterType] = useState('NONE'); // 필터 타입 상태
   const [pageCount, setPageCount] = useState(36); // 총 페이지 수
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [exhibitSummaries, setExhibitSummaries] = useState([]);
+
+  const fetchFollowInfo = async () => {
+    try {
+        const response = await axiosInstance.get(`/api/v1/users/${userId}/follow-info`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        setFollowInfo(response.data);
+    } catch (error) {
+        console.error('Failed to fetch follow info:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchProfileInfo = async () => {
@@ -33,7 +50,8 @@ const MyPageGroup = () => {
         console.error('Failed to fetch profile info:', error);
       }
     };
-
+    
+    fetchFollowInfo();
     fetchProfileInfo();
   }, [userId]);
 
@@ -86,6 +104,7 @@ const MyPageGroup = () => {
     }
   };
 
+
   return (
     <div className="my-page-group">
       <div className="profile-container">
@@ -95,7 +114,7 @@ const MyPageGroup = () => {
           LoginId={profileInfo.login_id}
           Introduction={profileInfo.introduction}
         />
-        <Follow UserId={userId} />
+        <Follow UserId={userId} FollowInfo={followInfo} onFollowUpdate={fetchFollowInfo} />
       </div>
       <HorizonLine />
       <div className="main-content">
@@ -139,8 +158,9 @@ const MyPageGroup = () => {
 
           <Members 
             teamId={userId}
-            nickname={profileInfo.nickname} 
-          /> {/* Members 컴포넌트 추가 */}
+            nickname={profileInfo.nickname}
+            onFollowUpdate={fetchFollowInfo}
+          />
         </div>
       </div>
     </div>
