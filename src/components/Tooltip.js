@@ -4,14 +4,23 @@ import './Tooltip.css';
 
 const Tooltip = ({ member }) => {
     const [isFollowing, setIsFollowing] = useState(member.followed);
+    const accessToken = localStorage.getItem('access_token');
 
     const handleFollow = async () => {
         try {
             if (!isFollowing){
-                await axiosInstance.post(`/api/v1/follows`, { followee_id: member.user_id });
+                await axiosInstance.post(`/api/v1/follows`, 
+                    { followee_id: member.user_id },
+                    {headers: {"Authorization": `Bearer ${accessToken}`}}
+                );
                 setIsFollowing(true);
             }else{
-                await axiosInstance.delete(`/api/v1/follows`, { followee_id: member.user_id });
+                await axiosInstance.delete(`/api/v1/follows`, 
+                    {data: { followee_id: member.user_id },
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }}
+                );
                 setIsFollowing(false);
             }
         } catch (error) {
@@ -28,7 +37,7 @@ const Tooltip = ({ member }) => {
                 <p>{member.introduction}</p>
             </div>
             {isFollowing ? (
-                <button className="follow-button" disabled>팔로잉</button>
+                <button className="follow-button" onClick={handleFollow}>팔로잉</button>
             ) : (
                 <button className="follow-button" onClick={handleFollow}>팔로우</button>
             )}
