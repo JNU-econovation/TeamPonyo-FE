@@ -91,7 +91,7 @@ const MyPageGroup = () => {
   const handleSortChange = (order) => {
     if (sortOrder !== order) {
       setSortOrder(order);
-      setFilterType('NONE'); // 필터가 활성화되면 정렬 초기화
+      setFilterType('NONE');
       setCurrentPage(1);
     }
   };
@@ -99,7 +99,7 @@ const MyPageGroup = () => {
   const handleFilterChange = (type) => {
     if (filterType !== type) {
       setFilterType(type);
-      setSortOrder('LATEST'); // 필터가 활성화되면 정렬 초기화
+      setSortOrder('LATEST');
       setCurrentPage(1);
     }
   };
