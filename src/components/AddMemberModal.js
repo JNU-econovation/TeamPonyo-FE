@@ -5,6 +5,7 @@ import './AddMemberModal.css';
 const AddMemberModal = ({ onClose, nickname}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [accounts, setAccounts] = useState([]);
+    const [invitedUsers, setInvitedUsers] = useState([]);
     const accessToken = localStorage.getItem('access_token');
 
     const handleSearch = async (e) => {
@@ -28,6 +29,7 @@ const AddMemberModal = ({ onClose, nickname}) => {
                 const response = await axiosInstance.post('/api/v1/team/member', {invitee_id: userId}, {headers: {
                     Authorization: `Bearer ${accessToken}`
                 }});
+                setInvitedUsers([...invitedUsers, userId]);
             } catch (error) {
                 console.error('Error searching accounts:', error);
             }
@@ -57,7 +59,12 @@ const AddMemberModal = ({ onClose, nickname}) => {
                                 <span className="nickname">{account.nickname}</span>
                                 <span className="login-id">{account.login_id}</span>
                             </div>
-                            <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button>
+                            {/* <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button> */}
+                            {invitedUsers.includes(account.user_id) ? (
+                                <button className="add-button-disable" disabled>초대됨</button>
+                            ) : (
+                                <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button>
+                            )}
                         </div>
                     ))}
                 </div>
