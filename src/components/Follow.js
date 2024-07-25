@@ -3,16 +3,16 @@ import './Follow.css';
 import axiosInstance from '../api/axiosInstance';
 import FollowModal from './FollowModal'; // FollowModal 컴포넌트를 import
 
-const Follow = ({ UserId }) => {
+const Follow = ({ UserId, FollowInfo, onFollowUpdate }) => {
     const accessToken = localStorage.getItem('access_token');
-    const [followInfo, setFollowInfo] = useState({ follower_number: 0, following_number: 0, followed: false });
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ followers: [], followings: [] });
     const [initialTab, setInitialTab] = useState('followers');
 
     const handleFollowButtonClick = async () => {
         try {
-            if (followInfo.followed) {
+            if (FollowInfo.followed) {
                 await axiosInstance.delete('/api/v1/follows', {
                     data: { followee_id: UserId },
                     headers: {
@@ -29,28 +29,13 @@ const Follow = ({ UserId }) => {
                 });
             }
 
-            setFollowInfo((prev) => ({
-                ...prev,
-                follower_number: prev.follower_number + (followInfo.followed ? -1 : 1),
-                followed: !followInfo.followed
-            }));
+            onFollowUpdate();
         } catch (error) {
             console.error('Failed to update follow status:', error);
         }
     };
 
-    const fetchFollowInfo = async () => {
-        try {
-            const response = await axiosInstance.get(`/api/v1/users/${UserId}/follow-info`, {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            });
-            setFollowInfo(response.data);
-        } catch (error) {
-            console.error('Failed to fetch follow info:', error);
-        }
-    };
+    
 
     const fetchModalContent = async (type) => {
         try {
@@ -75,26 +60,22 @@ const Follow = ({ UserId }) => {
         }
     };
 
-    useEffect(() => {
-        fetchFollowInfo();
-    }, [UserId]);
-
     return (
         <div className="follow-details">
             <div className="follow-info">
                 <div className="FollowerNumber" onClick={() => fetchModalContent('followers')}>
-                    팔로워 <strong>{followInfo.follower_number}</strong>
+                    팔로워 <strong>{FollowInfo.follower_number}</strong>
                 </div>
                 <div className="FollowingNumber" onClick={() => fetchModalContent('followings')}>
-                    팔로잉 <strong>{followInfo.following_number}</strong>
+                    팔로잉 <strong>{FollowInfo.following_number}</strong>
                 </div>
             </div>
-            {followInfo.followed !== undefined && (
+            {FollowInfo.followed !== undefined && (
                 <button
-                    className={`follow-button ${followInfo.followed ? 'active' : 'inactive'}`}
+                    className={`follow-button ${FollowInfo.followed ? 'active' : 'inactive'}`}
                     onClick={handleFollowButtonClick}
                 >
-                    {followInfo.followed ? '팔로잉' : '팔로우'}
+                    {FollowInfo.followed ? '팔로잉' : '팔로우'}
                 </button>
             )}
             {isModalOpen && (
