@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Follow.css';
 import axiosInstance from '../api/axiosInstance';
-import FollowModal from './FollowModal'; // FollowModal 컴포넌트를 import
+import FollowModal from './FollowModal';
 
 const Follow = ({ UserId, FollowInfo, onFollowUpdate }) => {
     const accessToken = localStorage.getItem('access_token');

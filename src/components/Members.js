@@ -5,6 +5,8 @@ import AddMemberModal from './AddMemberModal';
 import Tooltip from './Tooltip';
 
 const Members = ({ teamId, nickname, onFollowUpdate }) => {
+    const accessToken = localStorage.getItem('access_token');
+
     const [members, setMembers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const loginUserId = localStorage.getItem('login_user_id');
@@ -12,7 +14,11 @@ const Members = ({ teamId, nickname, onFollowUpdate }) => {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/teams/${teamId}/members`);
+                const response = await axiosInstance.get(`/api/v1/teams/${teamId}/members`, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
                 setMembers(response.data);
             } catch (error) {
                 console.error('Failed to fetch members:', error);
