@@ -3,6 +3,10 @@ import './Navbar.css'
 import { Link, useLocation } from 'react-router-dom'
 import { ReactComponent as Logo } from '../logo.svg'
 import axiosInstance from '../api/axiosInstance'
+import editIcon from '../edit.png';
+import mypageIcon from '../mypage.png';
+import notiIcon from '../notification.png';
+
 
 function Navbar() {
     const [myInfo, setMyInfo] = useState({ user_id: 0, nickname: "" })
@@ -55,12 +59,12 @@ function Navbar() {
                         <p>반가워요, <span className='nickName'><Link to={`/mypagegroup/${myInfo.user_id}`}>{myInfo.nickname}</Link></span>님</p>
                     </div>
                     <div className='NavIcon'>
-                        <span className="material-symbols-outlined icon-edit"><Link to={'/create'}>edit_square</Link></span>
-                        <span className="material-symbols-outlined" onClick={isNotification}>
-                            {notification ? 'notifications_unread' : 'notifications'}
-                        </span>
+                        <div><Link to={'/create'}><img src={editIcon} className='editIcon' /></Link></div>
+                        <div onClick={isNotification}>
+                            {notification ? <img src={notiIcon} className='notiIcon' /> : <img src={notiIcon} className='notiIcon' />}
+                        </div>
                         <Link to={isLogin ? `/mypagegroup/${myInfo.user_id}` : '/login'}>
-                            {isLogin ? <span className="material-symbols-outlined">person</span> : 'LOGIN'}
+                            {isLogin ? <img src={mypageIcon} className='mypageIcon' /> : 'LOGIN'}
                         </Link>
                     </div>
                 </div>
