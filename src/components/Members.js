@@ -29,6 +29,10 @@ const Members = ({ teamId, nickname }) => {
         setIsModalOpen(false);
     };
 
+    const handleMemberAdded = (newMember) => {
+        setMembers(prevMembers => [...prevMembers, newMember]);
+    };
+
     return (
         <div>
             <div className="members-header">
@@ -48,7 +52,7 @@ const Members = ({ teamId, nickname }) => {
                     <div className="no-members">멤버를 추가해보세요</div>
                 )}
             </div>
-            {isModalOpen && <AddMemberModal onClose={handleCloseModal} teamId={teamId} nickname={nickname}/>}
+            {isModalOpen && <AddMemberModal onClose={handleCloseModal} teamId={teamId} nickname={nickname} onMemberAdded={handleMemberAdded}/>}
         </div>
     );
 };

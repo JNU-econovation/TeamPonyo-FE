@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './AddMemberModal.css';
 
-const AddMemberModal = ({ onClose, teamId, nickname}) => {
+const AddMemberModal = ({ onClose, teamId, nickname, onMemberAdded}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [accounts, setAccounts] = useState([]);
     const [invitedUsers, setInvitedUsers] = useState([]);
@@ -29,14 +29,18 @@ const AddMemberModal = ({ onClose, teamId, nickname}) => {
     };
 
     const handleAddMember = async (userId) => {
-            try {
-                const response = await axiosInstance.post('/api/v1/team/member', {invitee_id: userId}, {headers: {
+        try {
+            const response = await axiosInstance.post('/api/v1/team/member', { invitee_id: userId }, {
+                headers: {
                     Authorization: `Bearer ${accessToken}`
-                }});
-                setInvitedUsers([...invitedUsers, userId]);
-            } catch (error) {
-                console.error('Error searching accounts:', error);
-            }
+                }
+            });
+            const newMember = accounts.find(account => account.user_id === userId);
+            onMemberAdded(newMember);
+            setInvitedUsers([...invitedUsers, userId]);
+        } catch (error) {
+            console.error('Error adding member:', error);
+        }
     };
 
     return (
