@@ -1,4 +1,27 @@
 .FilterBox {
     display: inline-block;
-    margin-left: 100px;
+    margin-left: 290px;
+    margin-top: 10px;
+}
+
+.filtercontainer {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    padding: 8px 8px 8px 35px;
+    background: transparent;
+    background-image: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 110px;
+    background-image: url('../calendar.png');
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    background-size: 25px 25px;
+    line-height: 1.5em;
+    font-size: 14px;
 }
