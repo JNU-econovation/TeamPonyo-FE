@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import './AddMemberModal.css';
 
-const AddMemberModal = ({ onClose, nickname}) => {
+const AddMemberModal = ({ onClose, teamId, nickname}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [accounts, setAccounts] = useState([]);
     const [invitedUsers, setInvitedUsers] = useState([]);
     const accessToken = localStorage.getItem('access_token');
+    const loginUserId = localStorage.getItem('login_user_id');
 
     const handleSearch = async (e) => {
         setSearchTerm(e.target.value);
@@ -14,10 +15,13 @@ const AddMemberModal = ({ onClose, nickname}) => {
             try {
                 const response = await axiosInstance.get('/api/v1/users/search', {
                     params: {
-                        'nickname-or-login-id': searchTerm
+                        'nickname-or-login-id': searchTerm,
+                        'inviter-id': loginUserId,
+                        "searcher-id": loginUserId
                     }
                 });
                 setAccounts(response.data);
+                setInvitedUsers([]);
             } catch (error) {
                 console.error('Error searching accounts:', error);
             }
@@ -59,12 +63,14 @@ const AddMemberModal = ({ onClose, nickname}) => {
                                 <span className="nickname">{account.nickname}</span>
                                 <span className="login-id">{account.login_id}</span>
                             </div>
-                            {/* <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button> */}
-                            {invitedUsers.includes(account.user_id) ? (
-                                <button className="add-button-disable" disabled>초대됨</button>
-                            ) : (
-                                <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button>
-                            )}
+                            {account.is_member ?
+                                <span className="login-id">멤버</span> : 
+                                invitedUsers.includes(account.user_id) ? (
+                                    <button className="add-button-disable" disabled>초대됨</button>
+                                ) : (
+                                    <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button>
+                                )
+                            }
                         </div>
                     ))}
                 </div>

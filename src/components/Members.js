@@ -6,6 +6,7 @@ import AddMemberModal from './AddMemberModal';
 const Members = ({ teamId, nickname }) => {
     const [members, setMembers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const loginUserId = localStorage.getItem('login_user_id');
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -32,7 +33,9 @@ const Members = ({ teamId, nickname }) => {
         <div>
             <div className="members-header">
                 <h3>속해있는 사람들</h3>
-                <button className="add-member-button" onClick={handleAddButtonClick}>+</button>
+                {loginUserId == teamId ? <button className="add-member-button" onClick={handleAddButtonClick}>+</button> :
+                <></>
+                }
             </div>
             <div className="members-container">
                 {members.length > 0 ? (
