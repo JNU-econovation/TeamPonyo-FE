@@ -3,6 +3,7 @@ import axiosInstance from '../api/axiosInstance';
 import './Members.css';
 import AddMemberModal from './AddMemberModal';
 import Tooltip from './Tooltip';
+import { Link } from 'react-router-dom'
 
 const Members = ({ teamId, nickname, onFollowUpdate }) => {
     const accessToken = localStorage.getItem('access_token');
@@ -52,7 +53,8 @@ const Members = ({ teamId, nickname, onFollowUpdate }) => {
                 {members.length > 0 ? (
                     members.map(member => (
                         <div key={member.user_id} className="member-item">
-                            <img src={member.profile_image_url} alt={`${member.nickname}'s profile`} className="member-image" />
+                            <Link to={`/mypagegroup/${member.user_id}`}> <img src={member.profile_image_url} alt={`${member.nickname}'s profile`} className="member-image" /> </Link>
+                            
                             <Tooltip member={member} onFollowUpdate={onFollowUpdate} />
                         </div>
                     ))

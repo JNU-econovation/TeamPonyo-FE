@@ -29,8 +29,8 @@ const Info = () => {
             try {
                 const response = await axiosInstance.get(`/api/v1/exhibits/${exhibit_id}`, {
                     headers: {
-                        'Content-Type': 'multipart/form-data',  // Content-Type 설정
-                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${accessToken}`
                       }
                 });
                 setData(response.data);
@@ -42,9 +42,9 @@ const Info = () => {
     }, [exhibit_id]);
 
     useEffect(() => {
-        if (data) {  // data가 로드된 후에만 실행
-            setIsSave(data.saved);  // data.saved가 존재할 때만 업데이트
-            setIsCompleted(data.visited);  // data.visited가 존재할 때만 업데이트
+        if (data) {
+            setIsSave(data.saved);
+            setIsCompleted(data.visited);
             
             if (data.exhibit_status === "ONGOING") {
                 setTag('전시 중');
@@ -62,14 +62,14 @@ const Info = () => {
                 await axiosInstance.post('/api/v1/user/saved-exhibits', {'exhibit_id': exhibit_id}, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                        'Authorization': `Bearer ${accessToken}`
                     }
                 });
             } else {    // 저장된 전시
                 await axiosInstance.delete(`/api/v1/user/saved-exhibits/${exhibit_id}`, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                        'Authorization': `Bearer ${accessToken}`
                     }
                 });
             }
@@ -85,14 +85,14 @@ const Info = () => {
                 await axiosInstance.post('/api/v1/user/visited-exhibits', {'exhibit_id': exhibit_id}, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                        'Authorization': `Bearer ${accessToken};`
                     }
                 });
             } else {  // 관람한 전시
                 await axiosInstance.delete(`/api/v1/user/visited-exhibits/${exhibit_id}`,{
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`  // Authorization 헤더 추가 (토큰 필요)
+                        'Authorization': `Bearer ${accessToken}`
                     }
                 });
             }
