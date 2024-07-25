@@ -136,7 +136,11 @@ const MyPageGroup = () => {
           )}
         </div>
         <div className="content-right">
-          <Members groupId={userId} />
+
+          <Members 
+            teamId={userId}
+            nickname={profileInfo.nickname} 
+          /> {/* Members 컴포넌트 추가 */}
         </div>
       </div>
     </div>

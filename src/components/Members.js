@@ -3,14 +3,15 @@ import axiosInstance from '../api/axiosInstance';
 import './Members.css';
 import AddMemberModal from './AddMemberModal';
 
-const Members = ({ groupId }) => {
+const Members = ({ teamId, nickname }) => {
     const [members, setMembers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const loginUserId = localStorage.getItem('login_user_id');
 
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axiosInstance.get(`/api/v1/groups/${groupId}/members`);
+                const response = await axiosInstance.get(`/api/v1/teams/${teamId}/members`);
                 setMembers(response.data);
             } catch (error) {
                 console.error('Failed to fetch members:', error);
@@ -18,7 +19,7 @@ const Members = ({ groupId }) => {
         };
 
         fetchMembers();
-    }, [groupId]);
+    }, [teamId]);
 
     const handleAddButtonClick = () => {
         setIsModalOpen(true);
@@ -28,11 +29,17 @@ const Members = ({ groupId }) => {
         setIsModalOpen(false);
     };
 
+    const handleMemberAdded = (newMember) => {
+        setMembers(prevMembers => [...prevMembers, newMember]);
+    };
+
     return (
         <div>
             <div className="members-header">
                 <h3>속해있는 사람들</h3>
-                <button className="add-member-button" onClick={handleAddButtonClick}>+</button>
+                {loginUserId == teamId ? <button className="add-member-button" onClick={handleAddButtonClick}>+</button> :
+                <></>
+                }
             </div>
             <div className="members-container">
                 {members.length > 0 ? (
@@ -45,7 +52,7 @@ const Members = ({ groupId }) => {
                     <div className="no-members">멤버를 추가해보세요</div>
                 )}
             </div>
-            {isModalOpen && <AddMemberModal onClose={handleCloseModal} groupId={groupId} />}
+            {isModalOpen && <AddMemberModal onClose={handleCloseModal} teamId={teamId} nickname={nickname} onMemberAdded={handleMemberAdded}/>}
         </div>
     );
 };
