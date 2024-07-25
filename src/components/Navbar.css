@@ -97,14 +97,27 @@
     display: flex;
     gap: 0.3rem; 
     padding-bottom: 0.5rem;
+    align-items: center;
 }
 
 .material-symbols-outlined {
     cursor: pointer;
-    font-variation-settings: 'wght' 300;
+    font-variation-settings: 'wght' 200;
     font-size: 28px;
 }
 
-.NavIcon .icon-edit {
+.NavIcon .editIcon {
     margin-right: 2rem;
+    width: 40px;
+    height: 40px;
+}
+
+.NavIcon .mypageIcon {
+    width: 35px;
+    height: 35px;
+}
+
+.NavIcon .notiIcon {
+    width: 35px;
+    height: 35px;
 }
