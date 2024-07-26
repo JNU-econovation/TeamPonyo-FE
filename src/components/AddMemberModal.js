@@ -44,11 +44,12 @@ const AddMemberModal = ({ onClose, teamId, nickname, onMemberAdded}) => {
     };
 
     return (
+        <div className='AddMemberModal'>
         <div className="modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
                     <h3>{nickname}에 사람 추가하기</h3>
-                    <button className="close-button" onClick={onClose}>X</button>
+                    <button className="close-button" onClick={onClose}>×</button>
                 </div>
                 <input
                     type="text"
@@ -68,9 +69,9 @@ const AddMemberModal = ({ onClose, teamId, nickname, onMemberAdded}) => {
                                 <div className="login-id">{account.login_id}</div>
                             </div>
                             {account.is_member ?
-                                <span className="login-id">멤버</span> : 
+                                <span className="invited">멤버</span> : 
                                 invitedUsers.includes(account.user_id) ? (
-                                    <button className="add-button-disable" disabled>초대됨</button>
+                                    <span className="invited">멤버</span> 
                                 ) : (
                                     <button className="add-button" onClick={() => handleAddMember(account.user_id)}>+</button>
                                 )
@@ -79,6 +80,7 @@ const AddMemberModal = ({ onClose, teamId, nickname, onMemberAdded}) => {
                     ))}
                 </div>
             </div>
+        </div>
         </div>
     );
 };

@@ -10,10 +10,10 @@
     align-items: center;
 }
 
-.modal-content {
+.AddMemberModal .modal-content {
     background: white;
     border-radius: 8px;
-    width: 400px;
+    width: 600px;
     max-width: 90%;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,21 +33,26 @@
 .close-button {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 26px;
     cursor: pointer;
 }
 
-.search-input {
-    width: 100%;
-    padding: 10px;
+.AddMemberModal .modal-content .search-input {
+    width: 500px;
+    height: 8px;
+    margin: 0 10px 0 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .account-list {
     max-height: 300px;
     overflow-y: auto;
+
 }
 
 .account-item {
@@ -58,33 +63,52 @@
 }
 
 .account-image {
-    width: 40px;
-    height: 40px;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 1px;
 }
 
 .account-info {
-    flex-grow: 1;
+    flex-grow: 3;
+    padding: 0 10px 5px 10px;
 }
 
-.nickname {
+.account-info .nickname {
     font-weight: bold;
+    font-size: 20px;
 }
 
 .login-id {
     color: #777;
+    font-size: smaller;
+    margin-top: 6px;
 }
-
-.add-button {
-    background: #007bff;
-    border: none;
+.invited {
+    margin-right: 15px;
+    background-color: #ccc;
+}
+.account-list .add-button {
+    font-size: larger;
+    max-width: 35px;
+    min-width: 35px;
     color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
+
+   
+    height: 35px;
+    margin-right: 10px;
+    background-color: #EBEBEB;
+    color: black;
+    border: none;
+    border-radius: 0.625rem;
     cursor: pointer;
 }
 
 .add-button:hover {
     background: #0056b3;
+}
+
+.login-id {
+
+    margin-right: 28px;
 }
