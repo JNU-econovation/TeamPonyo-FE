@@ -102,7 +102,7 @@ const MyPageGroup = () => {
       setSortOrder('LATEST');
       setCurrentPage(1);
     }
-  };
+  }
 
 
   return (
