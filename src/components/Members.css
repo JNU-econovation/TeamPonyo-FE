@@ -34,8 +34,8 @@
     position: relative;
 }
 
-.member-image { 
-    width: 100%;
+.member-item .member-image { 
+    width: 135%;
     border-radius: 50%;
     object-fit: cover;
 }

@@ -86,7 +86,15 @@
 }
 .invited {
     margin-right: 15px;
-    background-color: #ccc;
+    background-color: #ccc;   
+    height: 35px;
+    margin-right: 10px;
+    color: black;
+    border: none;
+    border-radius: 0.625rem;
+    width: 70px;
+    text-align: center;
+    align-content: space-around;
 }
 .account-list .add-button {
     font-size: larger;
@@ -111,4 +119,8 @@
 .login-id {
 
     margin-right: 28px;
+}
+
+span{
+    width:30px;
 }

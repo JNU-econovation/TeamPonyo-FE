@@ -18,7 +18,7 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 600px;
     max-height: 80%;
     overflow-y: auto;
 }
@@ -54,10 +54,13 @@
 .modal-content {
     background: white;
     border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
+    width: 85%;
     padding: 20px;
-    box-shadow:0 0 0 0 white;}
+    box-shadow:0 0 0 0 white;
+    align-content: center;
+    margin: 10px;
+}
+    
 
 .modal-item {
     display: flex;
@@ -68,18 +71,21 @@
 
 .modal-profile-image {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
 }
 
 .modal-profile-details {
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
 .modal-nickname {
     font-weight: bold;
+    width: 100%;
+
 }
 
 .modal-login-id {
