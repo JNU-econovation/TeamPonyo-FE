@@ -89,7 +89,7 @@ const MyPageGroup = () => {
   };
 
   const handleSortChange = (order) => {
-    if (sortOrder !== order) {
+    if (sortOrder !== order || filterType !== 'NONE') {
       setSortOrder(order);
       setFilterType('NONE');
       setCurrentPage(1);
@@ -97,7 +97,7 @@ const MyPageGroup = () => {
   };
 
   const handleFilterChange = (type) => {
-    if (filterType !== type) {
+    if (filterType !== type || sortOrder !== 'LATEST') {
       setFilterType(type);
       setSortOrder('LATEST');
       setCurrentPage(1);
